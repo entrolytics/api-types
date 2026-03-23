@@ -1,0 +1,26 @@
+{
+  "name": "@entrolytics/api-types",
+  "version": "2.2.0",
+  "description": "Shared API types for Entrolytics - First-party growth analytics for the edge",
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "pnpm --filter=@entrolytics/api build && node ./scripts/build.mjs",
+    "prepack": "pnpm build"
+  },
+  "devDependencies": {
+    "typescript": "beta"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
