@@ -1,4 +1,5 @@
 import type { FastifyRequest } from 'fastify';
+import { type OrgRole, type PlatformRole } from '../lib/roles.js';
 export interface AuthUser {
     id: string;
     email: string;
@@ -6,16 +7,18 @@ export interface AuthUser {
     firstName: string | null;
     lastName: string | null;
     imageUrl: string | null;
-    role: string;
+    role: PlatformRole;
     clerkId: string;
+    clerkOrgId?: string | null;
     createdAt: Date | null;
     orgId?: string | null;
-    orgRole?: string | null;
+    orgRole?: OrgRole | null;
     isAdmin?: boolean;
 }
 export interface AuthContext {
     user: AuthUser;
     clerkUserId: string;
+    clerkOrgId?: string | null;
     orgId?: string | null;
     grant: string[];
 }

@@ -1,5 +1,10 @@
-export type FormEventType = 'start' | 'field_focus' | 'field_blur' | 'field_error' | 'submit' | 'abandon';
-export type FormFieldType = 'text' | 'email' | 'password' | 'tel' | 'number' | 'url' | 'textarea' | 'select' | 'checkbox' | 'radio' | 'date' | 'file' | 'hidden' | 'submit' | 'other';
+import { type FormEventType, type FormFieldType } from '@entrolytics/shared';
+export declare const FORM_EVENT_TYPES: [FormEventType, ...FormEventType[]];
+export declare const FORM_FIELD_TYPES: [FormFieldType, ...FormFieldType[]];
+export declare function isFormEventType(value: string): value is FormEventType;
+export declare function isFormFieldType(value: string): value is FormFieldType;
+export declare function parseFormEventType(value: string): FormEventType | null;
+export declare function parseFormFieldType(value: string | null | undefined): FormFieldType | null;
 export interface FormEvent {
     formId: string;
     formName: string | null;

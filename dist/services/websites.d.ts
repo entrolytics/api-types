@@ -1,3 +1,4 @@
+import type { PlatformRole } from '../lib/roles.js';
 export declare class WebsiteService {
     /**
      * List websites with filtering
@@ -34,7 +35,7 @@ export declare class WebsiteService {
     /**
      * Get website by ID
      */
-    static getWebsite(websiteId: string, userId: string, role: string, orgId?: string | null): Promise<{
+    static getWebsite(websiteId: string, userId: string, role: string): Promise<{
         id: string;
         orgId: string | null;
         userId: string | null;
@@ -116,19 +117,18 @@ export declare class WebsiteService {
     /**
      * Create new website
      */
-    static createWebsite(userId: string, data: {
+    static createWebsite(userId: string, role: PlatformRole | string, data: {
         name: string;
         domain: string;
         shareId?: string;
         orgId?: string;
     }): Promise<{
-        id: string;
         name: string;
-        deletedAt: Date | null;
+        id: string;
+        orgId: string | null;
+        userId: string | null;
         createdAt: Date;
         updatedAt: Date;
-        userId: string | null;
-        orgId: string | null;
         domain: string;
         shareId: string | null;
         resetAt: Date | null;
@@ -142,12 +142,12 @@ export declare class WebsiteService {
         anonymizeIps: boolean | null;
         respectDnt: boolean | null;
         cookieConsentRequired: boolean | null;
+        deletedAt: Date | null;
     }>;
     /**
      * Update website
      */
-    static updateWebsite(websiteId: string, userId: string, role: string, orgId: string | null | undefined, // Need validation on type
-    data: {
+    static updateWebsite(websiteId: string, userId: string, role: string, data: {
         name?: string;
         domain?: string;
         public?: boolean;
@@ -206,16 +206,16 @@ export declare class WebsiteService {
      */
     static createApiKey(websiteId: string, name: string, scopes: string[]): Promise<{
         key: string;
-        id: string;
         name: string;
-        deletedAt: Date | null;
+        id: string;
         createdAt: Date;
+        deletedAt: Date | null;
         expiresAt: Date | null;
         lastUsedAt: Date | null;
-        websiteId: string;
         prefix: string;
-        keyHash: string;
         scopes: string[];
+        websiteId: string;
+        keyHash: string;
         rateLimitMax: number | null;
         rateLimitWindow: number | null;
         allowedDomains: string[] | null;

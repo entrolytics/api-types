@@ -71,7 +71,7 @@ export declare const billingRouter: import("@trpc/server").TRPCBuiltRouter<{
                 stripeSubscriptionId: string | null;
                 stripeCustomerId: string | null;
                 stripePriceId: string | null;
-                planId: "free" | "pro" | "business" | "enterprise";
+                planId: "business" | "enterprise" | "free" | "pro";
                 status: "active" | "canceled" | "past_due" | "trialing";
                 cancelAtPeriodEnd: boolean | null;
                 eventsLimit: number;

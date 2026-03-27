@@ -1,4 +1,4 @@
-import type { EmailResult } from './email';
+import type { EmailResult } from './email.js';
 export interface WelcomeEmailProps {
     websiteName?: string;
     userEmail?: string;

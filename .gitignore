@@ -1,0 +1,56 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+node_modules
+/.pnp
+.pnp.js
+
+# testing
+/coverage
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+dist/
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# local env files
+.env*
+.env*.local
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+.idea/
+# clerk configuration (can include secrets)
+/.clerk/
+
+.turbo/
+.next/
+
+# Sentry Config File
+.env.sentry-build-plugin
+ARCHITECTURE.md
+BUSINESS_DASHBOARD_REPORT.md
+CLAUDE.md
+docs/COMPONENT_INTEGRATION_PLAN.md
+docs/THEME_CREATION_GUIDE.md
+docs/THEME_SYSTEM_ALIGNMENT.md
+INTEGRATION_PLAN.md
+PARITY_CHECKLIST.md

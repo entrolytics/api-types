@@ -1,4 +1,7 @@
-export type DeploymentSource = 'vercel' | 'netlify' | 'cloudflare' | 'railway' | 'render' | 'fly' | 'heroku' | 'aws' | 'gcp' | 'azure' | 'custom';
+import { type DeploymentSource } from '@entrolytics/shared';
+export declare const DEPLOYMENT_SOURCES: [DeploymentSource, ...DeploymentSource[]];
+export declare function isDeploymentSource(value: string): value is DeploymentSource;
+export declare function normalizeDeploymentSource(value: string | null | undefined): DeploymentSource;
 export interface Deployment {
     deployId: string;
     gitSha: string | null;

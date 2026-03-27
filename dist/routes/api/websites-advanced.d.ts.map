@@ -1,1 +1,1 @@
-{"version":3,"file":"websites-advanced.d.ts","sourceRoot":"","sources":["../../../src/routes/api/websites-advanced.ts"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,kBAAkB,EAAE,MAAM,SAAS,CAAA;AAoBjD,QAAA,MAAM,sBAAsB,EAAE,kBAirB7B,CAAA;AAED,eAAe,sBAAsB,CAAA"}
+{"version":3,"file":"websites-advanced.d.ts","sourceRoot":"","sources":["../../../src/routes/api/websites-advanced.ts"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,kBAAkB,EAAE,MAAM,SAAS,CAAA;AAqBjD,QAAA,MAAM,sBAAsB,EAAE,kBA4tB7B,CAAA;AAED,eAAe,sBAAsB,CAAA"}

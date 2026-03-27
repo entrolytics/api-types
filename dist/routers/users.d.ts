@@ -17,11 +17,11 @@ export declare const usersRouter: import("@trpc/server").TRPCBuiltRouter<{
      */
     list: import("@trpc/server").TRPCQueryProcedure<{
         input: {
-            orderBy?: "id" | "email" | "displayName" | "firstName" | "lastName" | "role" | "createdAt" | "updatedAt" | undefined;
+            orderBy?: "email" | "id" | "createdAt" | "updatedAt" | "role" | "displayName" | "firstName" | "lastName" | undefined;
             page?: number | undefined;
             pageSize?: number | undefined;
             plan?: string | undefined;
-            role?: string | undefined;
+            role?: "admin" | "user" | "view-only" | undefined;
             search?: string | undefined;
             sortDescending?: boolean | undefined;
             status?: string | undefined;
@@ -46,7 +46,7 @@ export declare const usersRouter: import("@trpc/server").TRPCBuiltRouter<{
             } & {
                 websiteCount: number;
             })[];
-            orderBy: "id" | "email" | "displayName" | "firstName" | "lastName" | "role" | "createdAt" | "updatedAt";
+            orderBy: "email" | "id" | "createdAt" | "updatedAt" | "role" | "displayName" | "firstName" | "lastName";
             page: number;
             pageSize: number;
             search: string | undefined;
@@ -92,9 +92,9 @@ export declare const usersRouter: import("@trpc/server").TRPCBuiltRouter<{
             };
             orgId: string | null | undefined;
             plan: {
-                id: "free" | "pro" | "business" | "enterprise";
+                id: "business" | "enterprise" | "free" | "pro";
                 name: string;
-                status: "active" | "canceled" | "past_due" | "trialing" | "paused";
+                status: "active" | "canceled" | "past_due" | "paused" | "trialing";
             };
             usage: {
                 pageviews: number;

@@ -90,13 +90,12 @@ export declare const websitesRouter: import("@trpc/server").TRPCBuiltRouter<{
             shareId?: string | undefined;
         };
         output: {
-            id: string;
             name: string;
-            deletedAt: Date | null;
+            id: string;
+            orgId: string | null;
+            userId: string | null;
             createdAt: Date;
             updatedAt: Date;
-            userId: string | null;
-            orgId: string | null;
             domain: string;
             shareId: string | null;
             resetAt: Date | null;
@@ -110,6 +109,7 @@ export declare const websitesRouter: import("@trpc/server").TRPCBuiltRouter<{
             anonymizeIps: boolean | null;
             respectDnt: boolean | null;
             cookieConsentRequired: boolean | null;
+            deletedAt: Date | null;
         };
         meta: object;
     }>;
@@ -184,16 +184,16 @@ export declare const websitesRouter: import("@trpc/server").TRPCBuiltRouter<{
             };
             output: {
                 key: string;
-                id: string;
                 name: string;
-                deletedAt: Date | null;
+                id: string;
                 createdAt: Date;
+                deletedAt: Date | null;
                 expiresAt: Date | null;
                 lastUsedAt: Date | null;
-                websiteId: string;
                 prefix: string;
-                keyHash: string;
                 scopes: string[];
+                websiteId: string;
+                keyHash: string;
                 rateLimitMax: number | null;
                 rateLimitWindow: number | null;
                 allowedDomains: string[] | null;

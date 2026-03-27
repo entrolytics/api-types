@@ -1,1 +1,1 @@
-{"version":3,"file":"events.d.ts","sourceRoot":"","sources":["../../../src/routes/api/events.ts"],"names":[],"mappings":"AACA,OAAO,KAAK,EAAE,kBAAkB,EAAE,MAAM,SAAS,CAAA;AA2BjD,QAAA,MAAM,YAAY,EAAE,kBAskBnB,CAAA;AAED,eAAe,YAAY,CAAA"}
+{"version":3,"file":"events.d.ts","sourceRoot":"","sources":["../../../src/routes/api/events.ts"],"names":[],"mappings":"AACA,OAAO,KAAK,EAAE,kBAAkB,EAAE,MAAM,SAAS,CAAA;AA2BjD,QAAA,MAAM,YAAY,EAAE,kBA6jBnB,CAAA;AAED,eAAe,YAAY,CAAA"}

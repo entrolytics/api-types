@@ -80,16 +80,16 @@ export declare const linksRouter: import("@trpc/server").TRPCBuiltRouter<{
             description?: string | undefined;
         };
         output: {
-            id: string;
             name: string;
-            deletedAt: Date | null;
+            id: string;
+            orgId: string;
+            userId: string | null;
             createdAt: Date;
             updatedAt: Date;
-            userId: string | null;
-            orgId: string;
+            deletedAt: Date | null;
             slug: string;
-            description: string | null;
             url: string;
+            description: string | null;
         };
         meta: object;
     }>;

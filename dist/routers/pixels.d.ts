@@ -61,12 +61,12 @@ export declare const pixelsRouter: import("@trpc/server").TRPCBuiltRouter<{
             slug: string;
         };
         output: {
-            id: string;
             name: string;
+            id: string;
+            orgId: string;
+            userId: string | null;
             createdAt: Date;
             updatedAt: Date;
-            userId: string | null;
-            orgId: string;
             slug: string;
         };
         meta: object;

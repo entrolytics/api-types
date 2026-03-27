@@ -76,7 +76,7 @@ export declare const formsRouter: import("@trpc/server").TRPCBuiltRouter<{
             errorMessage?: string | undefined;
             fieldIndex?: number | undefined;
             fieldName?: string | undefined;
-            fieldType?: "number" | "date" | "email" | "select" | "url" | "file" | "submit" | "text" | "password" | "tel" | "textarea" | "checkbox" | "radio" | "hidden" | "other" | undefined;
+            fieldType?: "number" | "email" | "date" | "select" | "url" | "submit" | "text" | "password" | "tel" | "textarea" | "checkbox" | "radio" | "file" | "hidden" | "other" | undefined;
             formName?: string | undefined;
             success?: boolean | undefined;
             timeOnField?: number | undefined;

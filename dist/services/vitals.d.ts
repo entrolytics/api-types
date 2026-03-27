@@ -1,6 +1,5 @@
-import type { VitalType } from '@entrolytics/shared';
+import { type VitalRating, type VitalType } from '@entrolytics/shared';
 export type VitalMetric = VitalType;
-export type VitalRating = 'good' | 'needs-improvement' | 'poor';
 export interface VitalEvent {
     metricName: VitalMetric;
     metricValue: number;

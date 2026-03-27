@@ -1,5 +1,6 @@
-import type { ZodTypeAny } from 'zod';
-export declare function zodToOpenApiSchema(schema: ZodTypeAny, options?: {
+import { zodToJsonSchema } from 'zod-to-json-schema';
+type ZodToJsonSchemaInput = Parameters<typeof zodToJsonSchema>[0];
+export declare function zodToOpenApiSchema(schema: ZodToJsonSchemaInput, options?: {
     target?: 'openApi3';
 }): object & {
     $schema?: string | undefined;
@@ -57,4 +58,5 @@ export declare const commonResponses: {
         type: string;
     };
 };
+export {};
 //# sourceMappingURL=zod-to-openapi.d.ts.map

@@ -55,12 +55,12 @@ export declare const segmentsRouter: import("@trpc/server").TRPCBuiltRouter<{
             websiteId: string;
         };
         output: {
-            id: string;
             name: string;
+            id: string;
             createdAt: Date;
             updatedAt: Date;
-            websiteId: string;
             type: string;
+            websiteId: string;
             parameters: unknown;
         };
         meta: object;

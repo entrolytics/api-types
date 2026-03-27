@@ -73,17 +73,17 @@ export declare const webhooksRouter: import("@trpc/server").TRPCBuiltRouter<{
             orgId?: string | undefined;
         };
         output: {
-            id: string;
+            enabled: boolean | null;
             name: string;
-            deletedAt: Date | null;
+            active: boolean | null;
+            id: string;
+            orgId: string | null;
+            userId: string | null;
             createdAt: Date;
             updatedAt: Date;
-            userId: string | null;
-            orgId: string | null;
+            deletedAt: Date | null;
             websiteId: string;
             url: string;
-            active: boolean | null;
-            enabled: boolean | null;
             events: string[];
             secret: string;
         };

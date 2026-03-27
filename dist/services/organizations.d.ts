@@ -1,4 +1,6 @@
+import type { OrgRole } from '../lib/roles.js';
 export declare class OrganizationService {
+    static ensureClerkOrganization(orgId: string, preferredUserId?: string): Promise<string>;
     /**
      * List organizations for a user
      */
@@ -14,9 +16,9 @@ export declare class OrganizationService {
      * Get organization details if user is a member
      */
     static getOrganization(orgId: string, userId: string): Promise<{
-        role: "owner" | "admin" | "member" | "viewer";
-        accessCode: string | null;
         clerkOrgId: string | null;
+        role: "admin" | "owner" | "member" | "viewer";
+        accessCode: string | null;
         createdAt: Date;
         deletedAt: Date | null;
         id: string;
@@ -32,15 +34,15 @@ export declare class OrganizationService {
         name: string;
         slug: string;
     }): Promise<{
-        id: string;
         name: string;
-        deletedAt: Date | null;
+        id: string;
         createdAt: Date;
         updatedAt: Date;
-        accessCode: string | null;
+        deletedAt: Date | null;
         clerkOrgId: string | null;
-        logoUrl: string | null;
         slug: string;
+        accessCode: string | null;
+        logoUrl: string | null;
     }>;
     /**
      * Update organization
@@ -69,11 +71,11 @@ export declare class OrganizationService {
     static listMembers(orgId: string): Promise<{
         createdAt: Date;
         id: string;
-        role: "owner" | "admin" | "member" | "viewer";
+        role: "admin" | "owner" | "member" | "viewer";
         user: {
-            id: string;
-            email: string;
             displayName: string | null;
+            email: string;
+            id: string;
             imageUrl: string | null;
         };
     }[]>;
@@ -81,16 +83,61 @@ export declare class OrganizationService {
      * Invite member
      */
     static inviteMember(orgId: string, inviterId: string, email: string, role: 'admin' | 'member' | 'viewer'): Promise<{
-        id: string;
         email: string;
-        role: string;
-        createdAt: Date;
-        expiresAt: Date;
+        status: "pending" | "expired" | "accepted";
+        id: string;
         orgId: string;
-        status: "pending" | "accepted" | "expired";
+        createdAt: Date;
+        role: string;
+        expiresAt: Date;
         token: string;
         invitedBy: string | null;
     }>;
+    static upsertMemberByUserId(orgId: string, actorUserId: string, memberUserId: string, role: OrgRole): Promise<{
+        membership: {
+            createdAt: Date;
+            id: string;
+            orgId: string;
+            role: "admin" | "owner" | "member" | "viewer";
+            updatedAt: Date;
+            userId: string;
+        };
+        user: {
+            clerkId: string;
+            createdAt: Date;
+            displayName: string | null;
+            email: string;
+            firstName: string | null;
+            id: string;
+            imageUrl: string | null;
+            lastName: string | null;
+            role: string;
+            updatedAt: Date;
+        };
+    }>;
+    static updateMemberRoleByUserId(orgId: string, actorUserId: string, memberUserId: string, role: OrgRole): Promise<{
+        membership: {
+            createdAt: Date;
+            id: string;
+            orgId: string;
+            role: "admin" | "owner" | "member" | "viewer";
+            updatedAt: Date;
+            userId: string;
+        };
+        user: {
+            clerkId: string;
+            createdAt: Date;
+            displayName: string | null;
+            email: string;
+            firstName: string | null;
+            id: string;
+            imageUrl: string | null;
+            lastName: string | null;
+            role: string;
+            updatedAt: Date;
+        };
+    }>;
+    static removeMemberByUserId(orgId: string, memberUserId: string): Promise<boolean>;
     /**
      * Remove member
      */
@@ -98,13 +145,13 @@ export declare class OrganizationService {
     /**
      * Update member role
      */
-    static updateMemberRole(orgId: string, memberId: string, role: 'owner' | 'admin' | 'member' | 'viewer'): Promise<{
+    static updateMemberRole(orgId: string, memberId: string, role: OrgRole): Promise<{
         createdAt: Date;
         id: string;
         orgId: string;
-        role: "owner" | "admin" | "member" | "viewer";
+        role: "admin" | "owner" | "member" | "viewer";
         updatedAt: Date;
         userId: string;
-    }>;
+    } | null>;
 }
 //# sourceMappingURL=organizations.d.ts.map

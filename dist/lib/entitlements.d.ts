@@ -1,4 +1,4 @@
-import type { PlanId } from './stripe';
+import type { PlanId } from './stripe.js';
 /**
  * Account entitlements - computed from subscription
  */
@@ -46,16 +46,14 @@ export interface AccountEntitlements {
  * Get subscription for a user or org
  */
 export declare function getSubscription(userId: string, orgId?: string | null): Promise<{
-    id: string;
-    createdAt: Date;
-    updatedAt: Date;
-    userId: string | null;
-    orgId: string | null;
     status: "active" | "canceled" | "past_due" | "trialing";
+    id: string;
+    orgId: string | null;
+    userId: string | null;
     stripeSubscriptionId: string | null;
     stripeCustomerId: string | null;
     stripePriceId: string | null;
-    planId: "free" | "pro" | "business" | "enterprise";
+    planId: "business" | "enterprise" | "free" | "pro";
     cancelAtPeriodEnd: boolean | null;
     eventsLimit: number;
     websitesLimit: number;
@@ -65,21 +63,21 @@ export declare function getSubscription(userId: string, orgId?: string | null): 
     cancelAt: Date | null;
     trialStart: Date | null;
     trialEnd: Date | null;
+    createdAt: Date;
+    updatedAt: Date;
 } | undefined>;
 /**
  * Get or create subscription record (creates free tier if none exists)
  */
 export declare function getOrCreateSubscription(userId: string, orgId?: string | null): Promise<{
-    id: string;
-    createdAt: Date;
-    updatedAt: Date;
-    userId: string | null;
-    orgId: string | null;
     status: "active" | "canceled" | "past_due" | "trialing";
+    id: string;
+    orgId: string | null;
+    userId: string | null;
     stripeSubscriptionId: string | null;
     stripeCustomerId: string | null;
     stripePriceId: string | null;
-    planId: "free" | "pro" | "business" | "enterprise";
+    planId: "business" | "enterprise" | "free" | "pro";
     cancelAtPeriodEnd: boolean | null;
     eventsLimit: number;
     websitesLimit: number;
@@ -89,6 +87,8 @@ export declare function getOrCreateSubscription(userId: string, orgId?: string |
     cancelAt: Date | null;
     trialStart: Date | null;
     trialEnd: Date | null;
+    createdAt: Date;
+    updatedAt: Date;
 }>;
 /**
  * Get current usage for the billing period

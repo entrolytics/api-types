@@ -68,15 +68,15 @@ export declare const boardsRouter: import("@trpc/server").TRPCBuiltRouter<{
             config?: Record<string, unknown> | undefined;
         };
         output: {
-            id: string;
             name: string;
-            deletedAt: Date | null;
+            id: string;
+            orgId: string;
+            userId: string | null;
             createdAt: Date;
             updatedAt: Date;
-            userId: string | null;
-            orgId: string;
-            description: string | null;
+            deletedAt: Date | null;
             config: unknown;
+            description: string | null;
         };
         meta: object;
     }>;
@@ -149,12 +149,12 @@ export declare const boardsRouter: import("@trpc/server").TRPCBuiltRouter<{
                 id: string;
                 createdAt: Date;
                 updatedAt: Date;
+                type: string;
                 websiteId: string | null;
                 config: unknown;
                 boardId: string;
-                position: number | null;
                 title: string | null;
-                type: string;
+                position: number | null;
             };
             meta: object;
         }>;

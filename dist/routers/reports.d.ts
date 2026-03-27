@@ -219,9 +219,9 @@ export declare const reportsRouter: import("@trpc/server").TRPCBuiltRouter<{
             endDate: Date;
             startDate: Date;
             websiteId: string;
-            property: "url" | "event_type" | "path" | "referrer" | "browser" | "city" | "country" | "device_type" | "os" | "event_name" | "referrer_domain" | "utm_campaign" | "utm_medium" | "utm_source" | "utm_content" | "utm_term";
+            property: "url" | "path" | "referrer_domain" | "browser" | "device_type" | "os" | "city" | "country" | "utm_campaign" | "utm_medium" | "utm_source" | "referrer" | "event_name" | "event_type" | "utm_content" | "utm_term";
             filters?: {
-                column: "url" | "event_type" | "path" | "referrer" | "browser" | "city" | "country" | "device_type" | "os" | "event_name" | "referrer_domain" | "utm_campaign" | "utm_medium" | "utm_source" | "utm_content" | "utm_term";
+                column: "url" | "path" | "referrer_domain" | "browser" | "device_type" | "os" | "city" | "country" | "utm_campaign" | "utm_medium" | "utm_source" | "referrer" | "event_name" | "event_type" | "utm_content" | "utm_term";
                 value: string;
             }[] | undefined;
         };

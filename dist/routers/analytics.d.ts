@@ -282,7 +282,7 @@ export declare const analyticsRouter: import("@trpc/server").TRPCBuiltRouter<{
             endDate?: Date | undefined;
             startDate?: Date | undefined;
         };
-        output: import("../services/analytics").SessionActivityEvent[];
+        output: import("../services/analytics.js").SessionActivityEvent[];
         meta: object;
     }>;
 }>>;

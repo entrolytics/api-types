@@ -1,8 +1,9 @@
+import type { PlatformRole } from '../lib/roles.js';
 export declare class BillingService {
     /**
      * Get current usage for user or org
      */
-    static getUsage(userId: string, orgId?: string): Promise<{
+    static getUsage(userId: string, role: PlatformRole | string, orgId?: string): Promise<{
         createdAt: Date;
         customEvents: number | null;
         eventsCount: number | null;
@@ -20,14 +21,14 @@ export declare class BillingService {
     /**
      * Get subscription details
      */
-    static getSubscription(userId: string, orgId?: string): Promise<{
+    static getSubscription(userId: string, role: PlatformRole | string, orgId?: string): Promise<{
         id: string;
         orgId: string | null;
         userId: string | null;
         stripeSubscriptionId: string | null;
         stripeCustomerId: string | null;
         stripePriceId: string | null;
-        planId: "free" | "pro" | "business" | "enterprise";
+        planId: "business" | "enterprise" | "free" | "pro";
         status: "active" | "canceled" | "past_due" | "trialing";
         cancelAtPeriodEnd: boolean | null;
         eventsLimit: number;
@@ -44,7 +45,7 @@ export declare class BillingService {
     /**
      * Create Stripe checkout session
      */
-    static createCheckoutSession(userId: string, email: string, params: {
+    static createCheckoutSession(userId: string, email: string, role: PlatformRole | string, params: {
         priceId: string;
         orgId?: string;
         successUrl: string;
@@ -56,7 +57,7 @@ export declare class BillingService {
     /**
      * Create Stripe portal session
      */
-    static createPortalSession(userId: string, params: {
+    static createPortalSession(userId: string, role: PlatformRole | string, params: {
         returnUrl: string;
         orgId?: string;
     }): Promise<{

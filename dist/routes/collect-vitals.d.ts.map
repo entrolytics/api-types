@@ -1,1 +1,1 @@
-{"version":3,"file":"collect-vitals.d.ts","sourceRoot":"","sources":["../../src/routes/collect-vitals.ts"],"names":[],"mappings":"AAAA;;;;;GAKG;AAGH,OAAO,KAAK,EAAE,kBAAkB,EAAE,MAAM,SAAS,CAAA;AAgEjD,eAAO,MAAM,mBAAmB,EAAE,kBA6GjC,CAAA"}
+{"version":3,"file":"collect-vitals.d.ts","sourceRoot":"","sources":["../../src/routes/collect-vitals.ts"],"names":[],"mappings":"AAAA;;;;;GAKG;AAGH,OAAO,KAAK,EAAE,kBAAkB,EAAE,MAAM,SAAS,CAAA;AA0DjD,eAAO,MAAM,mBAAmB,EAAE,kBA6GjC,CAAA"}
