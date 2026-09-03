@@ -1,7 +1,4 @@
-/**
- * Webhooks Router
- * Handles webhook CRUD and delivery tracking
- */
+/** Webhooks Router Handles webhook CRUD and delivery tracking */
 export declare const webhooksRouter: import("@trpc/server").TRPCBuiltRouter<{
     ctx: {
         auth: import("../middleware/auth.js").AuthContext | null;
@@ -12,9 +9,7 @@ export declare const webhooksRouter: import("@trpc/server").TRPCBuiltRouter<{
     errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     transformer: true;
 }, import("@trpc/server").TRPCDecorateCreateRouterOptions<{
-    /**
-     * List webhooks
-     */
+    /** List webhooks */
     list: import("@trpc/server").TRPCQueryProcedure<{
         input: {
             orgId?: string | undefined;
@@ -37,9 +32,7 @@ export declare const webhooksRouter: import("@trpc/server").TRPCBuiltRouter<{
         }[];
         meta: object;
     }>;
-    /**
-     * Get webhook details
-     */
+    /** Get webhook details */
     get: import("@trpc/server").TRPCQueryProcedure<{
         input: {
             webhookId: string;
@@ -61,44 +54,40 @@ export declare const webhooksRouter: import("@trpc/server").TRPCBuiltRouter<{
         };
         meta: object;
     }>;
-    /**
-     * Create webhook
-     */
+    /** Create webhook */
     create: import("@trpc/server").TRPCMutationProcedure<{
         input: {
-            events: ("pageview.created" | "session.created" | "event.created" | "goal.completed" | "visitor.identified" | "revenue.recorded" | "*")[];
+            events: ("*" | "event.created" | "goal.completed" | "pageview.created" | "revenue.recorded" | "session.created" | "visitor.identified")[];
             name: string;
+            orgId?: string | undefined;
             url: string;
             websiteId: string;
-            orgId?: string | undefined;
         };
         output: {
-            enabled: boolean | null;
-            name: string;
             active: boolean | null;
-            id: string;
-            orgId: string | null;
-            userId: string | null;
             createdAt: Date;
-            updatedAt: Date;
             deletedAt: Date | null;
-            websiteId: string;
-            url: string;
+            enabled: boolean | null;
             events: string[];
+            id: string;
+            name: string;
+            orgId: string | null;
             secret: string;
-        };
+            updatedAt: Date;
+            url: string;
+            userId: string | null;
+            websiteId: string;
+        } | undefined;
         meta: object;
     }>;
-    /**
-     * Update webhook
-     */
+    /** Update webhook */
     update: import("@trpc/server").TRPCMutationProcedure<{
         input: {
-            webhookId: string;
             active?: boolean | undefined;
-            events?: ("pageview.created" | "session.created" | "event.created" | "goal.completed" | "visitor.identified" | "revenue.recorded" | "*")[] | undefined;
+            events?: ("*" | "event.created" | "goal.completed" | "pageview.created" | "revenue.recorded" | "session.created" | "visitor.identified")[] | undefined;
             name?: string | undefined;
             url?: string | undefined;
+            webhookId: string;
         };
         output: {
             active: boolean | null;
@@ -114,12 +103,10 @@ export declare const webhooksRouter: import("@trpc/server").TRPCBuiltRouter<{
             url: string;
             userId: string | null;
             websiteId: string;
-        };
+        } | undefined;
         meta: object;
     }>;
-    /**
-     * Delete webhook
-     */
+    /** Delete webhook */
     delete: import("@trpc/server").TRPCMutationProcedure<{
         input: {
             webhookId: string;
@@ -129,9 +116,7 @@ export declare const webhooksRouter: import("@trpc/server").TRPCBuiltRouter<{
         };
         meta: object;
     }>;
-    /**
-     * Webhook deliveries
-     */
+    /** Webhook deliveries */
     deliveries: import("@trpc/server").TRPCBuiltRouter<{
         ctx: {
             auth: import("../middleware/auth.js").AuthContext | null;
@@ -144,15 +129,15 @@ export declare const webhooksRouter: import("@trpc/server").TRPCBuiltRouter<{
     }, import("@trpc/server").TRPCDecorateCreateRouterOptions<{
         list: import("@trpc/server").TRPCQueryProcedure<{
             input: {
-                webhookId: string;
                 limit?: number | undefined;
+                webhookId: string;
             };
             output: {
                 id: string;
                 webhookId: string;
                 eventType: string;
                 payload: unknown;
-                status: "pending" | "success" | "failed" | "retrying";
+                status: "failed" | "pending" | "retrying" | "sending" | "success";
                 statusCode: number | null;
                 responseBody: string | null;
                 attempts: number | null;

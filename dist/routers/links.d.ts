@@ -1,7 +1,4 @@
-/**
- * Links Router
- * Handles link tracking and analytics
- */
+/** Links Router Handles link tracking and analytics */
 export interface LinkStatsResult {
     totalClicks: number;
     uniqueVisitors: number;
@@ -28,9 +25,7 @@ export declare const linksRouter: import("@trpc/server").TRPCBuiltRouter<{
     errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     transformer: true;
 }, import("@trpc/server").TRPCDecorateCreateRouterOptions<{
-    /**
-     * List links
-     */
+    /** List links */
     list: import("@trpc/server").TRPCQueryProcedure<{
         input: void;
         output: {
@@ -47,9 +42,7 @@ export declare const linksRouter: import("@trpc/server").TRPCBuiltRouter<{
         }[];
         meta: object;
     }>;
-    /**
-     * Get link details
-     */
+    /** Get link details */
     get: import("@trpc/server").TRPCQueryProcedure<{
         input: {
             linkId: string;
@@ -68,38 +61,34 @@ export declare const linksRouter: import("@trpc/server").TRPCBuiltRouter<{
         };
         meta: object;
     }>;
-    /**
-     * Create link
-     */
+    /** Create link */
     create: import("@trpc/server").TRPCMutationProcedure<{
         input: {
+            description?: string | undefined;
             name: string;
             orgId: string;
             slug: string;
             url: string;
-            description?: string | undefined;
         };
         output: {
-            name: string;
-            id: string;
-            orgId: string;
-            userId: string | null;
             createdAt: Date;
-            updatedAt: Date;
             deletedAt: Date | null;
-            slug: string;
-            url: string;
             description: string | null;
-        };
+            id: string;
+            name: string;
+            orgId: string;
+            slug: string;
+            updatedAt: Date;
+            url: string;
+            userId: string | null;
+        } | undefined;
         meta: object;
     }>;
-    /**
-     * Update link
-     */
+    /** Update link */
     update: import("@trpc/server").TRPCMutationProcedure<{
         input: {
-            linkId: string;
             description?: string | undefined;
+            linkId: string;
             name?: string | undefined;
             slug?: string | undefined;
             url?: string | undefined;
@@ -115,12 +104,10 @@ export declare const linksRouter: import("@trpc/server").TRPCBuiltRouter<{
             updatedAt: Date;
             url: string;
             userId: string | null;
-        };
+        } | undefined;
         meta: object;
     }>;
-    /**
-     * Delete link
-     */
+    /** Delete link */
     delete: import("@trpc/server").TRPCMutationProcedure<{
         input: {
             linkId: string;
@@ -130,9 +117,7 @@ export declare const linksRouter: import("@trpc/server").TRPCBuiltRouter<{
         };
         meta: object;
     }>;
-    /**
-     * Get link statistics
-     */
+    /** Get link statistics */
     stats: import("@trpc/server").TRPCQueryProcedure<{
         input: {
             endDate: Date;

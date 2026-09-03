@@ -1,7 +1,4 @@
-/**
- * Pixels Router
- * Handles conversion pixel tracking
- */
+/** Pixels Router Handles conversion pixel tracking */
 export interface PixelStatsResult {
     fires: number;
     unique_visitors: number;
@@ -17,9 +14,7 @@ export declare const pixelsRouter: import("@trpc/server").TRPCBuiltRouter<{
     errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     transformer: true;
 }, import("@trpc/server").TRPCDecorateCreateRouterOptions<{
-    /**
-     * List pixels
-     */
+    /** List pixels */
     list: import("@trpc/server").TRPCQueryProcedure<{
         input: void;
         output: {
@@ -33,9 +28,7 @@ export declare const pixelsRouter: import("@trpc/server").TRPCBuiltRouter<{
         }[];
         meta: object;
     }>;
-    /**
-     * Get pixel details
-     */
+    /** Get pixel details */
     get: import("@trpc/server").TRPCQueryProcedure<{
         input: {
             pixelId: string;
@@ -51,9 +44,7 @@ export declare const pixelsRouter: import("@trpc/server").TRPCBuiltRouter<{
         };
         meta: object;
     }>;
-    /**
-     * Create pixel
-     */
+    /** Create pixel */
     create: import("@trpc/server").TRPCMutationProcedure<{
         input: {
             name: string;
@@ -61,23 +52,21 @@ export declare const pixelsRouter: import("@trpc/server").TRPCBuiltRouter<{
             slug: string;
         };
         output: {
-            name: string;
-            id: string;
-            orgId: string;
-            userId: string | null;
             createdAt: Date;
-            updatedAt: Date;
+            id: string;
+            name: string;
+            orgId: string;
             slug: string;
-        };
+            updatedAt: Date;
+            userId: string | null;
+        } | undefined;
         meta: object;
     }>;
-    /**
-     * Update pixel
-     */
+    /** Update pixel */
     update: import("@trpc/server").TRPCMutationProcedure<{
         input: {
-            pixelId: string;
             name?: string | undefined;
+            pixelId: string;
         };
         output: {
             createdAt: Date;
@@ -87,12 +76,10 @@ export declare const pixelsRouter: import("@trpc/server").TRPCBuiltRouter<{
             slug: string;
             updatedAt: Date;
             userId: string | null;
-        };
+        } | undefined;
         meta: object;
     }>;
-    /**
-     * Delete pixel
-     */
+    /** Delete pixel */
     delete: import("@trpc/server").TRPCMutationProcedure<{
         input: {
             pixelId: string;
@@ -102,16 +89,18 @@ export declare const pixelsRouter: import("@trpc/server").TRPCBuiltRouter<{
         };
         meta: object;
     }>;
-    /**
-     * Get pixel statistics
-     */
+    /** Get pixel statistics */
     stats: import("@trpc/server").TRPCQueryProcedure<{
         input: {
             endDate: Date;
             pixelId: string;
             startDate: Date;
         };
-        output: PixelStatsResult;
+        output: {
+            countries?: string[] | undefined;
+            fires: number;
+            unique_visitors: number;
+        };
         meta: object;
     }>;
 }>>;

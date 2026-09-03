@@ -8,9 +8,7 @@ export declare const segmentsRouter: import("@trpc/server").TRPCBuiltRouter<{
     errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     transformer: true;
 }, import("@trpc/server").TRPCDecorateCreateRouterOptions<{
-    /**
-     * List segments for a website
-     */
+    /** List segments for a website */
     list: import("@trpc/server").TRPCQueryProcedure<{
         input: {
             websiteId: string;
@@ -26,9 +24,7 @@ export declare const segmentsRouter: import("@trpc/server").TRPCBuiltRouter<{
         }[];
         meta: object;
     }>;
-    /**
-     * Get segment details
-     */
+    /** Get segment details */
     get: import("@trpc/server").TRPCQueryProcedure<{
         input: {
             segmentId: string;
@@ -44,9 +40,7 @@ export declare const segmentsRouter: import("@trpc/server").TRPCBuiltRouter<{
         };
         meta: object;
     }>;
-    /**
-     * Create segment
-     */
+    /** Create segment */
     create: import("@trpc/server").TRPCMutationProcedure<{
         input: {
             name: string;
@@ -55,24 +49,22 @@ export declare const segmentsRouter: import("@trpc/server").TRPCBuiltRouter<{
             websiteId: string;
         };
         output: {
-            name: string;
-            id: string;
             createdAt: Date;
-            updatedAt: Date;
-            type: string;
-            websiteId: string;
+            id: string;
+            name: string;
             parameters: unknown;
-        };
+            type: string;
+            updatedAt: Date;
+            websiteId: string;
+        } | undefined;
         meta: object;
     }>;
-    /**
-     * Update segment
-     */
+    /** Update segment */
     update: import("@trpc/server").TRPCMutationProcedure<{
         input: {
-            segmentId: string;
             name?: string | undefined;
             parameters?: Record<string, unknown> | undefined;
+            segmentId: string;
         };
         output: {
             createdAt: Date;
@@ -82,12 +74,10 @@ export declare const segmentsRouter: import("@trpc/server").TRPCBuiltRouter<{
             type: string;
             updatedAt: Date;
             websiteId: string;
-        };
+        } | undefined;
         meta: object;
     }>;
-    /**
-     * Delete segment
-     */
+    /** Delete segment */
     delete: import("@trpc/server").TRPCMutationProcedure<{
         input: {
             segmentId: string;
@@ -97,9 +87,7 @@ export declare const segmentsRouter: import("@trpc/server").TRPCBuiltRouter<{
         };
         meta: object;
     }>;
-    /**
-     * Evaluate segment (count matching users)
-     */
+    /** Evaluate segment (count matching users) */
     evaluate: import("@trpc/server").TRPCQueryProcedure<{
         input: {
             endDate: Date;

@@ -1,3 +1,10 @@
+import { z } from 'zod';
+declare const revenueTotalRowSchema: z.ZodObject<{
+    COUNT: z.ZodCoercedNumber<unknown>;
+    SUM: z.ZodCoercedNumber<unknown>;
+    average: z.ZodCoercedNumber<unknown>;
+    unique_count: z.ZodCoercedNumber<unknown>;
+}, z.core.$strip>;
 export interface JourneyPath {
     path: string[];
     count: number;
@@ -17,21 +24,18 @@ export interface UTMResult {
     utm_content: UTMItem[];
     utm_term: UTMItem[];
 }
-export interface RevenueChartItem {
-    x: string;
-    t: string;
-    y: number;
-}
-export interface RevenueCountryItem {
-    name: string;
-    value: number;
-}
-export interface RevenueTotal {
-    SUM: number;
-    COUNT: number;
-    average: number;
-    unique_count: number;
-}
+declare const revenueChartItemSchema: z.ZodObject<{
+    t: z.ZodString;
+    x: z.ZodString;
+    y: z.ZodCoercedNumber<unknown>;
+}, z.core.$strip>;
+export type RevenueChartItem = z.infer<typeof revenueChartItemSchema>;
+declare const revenueCountryItemSchema: z.ZodObject<{
+    name: z.ZodString;
+    value: z.ZodCoercedNumber<unknown>;
+}, z.core.$strip>;
+export type RevenueCountryItem = z.infer<typeof revenueCountryItemSchema>;
+export type RevenueTotal = z.infer<typeof revenueTotalRowSchema>;
 export interface RevenueResult {
     chart: RevenueChartItem[];
     country: RevenueCountryItem[];
@@ -56,13 +60,14 @@ export interface AttributionResult {
     utm_term: AttributionItem[];
     total: AttributionTotal;
 }
-export interface LandingPageItem {
-    path: string;
-    entrances: number;
-    bounceRate: number;
-    avgDuration: number;
-    conversions: number;
-}
+declare const landingPageItemSchema: z.ZodObject<{
+    avgDuration: z.ZodCoercedNumber<unknown>;
+    bounceRate: z.ZodCoercedNumber<unknown>;
+    conversions: z.ZodCoercedNumber<unknown>;
+    entrances: z.ZodCoercedNumber<unknown>;
+    path: z.ZodString;
+}, z.core.$strip>;
+export type LandingPageItem = z.infer<typeof landingPageItemSchema>;
 export interface LandingPagesResult {
     pages: LandingPageItem[];
     total: {
@@ -92,10 +97,11 @@ export interface CompareResult {
         y: number;
     }>;
 }
-export interface BreakdownItem {
-    x: string;
-    y: number;
-}
+declare const breakdownItemSchema: z.ZodObject<{
+    x: z.ZodString;
+    y: z.ZodCoercedNumber<unknown>;
+}, z.core.$strip>;
+export type BreakdownItem = z.infer<typeof breakdownItemSchema>;
 export interface BreakdownResponse {
     breakdown: BreakdownItem[];
 }
@@ -109,9 +115,7 @@ export declare const reportsRouter: import("@trpc/server").TRPCBuiltRouter<{
     errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     transformer: true;
 }, import("@trpc/server").TRPCDecorateCreateRouterOptions<{
-    /**
-     * RETENTION - Cohort retention analysis
-     */
+    /** RETENTION - Cohort retention analysis */
     retention: import("@trpc/server").TRPCQueryProcedure<{
         input: {
             endDate: Date;
@@ -128,9 +132,7 @@ export declare const reportsRouter: import("@trpc/server").TRPCBuiltRouter<{
         };
         meta: object;
     }>;
-    /**
-     * GOALS - List saved goals with current metrics
-     */
+    /** GOALS - List saved goals with current metrics */
     listGoals: import("@trpc/server").TRPCQueryProcedure<{
         input: {
             endDate: Date;
@@ -144,20 +146,18 @@ export declare const reportsRouter: import("@trpc/server").TRPCBuiltRouter<{
                 id: string;
                 name: string;
                 target: number;
-                type: "pageview" | "event" | "duration" | "pageviews_per_session";
+                type: string;
                 value: string;
             }[];
         };
         meta: object;
     }>;
-    /**
-     * CREATE GOAL
-     */
+    /** CREATE GOAL */
     createGoal: import("@trpc/server").TRPCMutationProcedure<{
         input: {
             name: string;
             target: number;
-            type: "duration" | "pageview" | "event" | "pageviews_per_session";
+            type: "duration" | "event" | "pageview" | "pageviews_per_session";
             value: string;
             websiteId: string;
         };
@@ -167,14 +167,12 @@ export declare const reportsRouter: import("@trpc/server").TRPCBuiltRouter<{
             id: string;
             name: string;
             target: number;
-            type: "duration" | "pageview" | "event" | "pageviews_per_session";
+            type: "duration" | "event" | "pageview" | "pageviews_per_session";
             value: string;
         };
         meta: object;
     }>;
-    /**
-     * DELETE GOAL
-     */
+    /** DELETE GOAL */
     deleteGoal: import("@trpc/server").TRPCMutationProcedure<{
         input: {
             reportId: string;
@@ -184,9 +182,7 @@ export declare const reportsRouter: import("@trpc/server").TRPCBuiltRouter<{
         };
         meta: object;
     }>;
-    /**
-     * JOURNEYS - User path analysis
-     */
+    /** JOURNEYS - User path analysis */
     journeys: import("@trpc/server").TRPCQueryProcedure<{
         input: {
             endDate: Date;
@@ -196,12 +192,16 @@ export declare const reportsRouter: import("@trpc/server").TRPCBuiltRouter<{
             startStep?: string | undefined;
             steps?: number | undefined;
         };
-        output: JourneyResult;
+        output: {
+            journeys: {
+                count: number;
+                path: string[];
+                percentage: number;
+            }[];
+        };
         meta: object;
     }>;
-    /**
-     * UTM - UTM parameter breakdown
-     */
+    /** UTM - UTM parameter breakdown */
     utm: import("@trpc/server").TRPCQueryProcedure<{
         input: {
             endDate: Date;
@@ -211,26 +211,27 @@ export declare const reportsRouter: import("@trpc/server").TRPCBuiltRouter<{
         output: UTMResult;
         meta: object;
     }>;
-    /**
-     * BREAKDOWN - Property breakdown analysis
-     */
+    /** BREAKDOWN - Property breakdown analysis */
     breakdown: import("@trpc/server").TRPCQueryProcedure<{
         input: {
             endDate: Date;
             startDate: Date;
             websiteId: string;
-            property: "url" | "path" | "referrer_domain" | "browser" | "device_type" | "os" | "city" | "country" | "utm_campaign" | "utm_medium" | "utm_source" | "referrer" | "event_name" | "event_type" | "utm_content" | "utm_term";
             filters?: {
-                column: "url" | "path" | "referrer_domain" | "browser" | "device_type" | "os" | "city" | "country" | "utm_campaign" | "utm_medium" | "utm_source" | "referrer" | "event_name" | "event_type" | "utm_content" | "utm_term";
+                column: "browser" | "city" | "country" | "device_type" | "event_name" | "event_type" | "os" | "path" | "referrer" | "referrer_domain" | "url" | "utm_campaign" | "utm_content" | "utm_medium" | "utm_source" | "utm_term";
                 value: string;
             }[] | undefined;
+            property: "browser" | "city" | "country" | "device_type" | "event_name" | "event_type" | "os" | "path" | "referrer" | "referrer_domain" | "url" | "utm_campaign" | "utm_content" | "utm_medium" | "utm_source" | "utm_term";
         };
-        output: BreakdownResponse;
+        output: {
+            breakdown: {
+                x: string;
+                y: number;
+            }[];
+        };
         meta: object;
     }>;
-    /**
-     * REVENUE - Revenue tracking and analysis
-     */
+    /** REVENUE - Revenue tracking and analysis */
     revenue: import("@trpc/server").TRPCQueryProcedure<{
         input: {
             endDate: Date;
@@ -238,40 +239,64 @@ export declare const reportsRouter: import("@trpc/server").TRPCBuiltRouter<{
             websiteId: string;
             currency?: string | undefined;
         };
-        output: RevenueResult;
+        output: {
+            chart: {
+                t: string;
+                x: string;
+                y: number;
+            }[];
+            country: {
+                name: string;
+                value: number;
+            }[];
+            total: {
+                COUNT: number;
+                SUM: number;
+                average: number;
+                unique_count: number;
+            };
+        };
         meta: object;
     }>;
-    /**
-     * ATTRIBUTION - Attribution modeling
-     */
+    /** ATTRIBUTION - Attribution modeling */
     attribution: import("@trpc/server").TRPCQueryProcedure<{
         input: {
             endDate: Date;
             startDate: Date;
             websiteId: string;
+            currency?: string | undefined;
             model: "first-click" | "last-click";
             step: string;
-            type: "path" | "event";
-            currency?: string | undefined;
+            type: "event" | "path";
         };
         output: AttributionResult;
         meta: object;
     }>;
-    /**
-     * LANDING PAGES - Landing page performance
-     */
+    /** LANDING PAGES - Landing page performance */
     landingPages: import("@trpc/server").TRPCQueryProcedure<{
         input: {
             endDate: Date;
             startDate: Date;
             websiteId: string;
         };
-        output: LandingPagesResult;
+        output: {
+            pages: {
+                avgDuration: number;
+                bounceRate: number;
+                conversions: number;
+                entrances: number;
+                path: string;
+            }[];
+            total: {
+                avgDuration: number;
+                bounceRate: number;
+                conversions: number;
+                entrances: number;
+            };
+        };
         meta: object;
     }>;
-    /**
-     * COMPARE - Period comparison
-     */
+    /** COMPARE - Period comparison */
     compare: import("@trpc/server").TRPCQueryProcedure<{
         input: {
             currentEnd: Date;
@@ -280,8 +305,39 @@ export declare const reportsRouter: import("@trpc/server").TRPCBuiltRouter<{
             previousStart: Date;
             websiteId: string;
         };
-        output: CompareResult;
+        output: {
+            changes: {
+                avgDuration: number;
+                bounceRate: number;
+                conversions: number;
+                pageviews: number;
+                visitors: number;
+            };
+            current: {
+                avgDuration: number;
+                bounceRate: number;
+                conversions: number;
+                pageviews: number;
+                visitors: number;
+            };
+            currentChart: {
+                x: string;
+                y: number;
+            }[];
+            previous: {
+                avgDuration: number;
+                bounceRate: number;
+                conversions: number;
+                pageviews: number;
+                visitors: number;
+            };
+            previousChart: {
+                x: string;
+                y: number;
+            }[];
+        };
         meta: object;
     }>;
 }>>;
+export {};
 //# sourceMappingURL=reports.d.ts.map

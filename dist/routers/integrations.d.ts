@@ -1,7 +1,4 @@
-/**
- * Integrations Router
- * Handles third-party integrations
- */
+/** Integrations Router Handles third-party integrations */
 export declare const integrationsRouter: import("@trpc/server").TRPCBuiltRouter<{
     ctx: {
         auth: import("../middleware/auth.js").AuthContext | null;
@@ -12,9 +9,7 @@ export declare const integrationsRouter: import("@trpc/server").TRPCBuiltRouter<
     errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     transformer: true;
 }, import("@trpc/server").TRPCDecorateCreateRouterOptions<{
-    /**
-     * WordPress integration
-     */
+    /** WordPress integration */
     wordpress: import("@trpc/server").TRPCBuiltRouter<{
         ctx: {
             auth: import("../middleware/auth.js").AuthContext | null;

@@ -1,6 +1,6 @@
 {
   "name": "@entrolytics/api-types",
-  "version": "2.4.0",
+  "version": "2.4.4",
   "description": "Shared API types for Entrolytics - First-party growth analytics for the edge",
   "files": [
     "dist"
@@ -17,10 +17,18 @@
     "access": "public"
   },
   "scripts": {
-    "build": "pnpm --filter=@entrolytics/api build && node ./scripts/build.mjs",
+    "build": "node ./scripts/build.ts",
     "prepack": "pnpm build"
   },
+  "dependencies": {
+    "@entrolytics/config": "workspace:^",
+    "@entrolytics/protocol": "workspace:^",
+    "@trpc/server": "^11.18.0",
+    "fastify": "^5.11.3",
+    "zod": "^4.4.3"
+  },
   "devDependencies": {
-    "typescript": "^6.0.2"
+    "@entrolytics/api": "workspace:^",
+    "typescript": "^7.0.2"
   }
 }

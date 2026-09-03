@@ -24,21 +24,33 @@ export declare const funnelsRouter: import("@trpc/server").TRPCBuiltRouter<{
     errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     transformer: true;
 }, import("@trpc/server").TRPCDecorateCreateRouterOptions<{
-    /**
-     * Analyze funnel conversion rates
-     */
+    /** Analyze funnel conversion rates */
     analyze: import("@trpc/server").TRPCQueryProcedure<{
         input: {
             endDate: Date;
             startDate: Date;
             steps: {
-                type: "pageview" | "event";
+                type: "event" | "pageview";
                 value: string;
             }[];
-            websiteId: string;
             timeWindow?: number | undefined;
+            websiteId: string;
         };
-        output: FunnelResponse;
+        output: {
+            steps: {
+                conversionRate: number;
+                dropoff: number;
+                dropped: number;
+                remaining: number;
+                step: number;
+                totalConversion: number;
+                type: "event" | "pageview";
+                value: string;
+                visitors: number;
+            }[];
+            totalConversion: number;
+            totalVisitors: number;
+        };
         meta: object;
     }>;
 }>>;

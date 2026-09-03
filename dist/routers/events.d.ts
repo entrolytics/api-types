@@ -8,9 +8,7 @@ export declare const eventsRouter: import("@trpc/server").TRPCBuiltRouter<{
     errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     transformer: true;
 }, import("@trpc/server").TRPCDecorateCreateRouterOptions<{
-    /**
-     * List all events (individual event records)
-     */
+    /** List all events (individual event records) */
     list: import("@trpc/server").TRPCQueryProcedure<{
         input: {
             endDate: Date;
@@ -28,7 +26,7 @@ export declare const eventsRouter: import("@trpc/server").TRPCBuiltRouter<{
             event_data: string;
             event_id: string;
             event_name: string | null;
-            event_type: "pageview" | "custom_event" | "click";
+            event_type: string;
             os: string | null;
             path: string;
             referrer: string | null;
@@ -38,9 +36,7 @@ export declare const eventsRouter: import("@trpc/server").TRPCBuiltRouter<{
         }[];
         meta: object;
     }>;
-    /**
-     * Get event details and property breakdown
-     */
+    /** Get event details and property breakdown */
     details: import("@trpc/server").TRPCQueryProcedure<{
         input: {
             endDate: Date;
@@ -55,16 +51,14 @@ export declare const eventsRouter: import("@trpc/server").TRPCBuiltRouter<{
         }[];
         meta: object;
     }>;
-    /**
-     * Event time-series (renamed from timeseries to series)
-     */
+    /** Event time-series (renamed from timeseries to series) */
     series: import("@trpc/server").TRPCQueryProcedure<{
         input: {
             endDate: Date;
             startDate: Date;
             websiteId: string;
             eventName?: string | undefined;
-            interval?: "hour" | "day" | "week" | "month" | undefined;
+            interval?: "day" | "hour" | "month" | "week" | undefined;
         };
         output: {
             count: number;

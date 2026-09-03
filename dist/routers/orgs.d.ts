@@ -1,7 +1,4 @@
-/**
- * Organizations Router
- * Handles organization CRUD and member management
- */
+/** Organizations Router Handles organization CRUD and member management */
 export declare const orgsRouter: import("@trpc/server").TRPCBuiltRouter<{
     ctx: {
         auth: import("../middleware/auth.js").AuthContext | null;
@@ -12,9 +9,7 @@ export declare const orgsRouter: import("@trpc/server").TRPCBuiltRouter<{
     errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     transformer: true;
 }, import("@trpc/server").TRPCDecorateCreateRouterOptions<{
-    /**
-     * List user's organizations
-     */
+    /** List user's organizations */
     list: import("@trpc/server").TRPCQueryProcedure<{
         input: void;
         output: {
@@ -27,16 +22,12 @@ export declare const orgsRouter: import("@trpc/server").TRPCBuiltRouter<{
         }[];
         meta: object;
     }>;
-    /**
-     * Get organization details
-     */
+    /** Get organization details */
     get: import("@trpc/server").TRPCQueryProcedure<{
         input: {
             orgId: string;
         };
         output: {
-            clerkOrgId: string | null;
-            role: "admin" | "owner" | "member" | "viewer";
             accessCode: string | null;
             createdAt: Date;
             deletedAt: Date | null;
@@ -45,38 +36,36 @@ export declare const orgsRouter: import("@trpc/server").TRPCBuiltRouter<{
             name: string;
             slug: string;
             updatedAt: Date;
+            clerkOrgId: string | null;
+            role: "admin" | "member" | "owner" | "viewer";
         };
         meta: object;
     }>;
-    /**
-     * Create organization
-     */
+    /** Create organization */
     create: import("@trpc/server").TRPCMutationProcedure<{
         input: {
             name: string;
             slug: string;
         };
         output: {
-            name: string;
-            id: string;
-            createdAt: Date;
-            updatedAt: Date;
-            deletedAt: Date | null;
-            clerkOrgId: string | null;
-            slug: string;
             accessCode: string | null;
+            clerkOrgId: string | null;
+            createdAt: Date;
+            deletedAt: Date | null;
+            id: string;
             logoUrl: string | null;
-        };
+            name: string;
+            slug: string;
+            updatedAt: Date;
+        } | undefined;
         meta: object;
     }>;
-    /**
-     * Update organization
-     */
+    /** Update organization */
     update: import("@trpc/server").TRPCMutationProcedure<{
         input: {
-            orgId: string;
             logoUrl?: string | undefined;
             name?: string | undefined;
+            orgId: string;
         };
         output: {
             accessCode: string | null;
@@ -91,9 +80,7 @@ export declare const orgsRouter: import("@trpc/server").TRPCBuiltRouter<{
         };
         meta: object;
     }>;
-    /**
-     * Delete organization
-     */
+    /** Delete organization */
     delete: import("@trpc/server").TRPCMutationProcedure<{
         input: {
             orgId: string;
@@ -103,9 +90,7 @@ export declare const orgsRouter: import("@trpc/server").TRPCBuiltRouter<{
         };
         meta: object;
     }>;
-    /**
-     * Members management
-     */
+    /** Members management */
     members: import("@trpc/server").TRPCBuiltRouter<{
         ctx: {
             auth: import("../middleware/auth.js").AuthContext | null;
@@ -123,16 +108,16 @@ export declare const orgsRouter: import("@trpc/server").TRPCBuiltRouter<{
                 role: "admin" | "member" | "viewer";
             };
             output: {
-                email: string;
-                status: "pending" | "expired" | "accepted";
-                id: string;
-                orgId: string;
                 createdAt: Date;
-                role: string;
+                email: string;
                 expiresAt: Date;
-                token: string;
+                id: string;
                 invitedBy: string | null;
-            };
+                orgId: string;
+                role: string;
+                status: "accepted" | "expired" | "pending";
+                token: string;
+            } | undefined;
             meta: object;
         }>;
         list: import("@trpc/server").TRPCQueryProcedure<{
@@ -142,7 +127,7 @@ export declare const orgsRouter: import("@trpc/server").TRPCBuiltRouter<{
             output: {
                 createdAt: Date;
                 id: string;
-                role: "admin" | "owner" | "member" | "viewer";
+                role: "admin" | "member" | "owner" | "viewer";
                 user: {
                     displayName: string | null;
                     email: string;
@@ -166,16 +151,16 @@ export declare const orgsRouter: import("@trpc/server").TRPCBuiltRouter<{
             input: {
                 orgId: string;
                 memberId: string;
-                role: "admin" | "owner" | "member" | "viewer";
+                role: "admin" | "member" | "owner" | "viewer";
             };
             output: {
                 createdAt: Date;
                 id: string;
                 orgId: string;
-                role: "admin" | "owner" | "member" | "viewer";
+                role: "admin" | "member" | "owner" | "viewer";
                 updatedAt: Date;
                 userId: string;
-            } | null;
+            } | null | undefined;
             meta: object;
         }>;
     }>>;

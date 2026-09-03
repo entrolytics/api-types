@@ -33,3 +33,4 @@ import type { AppRouter } from '@entrolytics/api-types'
 ## Build
 
 The build process regenerates declarations from `apps/api` and copies the declaration graph into `dist/`.
+Build `@entrolytics/api` first so `apps/api/dist` reflects the current router contract.

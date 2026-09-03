@@ -15,10 +15,10 @@ export interface RealtimeUrl {
 export interface RealtimeEvent {
     id: string;
     type: string;
-    eventName: string;
+    eventName: string | null;
     path: string;
-    country: string;
-    countryCode: string;
+    country: string | null;
+    countryCode: string | null;
     device: string;
     browser: string;
     timestamp: string;
@@ -40,65 +40,105 @@ export declare const realtimeRouter: import("@trpc/server").TRPCBuiltRouter<{
     errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     transformer: true;
 }, import("@trpc/server").TRPCDecorateCreateRouterOptions<{
-    /**
-     * Get current visitors (last 5 minutes)
-     */
+    /** Get current visitors (last 5 minutes) */
     currentVisitors: import("@trpc/server").TRPCQueryProcedure<{
         input: {
             websiteId: string;
         };
-        output: {};
+        output: {
+            pageviews: number;
+            sessions: number;
+            visitors: number;
+        };
         meta: object;
     }>;
-    /**
-     * Recent events (last 100)
-     */
+    /** Recent events (last 100) */
     recentEvents: import("@trpc/server").TRPCQueryProcedure<{
         input: {
-            websiteId: string;
             limit?: number | undefined;
+            websiteId: string;
         };
-        output: unknown[];
+        output: {
+            browser: string;
+            country: string | null;
+            countryCode: string | null;
+            device: string;
+            eventName: string | null;
+            id: string;
+            path: string;
+            timestamp: string;
+            type: string;
+        }[];
         meta: object;
     }>;
-    /**
-     * Active pages (current pageviews by path)
-     */
+    /** Active pages (current pageviews by path) */
     activePages: import("@trpc/server").TRPCQueryProcedure<{
         input: {
             websiteId: string;
         };
-        output: unknown[];
+        output: {
+            path: string;
+            viewers: number;
+        }[];
         meta: object;
     }>;
-    /**
-     * Time series data (last 30 minutes, per minute)
-     */
+    /** Time series data (last 30 minutes, per minute) */
     timeSeries: import("@trpc/server").TRPCQueryProcedure<{
         input: {
             websiteId: string;
         };
-        output: unknown[];
+        output: {
+            pageviews: number;
+            time: string;
+            visitors: number;
+        }[];
         meta: object;
     }>;
-    /**
-     * Country breakdown (active visitors by country)
-     */
+    /** Country breakdown (active visitors by country) */
     countryBreakdown: import("@trpc/server").TRPCQueryProcedure<{
         input: {
             websiteId: string;
         };
-        output: unknown[];
+        output: {
+            country: string;
+            countryCode: string;
+            visitors: number;
+        }[];
         meta: object;
     }>;
-    /**
-     * Comprehensive realtime overview (all data in one query)
-     */
+    /** Comprehensive realtime overview (all data in one query) */
     overview: import("@trpc/server").TRPCQueryProcedure<{
         input: {
             websiteId: string;
         };
-        output: RealtimeOverviewResponse;
+        output: {
+            activeVisitors: number;
+            countries: {
+                country: string;
+                countryCode: string;
+                visitors: number;
+            }[];
+            events: {
+                browser: string;
+                country: string | null;
+                countryCode: string | null;
+                device: string;
+                eventName: string | null;
+                id: string;
+                path: string;
+                timestamp: string;
+                type: string;
+            }[];
+            series: {
+                pageviews: number;
+                time: string;
+                visitors: number;
+            }[];
+            urls: {
+                path: string;
+                visitors: number;
+            }[];
+        };
         meta: object;
     }>;
 }>>;

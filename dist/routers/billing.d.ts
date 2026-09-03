@@ -1,7 +1,4 @@
-/**
- * Billing Router
- * Handles billing, usage, and Stripe integration
- */
+/** Billing Router Handles billing, usage, and Stripe integration */
 export declare const billingRouter: import("@trpc/server").TRPCBuiltRouter<{
     ctx: {
         auth: import("../middleware/auth.js").AuthContext | null;
@@ -12,9 +9,7 @@ export declare const billingRouter: import("@trpc/server").TRPCBuiltRouter<{
     errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     transformer: true;
 }, import("@trpc/server").TRPCDecorateCreateRouterOptions<{
-    /**
-     * Get current usage
-     */
+    /** Get current usage */
     usage: import("@trpc/server").TRPCBuiltRouter<{
         ctx: {
             auth: import("../middleware/auth.js").AuthContext | null;
@@ -43,13 +38,21 @@ export declare const billingRouter: import("@trpc/server").TRPCBuiltRouter<{
                 teamMembersCount: number | null;
                 userId: string | null;
                 websitesCount: number | null;
+            } | {
+                customEvents: number;
+                eventsCount: number;
+                linkClicks: number;
+                pageviews: number;
+                periodEnd: Date;
+                periodStart: Date;
+                pixelFires: number;
+                teamMembersCount: number;
+                websitesCount: number;
             };
             meta: object;
         }>;
     }>>;
-    /**
-     * Subscription management
-     */
+    /** Subscription management */
     subscription: import("@trpc/server").TRPCBuiltRouter<{
         ctx: {
             auth: import("../middleware/auth.js").AuthContext | null;
@@ -84,13 +87,11 @@ export declare const billingRouter: import("@trpc/server").TRPCBuiltRouter<{
                 trialEnd: Date | null;
                 createdAt: Date;
                 updatedAt: Date;
-            };
+            } | null;
             meta: object;
         }>;
     }>>;
-    /**
-     * Stripe checkout
-     */
+    /** Stripe checkout */
     checkout: import("@trpc/server").TRPCBuiltRouter<{
         ctx: {
             auth: import("../middleware/auth.js").AuthContext | null;
@@ -104,9 +105,9 @@ export declare const billingRouter: import("@trpc/server").TRPCBuiltRouter<{
         create: import("@trpc/server").TRPCMutationProcedure<{
             input: {
                 cancelUrl: string;
-                priceId: string;
-                successUrl: string;
                 orgId?: string | undefined;
+                planId: "business" | "enterprise" | "free" | "pro";
+                successUrl: string;
             };
             output: {
                 sessionId: string;
@@ -115,9 +116,7 @@ export declare const billingRouter: import("@trpc/server").TRPCBuiltRouter<{
             meta: object;
         }>;
     }>>;
-    /**
-     * Stripe customer portal
-     */
+    /** Stripe customer portal */
     portal: import("@trpc/server").TRPCBuiltRouter<{
         ctx: {
             auth: import("../middleware/auth.js").AuthContext | null;
@@ -130,8 +129,8 @@ export declare const billingRouter: import("@trpc/server").TRPCBuiltRouter<{
     }, import("@trpc/server").TRPCDecorateCreateRouterOptions<{
         create: import("@trpc/server").TRPCMutationProcedure<{
             input: {
-                returnUrl: string;
                 orgId?: string | undefined;
+                returnUrl: string;
             };
             output: {
                 url: string;

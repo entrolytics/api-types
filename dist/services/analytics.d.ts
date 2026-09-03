@@ -62,9 +62,7 @@ export interface SessionListItem {
     bounced: boolean;
 }
 export declare class AnalyticsService {
-    /**
-     * Overview statistics with comparison period
-     */
+    /** Overview statistics with comparison period */
     static getOverview(websiteId: string, startDate: Date, endDate: Date): Promise<{
         bounces: number;
         comparison: {
@@ -72,43 +70,35 @@ export declare class AnalyticsService {
             visitors: number;
             visits: number;
             bounces: number;
-            totaltime: number;
+            totalTime: number;
         };
         pageviews: number;
-        totaltime: number;
+        totalTime: number;
         visitors: number;
         visits: number;
     }>;
-    /**
-     * Time-series data for charts
-     */
+    /** Time-series data for charts */
     static getTimeseries(websiteId: string, startDate: Date, endDate: Date, interval: 'hour' | 'day' | 'week' | 'month'): Promise<{
         date: string;
         pageviews: number;
         sessions: number;
         visitors: number;
     }[]>;
-    /**
-     * Top pages
-     */
+    /** Top pages */
     static getTopPages(websiteId: string, startDate: Date, endDate: Date, limit: number): Promise<{
-        path: string | null;
-        views: number;
         avg_load_time?: number | null | undefined;
         p95_load_time?: number | null | undefined;
+        path: string | null;
         unique_visitors?: number | undefined;
+        views: number;
     }[]>;
-    /**
-     * Top referrers
-     */
+    /** Top referrers */
     static getTopReferrers(websiteId: string, startDate: Date, endDate: Date, limit: number): Promise<{
         referrer_domain: string | null;
-        visits: number;
         unique_visitors?: number | undefined;
+        visits: number;
     }[]>;
-    /**
-     * Device breakdown
-     */
+    /** Device breakdown */
     static getDeviceBreakdown(websiteId: string, startDate: Date, endDate: Date): Promise<{
         browser: string | null;
         device_type: string | null;
@@ -116,43 +106,31 @@ export declare class AnalyticsService {
         pageviews: number;
         unique_visitors?: number | undefined;
     }[]>;
-    /**
-     * Geographic distribution
-     */
+    /** Geographic distribution */
     static getGeography(websiteId: string, startDate: Date, endDate: Date): Promise<{
         city: string | null;
         country: string | null;
         pageviews: number;
         unique_visitors?: number | undefined;
     }[]>;
-    /**
-     * Top countries (by unique visitors)
-     */
+    /** Top countries (by unique visitors) */
     static getTopCountries(websiteId: string, startDate: Date, endDate: Date, limit: number): Promise<{
         country: string;
         visitors: number;
     }[]>;
-    /**
-     * Top devices (by pageviews)
-     */
+    /** Top devices (by pageviews) */
     static getTopDevices(websiteId: string, startDate: Date, endDate: Date, limit: number): Promise<{
         count: number;
         device: string;
     }[]>;
-    /**
-     * Top browsers (by pageviews)
-     */
+    /** Top browsers (by pageviews) */
     static getTopBrowsers(websiteId: string, startDate: Date, endDate: Date, limit: number): Promise<{
         browser: string;
         count: number;
     }[]>;
-    /**
-     * Average session duration (seconds)
-     */
+    /** Average session duration (seconds) */
     static getAverageSessionDuration(websiteId: string, startDate: Date, endDate: Date): Promise<number>;
-    /**
-     * UTM campaigns
-     */
+    /** UTM campaigns */
     static getUtmCampaigns(websiteId: string, startDate: Date, endDate: Date): Promise<{
         sessions: number;
         unique_visitors: number;
@@ -161,10 +139,8 @@ export declare class AnalyticsService {
         utm_source: string | null;
         visits: number;
     }[]>;
-    /**
-     * List all sessions
-     */
-    static getSessions(websiteId: string, startDate: Date, endDate: Date, limit: number, offset: number): Promise<{
+    /** List all sessions */
+    static getSessions(websiteId: string, startDate: Date, endDate: Date, limit: number, offset: number, resetAt?: Date | null): Promise<{
         sessionId: string;
         visitId: string;
         sessionStart: string;
@@ -179,7 +155,6 @@ export declare class AnalyticsService {
         countryCode: string | null;
         city: string | null;
         device: "desktop" | "mobile" | "tablet" | null;
-        deviceType: string | null;
         browser: string | null;
         os: string | null;
         referrer: string | null;
@@ -189,10 +164,8 @@ export declare class AnalyticsService {
         exitPath: string | null;
         bounced: boolean;
     }[]>;
-    /**
-     * Get session details
-     */
-    static getSessionDetails(websiteId: string, sessionId: string): Promise<{
+    /** Get session details */
+    static getSessionDetails(websiteId: string, sessionId: string, resetAt?: Date | null): Promise<{
         sessionId: string;
         visitId: string;
         pageviews: number;
@@ -201,7 +174,7 @@ export declare class AnalyticsService {
         country: string | null;
         countryCode: string | null;
         city: string | null;
-        region: null;
+        region: string | null;
         browser: string | null;
         os: string | null;
         device: "desktop" | "mobile" | "tablet" | null;
@@ -211,9 +184,7 @@ export declare class AnalyticsService {
         endTime: string;
         bounced: boolean;
     } | null>;
-    /**
-     * Get session activity (all events in a session)
-     */
-    static getSessionActivity(websiteId: string, sessionId: string, startDate?: Date, endDate?: Date): Promise<SessionActivityEvent[]>;
+    /** Get session activity (all events in a session) */
+    static getSessionActivity(websiteId: string, sessionId: string, startDate?: Date, endDate?: Date, resetAt?: Date | null): Promise<SessionActivityEvent[]>;
 }
 //# sourceMappingURL=analytics.d.ts.map

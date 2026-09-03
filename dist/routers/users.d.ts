@@ -1,7 +1,4 @@
-/**
- * Users Router
- * Handles user profile and preferences
- */
+/** Users Router Handles user profile and preferences */
 export declare const usersRouter: import("@trpc/server").TRPCBuiltRouter<{
     ctx: {
         auth: import("../middleware/auth.js").AuthContext | null;
@@ -12,12 +9,10 @@ export declare const usersRouter: import("@trpc/server").TRPCBuiltRouter<{
     errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     transformer: true;
 }, import("@trpc/server").TRPCDecorateCreateRouterOptions<{
-    /**
-     * List users (admin only)
-     */
+    /** List users (admin only) */
     list: import("@trpc/server").TRPCQueryProcedure<{
         input: {
-            orderBy?: "email" | "id" | "createdAt" | "updatedAt" | "role" | "displayName" | "firstName" | "lastName" | undefined;
+            orderBy?: "createdAt" | "displayName" | "email" | "firstName" | "id" | "lastName" | "role" | "updatedAt" | undefined;
             page?: number | undefined;
             pageSize?: number | undefined;
             plan?: string | undefined;
@@ -28,7 +23,7 @@ export declare const usersRouter: import("@trpc/server").TRPCBuiltRouter<{
         };
         output: {
             count: number;
-            data: ({
+            data: {
                 clerkId: string;
                 createdAt: Date;
                 displayName: string | null;
@@ -43,31 +38,18 @@ export declare const usersRouter: import("@trpc/server").TRPCBuiltRouter<{
                 stripeCustomerId: string | null;
                 updatedAt: Date;
                 websiteCount: number;
-            } & {
-                websiteCount: number;
-            })[];
-            orderBy: "email" | "id" | "createdAt" | "updatedAt" | "role" | "displayName" | "firstName" | "lastName";
+            }[];
+            orderBy: "createdAt" | "displayName" | "email" | "firstName" | "id" | "lastName" | "role" | "updatedAt";
             page: number;
             pageSize: number;
             search: string | undefined;
         };
         meta: object;
     }>;
-    /**
-     * Get current user profile with entitlements
-     */
+    /** Get current user profile with entitlements */
     me: import("@trpc/server").TRPCQueryProcedure<{
         input: void;
         output: {
-            subscription?: {
-                cancelAtPeriodEnd: boolean;
-                currentPeriodEnd: Date | null;
-                stripeSubscriptionId: string | null;
-            } | undefined;
-            trial?: {
-                isTrialing: boolean;
-                trialEnd: Date | null;
-            } | undefined;
             clerkUserId: string;
             features: {
                 funnels: boolean;
@@ -103,12 +85,19 @@ export declare const usersRouter: import("@trpc/server").TRPCBuiltRouter<{
                 periodEnd: Date;
             };
             user: import("../middleware/auth.js").AuthUser;
+            trial?: {
+                isTrialing: boolean;
+                trialEnd: Date | null;
+            } | undefined;
+            subscription?: {
+                cancelAtPeriodEnd: boolean;
+                currentPeriodEnd: Date | null;
+                stripeSubscriptionId: string | null;
+            } | undefined;
         };
         meta: object;
     }>;
-    /**
-     * Update user profile
-     */
+    /** Update user profile */
     updateProfile: import("@trpc/server").TRPCMutationProcedure<{
         input: {
             displayName?: string | undefined;
@@ -143,9 +132,7 @@ export declare const usersRouter: import("@trpc/server").TRPCBuiltRouter<{
         };
         meta: object;
     }>;
-    /**
-     * Update email preferences
-     */
+    /** Update email preferences */
     updatePreferences: import("@trpc/server").TRPCMutationProcedure<{
         input: {
             emailProductUpdates?: boolean | undefined;
@@ -180,9 +167,7 @@ export declare const usersRouter: import("@trpc/server").TRPCBuiltRouter<{
         };
         meta: object;
     }>;
-    /**
-     * Delete user account
-     */
+    /** Delete user account */
     delete: import("@trpc/server").TRPCMutationProcedure<{
         input: void;
         output: {

@@ -8,9 +8,7 @@ export declare const vitalsRouter: import("@trpc/server").TRPCBuiltRouter<{
     errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     transformer: true;
 }, import("@trpc/server").TRPCDecorateCreateRouterOptions<{
-    /**
-     * Get vitals overview for a website
-     */
+    /** Get vitals overview for a website */
     overview: import("@trpc/server").TRPCQueryProcedure<{
         input: {
             endDate: Date;
@@ -20,30 +18,14 @@ export declare const vitalsRouter: import("@trpc/server").TRPCBuiltRouter<{
         output: import("../services/vitals.js").VitalAggregate[];
         meta: object;
     }>;
-    /**
-     * Get vitals breakdown by page
-     */
-    byPage: import("@trpc/server").TRPCQueryProcedure<{
-        input: {
-            endDate: Date;
-            startDate: Date;
-            websiteId: string;
-            limit?: number | undefined;
-            metricName?: "LCP" | "INP" | "CLS" | "TTFB" | "FCP" | undefined;
-        };
-        output: import("../services/vitals.js").PageVitals[];
-        meta: object;
-    }>;
-    /**
-     * Get vitals trend over time
-     */
+    /** Get vitals trend over time */
     trend: import("@trpc/server").TRPCQueryProcedure<{
         input: {
             endDate: Date;
             startDate: Date;
             websiteId: string;
-            metricName: "LCP" | "INP" | "CLS" | "TTFB" | "FCP";
-            interval?: "hour" | "day" | "week" | undefined;
+            interval?: "day" | "hour" | "week" | undefined;
+            metricName: "CLS" | "FCP" | "INP" | "LCP" | "TTFB";
         };
         output: {
             date: string;
@@ -52,40 +34,16 @@ export declare const vitalsRouter: import("@trpc/server").TRPCBuiltRouter<{
         }[];
         meta: object;
     }>;
-    /**
-     * Get recent vital events (for debugging)
-     */
+    /** Get recent vital events (for debugging) */
     recentEvents: import("@trpc/server").TRPCQueryProcedure<{
         input: {
-            websiteId: string;
             limit?: number | undefined;
+            websiteId: string;
         };
         output: import("../services/vitals.js").VitalEvent[];
         meta: object;
     }>;
-    /**
-     * Track a vital event (mutation for internal use)
-     */
-    track: import("@trpc/server").TRPCMutationProcedure<{
-        input: {
-            metricName: "LCP" | "INP" | "CLS" | "TTFB" | "FCP";
-            metricValue: number;
-            path: string;
-            sessionId: string;
-            url: string;
-            visitorId: string;
-            websiteId: string;
-            browser?: string | undefined;
-            deviceType?: string | undefined;
-        };
-        output: {
-            success: boolean;
-        };
-        meta: object;
-    }>;
-    /**
-     * Get page breakdown with all metrics aggregated per page
-     */
+    /** Get page breakdown with all metrics aggregated per page */
     pageBreakdown: import("@trpc/server").TRPCQueryProcedure<{
         input: {
             endDate: Date;

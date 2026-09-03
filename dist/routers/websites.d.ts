@@ -1,7 +1,4 @@
-/**
- * Websites Router
- * Handles website CRUD and API key management
- */
+/** Websites Router Handles website CRUD and API key management */
 export declare const websitesRouter: import("@trpc/server").TRPCBuiltRouter<{
     ctx: {
         auth: import("../middleware/auth.js").AuthContext | null;
@@ -12,12 +9,8 @@ export declare const websitesRouter: import("@trpc/server").TRPCBuiltRouter<{
     errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     transformer: true;
 }, import("@trpc/server").TRPCDecorateCreateRouterOptions<{
-    /**
-     * List websites (admin sees all, users see only their own)
-     */
-    /**
-     * List websites (admin sees all, users see only their own)
-     */
+    /** List websites (admin sees all, users see only their own) */
+    /** List websites (admin sees all, users see only their own) */
     list: import("@trpc/server").TRPCQueryProcedure<{
         input: {
             page?: number | undefined;
@@ -31,10 +24,12 @@ export declare const websitesRouter: import("@trpc/server").TRPCBuiltRouter<{
             name: string;
             domain: string;
             shareId: string | null;
+            clientKey: string;
             resetAt: Date | null;
             ingestMode: string;
             createdBy: string | null;
             timezone: string | null;
+            isActive: boolean;
             public: boolean | null;
             autoTrackPageviews: boolean | null;
             autoTrackSessions: boolean | null;
@@ -48,9 +43,7 @@ export declare const websitesRouter: import("@trpc/server").TRPCBuiltRouter<{
         }[];
         meta: object;
     }>;
-    /**
-     * Get website by ID
-     */
+    /** Get website by ID */
     get: import("@trpc/server").TRPCQueryProcedure<{
         input: {
             websiteId: string;
@@ -62,10 +55,12 @@ export declare const websitesRouter: import("@trpc/server").TRPCBuiltRouter<{
             name: string;
             domain: string;
             shareId: string | null;
+            clientKey: string;
             resetAt: Date | null;
             ingestMode: string;
             createdBy: string | null;
             timezone: string | null;
+            isActive: boolean;
             public: boolean | null;
             autoTrackPageviews: boolean | null;
             autoTrackSessions: boolean | null;
@@ -79,9 +74,7 @@ export declare const websitesRouter: import("@trpc/server").TRPCBuiltRouter<{
         };
         meta: object;
     }>;
-    /**
-     * Create website
-     */
+    /** Create website */
     create: import("@trpc/server").TRPCMutationProcedure<{
         input: {
             domain: string;
@@ -90,35 +83,34 @@ export declare const websitesRouter: import("@trpc/server").TRPCBuiltRouter<{
             shareId?: string | undefined;
         };
         output: {
-            name: string;
-            id: string;
-            orgId: string | null;
-            userId: string | null;
-            createdAt: Date;
-            updatedAt: Date;
-            domain: string;
-            shareId: string | null;
-            resetAt: Date | null;
-            ingestMode: string;
-            createdBy: string | null;
-            timezone: string | null;
-            public: boolean | null;
+            anonymizeIps: boolean | null;
             autoTrackPageviews: boolean | null;
             autoTrackSessions: boolean | null;
-            excludeQueryParams: string[] | null;
-            anonymizeIps: boolean | null;
-            respectDnt: boolean | null;
+            clientKey: string;
             cookieConsentRequired: boolean | null;
+            createdAt: Date;
+            createdBy: string | null;
             deletedAt: Date | null;
-        };
+            domain: string;
+            excludeQueryParams: string[] | null;
+            id: string;
+            ingestMode: string;
+            isActive: boolean;
+            name: string;
+            orgId: string | null;
+            public: boolean | null;
+            resetAt: Date | null;
+            respectDnt: boolean | null;
+            shareId: string | null;
+            timezone: string | null;
+            updatedAt: Date;
+            userId: string | null;
+        } | undefined;
         meta: object;
     }>;
-    /**
-     * Update website
-     */
+    /** Update website */
     update: import("@trpc/server").TRPCMutationProcedure<{
         input: {
-            websiteId: string;
             anonymizeIps?: boolean | undefined;
             autoTrackPageviews?: boolean | undefined;
             autoTrackSessions?: boolean | undefined;
@@ -126,6 +118,7 @@ export declare const websitesRouter: import("@trpc/server").TRPCBuiltRouter<{
             name?: string | undefined;
             public?: boolean | undefined;
             respectDnt?: boolean | undefined;
+            websiteId: string;
         };
         output: {
             id: string;
@@ -134,10 +127,12 @@ export declare const websitesRouter: import("@trpc/server").TRPCBuiltRouter<{
             name: string;
             domain: string;
             shareId: string | null;
+            clientKey: string;
             resetAt: Date | null;
             ingestMode: string;
             createdBy: string | null;
             timezone: string | null;
+            isActive: boolean;
             public: boolean | null;
             autoTrackPageviews: boolean | null;
             autoTrackSessions: boolean | null;
@@ -148,12 +143,10 @@ export declare const websitesRouter: import("@trpc/server").TRPCBuiltRouter<{
             deletedAt: Date | null;
             createdAt: Date;
             updatedAt: Date;
-        };
+        } | undefined;
         meta: object;
     }>;
-    /**
-     * Delete website
-     */
+    /** Delete website */
     delete: import("@trpc/server").TRPCMutationProcedure<{
         input: {
             websiteId: string;
@@ -163,9 +156,7 @@ export declare const websitesRouter: import("@trpc/server").TRPCBuiltRouter<{
         };
         meta: object;
     }>;
-    /**
-     * API Keys management
-     */
+    /** API Keys management */
     apiKeys: import("@trpc/server").TRPCBuiltRouter<{
         ctx: {
             auth: import("../middleware/auth.js").AuthContext | null;
@@ -184,21 +175,21 @@ export declare const websitesRouter: import("@trpc/server").TRPCBuiltRouter<{
             };
             output: {
                 key: string;
-                name: string;
-                id: string;
-                createdAt: Date;
-                deletedAt: Date | null;
-                expiresAt: Date | null;
-                lastUsedAt: Date | null;
-                prefix: string;
-                scopes: string[];
-                websiteId: string;
-                keyHash: string;
-                rateLimitMax: number | null;
-                rateLimitWindow: number | null;
-                allowedDomains: string[] | null;
-                allowedOrigins: string[] | null;
-                requestsCount: number | null;
+                allowedDomains?: string[] | null | undefined;
+                allowedOrigins?: string[] | null | undefined;
+                createdAt?: Date | undefined;
+                deletedAt?: Date | null | undefined;
+                expiresAt?: Date | null | undefined;
+                id?: string | undefined;
+                keyHash?: string | undefined;
+                lastUsedAt?: Date | null | undefined;
+                name?: string | undefined;
+                prefix?: string | undefined;
+                rateLimitMax?: number | null | undefined;
+                rateLimitWindow?: number | null | undefined;
+                requestsCount?: number | null | undefined;
+                scopes?: string[] | undefined;
+                websiteId?: string | undefined;
             };
             meta: object;
         }>;

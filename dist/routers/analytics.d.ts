@@ -24,20 +24,18 @@ export declare const analyticsRouter: import("@trpc/server").TRPCBuiltRouter<{
     errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     transformer: true;
 }, import("@trpc/server").TRPCDecorateCreateRouterOptions<{
-    /**
-     * Overview statistics with comparison period
-     */
+    /** Overview statistics with comparison period */
     overview: import("@trpc/server").TRPCQueryProcedure<{
         input: {
             endDate: Date;
-            startDate: Date;
-            websiteId: string;
             filters?: {
                 country?: string | undefined;
                 device?: "desktop" | "mobile" | "tablet" | undefined;
                 browser?: string | undefined;
                 path?: string | undefined;
             } | undefined;
+            startDate: Date;
+            websiteId: string;
         };
         output: {
             bounces: number;
@@ -46,30 +44,28 @@ export declare const analyticsRouter: import("@trpc/server").TRPCBuiltRouter<{
                 visitors: number;
                 visits: number;
                 bounces: number;
-                totaltime: number;
+                totalTime: number;
             };
             pageviews: number;
-            totaltime: number;
+            totalTime: number;
             visitors: number;
             visits: number;
         };
         meta: object;
     }>;
-    /**
-     * Time-series data for charts
-     */
+    /** Time-series data for charts */
     timeseries: import("@trpc/server").TRPCQueryProcedure<{
         input: {
             endDate: Date;
-            startDate: Date;
-            websiteId: string;
-            interval: "hour" | "day" | "week" | "month";
             filters?: {
                 country?: string | undefined;
                 device?: "desktop" | "mobile" | "tablet" | undefined;
                 browser?: string | undefined;
                 path?: string | undefined;
             } | undefined;
+            startDate: Date;
+            websiteId: string;
+            interval: "day" | "hour" | "month" | "week";
         };
         output: {
             date: string;
@@ -79,68 +75,62 @@ export declare const analyticsRouter: import("@trpc/server").TRPCBuiltRouter<{
         }[];
         meta: object;
     }>;
-    /**
-     * Top pages
-     */
+    /** Top pages */
     topPages: import("@trpc/server").TRPCQueryProcedure<{
         input: {
             endDate: Date;
-            startDate: Date;
-            websiteId: string;
             filters?: {
                 country?: string | undefined;
                 device?: "desktop" | "mobile" | "tablet" | undefined;
                 browser?: string | undefined;
                 path?: string | undefined;
             } | undefined;
+            startDate: Date;
+            websiteId: string;
             limit?: number | undefined;
         };
         output: {
-            path: string | null;
-            views: number;
             avg_load_time?: number | null | undefined;
             p95_load_time?: number | null | undefined;
+            path: string | null;
             unique_visitors?: number | undefined;
+            views: number;
         }[];
         meta: object;
     }>;
-    /**
-     * Top referrers
-     */
+    /** Top referrers */
     topReferrers: import("@trpc/server").TRPCQueryProcedure<{
         input: {
             endDate: Date;
-            startDate: Date;
-            websiteId: string;
             filters?: {
                 country?: string | undefined;
                 device?: "desktop" | "mobile" | "tablet" | undefined;
                 browser?: string | undefined;
                 path?: string | undefined;
             } | undefined;
+            startDate: Date;
+            websiteId: string;
             limit?: number | undefined;
         };
         output: {
             referrer_domain: string | null;
-            visits: number;
             unique_visitors?: number | undefined;
+            visits: number;
         }[];
         meta: object;
     }>;
-    /**
-     * Device breakdown
-     */
+    /** Device breakdown */
     deviceBreakdown: import("@trpc/server").TRPCQueryProcedure<{
         input: {
             endDate: Date;
-            startDate: Date;
-            websiteId: string;
             filters?: {
                 country?: string | undefined;
                 device?: "desktop" | "mobile" | "tablet" | undefined;
                 browser?: string | undefined;
                 path?: string | undefined;
             } | undefined;
+            startDate: Date;
+            websiteId: string;
         };
         output: {
             browser: string | null;
@@ -151,20 +141,18 @@ export declare const analyticsRouter: import("@trpc/server").TRPCBuiltRouter<{
         }[];
         meta: object;
     }>;
-    /**
-     * Geographic distribution
-     */
+    /** Geographic distribution */
     geography: import("@trpc/server").TRPCQueryProcedure<{
         input: {
             endDate: Date;
-            startDate: Date;
-            websiteId: string;
             filters?: {
                 country?: string | undefined;
                 device?: "desktop" | "mobile" | "tablet" | undefined;
                 browser?: string | undefined;
                 path?: string | undefined;
             } | undefined;
+            startDate: Date;
+            websiteId: string;
         };
         output: {
             city: string | null;
@@ -174,20 +162,18 @@ export declare const analyticsRouter: import("@trpc/server").TRPCBuiltRouter<{
         }[];
         meta: object;
     }>;
-    /**
-     * UTM campaigns
-     */
+    /** UTM campaigns */
     utmCampaigns: import("@trpc/server").TRPCQueryProcedure<{
         input: {
             endDate: Date;
-            startDate: Date;
-            websiteId: string;
             filters?: {
                 country?: string | undefined;
                 device?: "desktop" | "mobile" | "tablet" | undefined;
                 browser?: string | undefined;
                 path?: string | undefined;
             } | undefined;
+            startDate: Date;
+            websiteId: string;
         };
         output: {
             sessions: number;
@@ -199,20 +185,18 @@ export declare const analyticsRouter: import("@trpc/server").TRPCBuiltRouter<{
         }[];
         meta: object;
     }>;
-    /**
-     * List all sessions
-     */
+    /** List all sessions */
     sessions: import("@trpc/server").TRPCQueryProcedure<{
         input: {
             endDate: Date;
-            startDate: Date;
-            websiteId: string;
             filters?: {
                 country?: string | undefined;
                 device?: "desktop" | "mobile" | "tablet" | undefined;
                 browser?: string | undefined;
                 path?: string | undefined;
             } | undefined;
+            startDate: Date;
+            websiteId: string;
             limit?: number | undefined;
             offset?: number | undefined;
         };
@@ -231,7 +215,6 @@ export declare const analyticsRouter: import("@trpc/server").TRPCBuiltRouter<{
             countryCode: string | null;
             city: string | null;
             device: "desktop" | "mobile" | "tablet" | null;
-            deviceType: string | null;
             browser: string | null;
             os: string | null;
             referrer: string | null;
@@ -243,9 +226,7 @@ export declare const analyticsRouter: import("@trpc/server").TRPCBuiltRouter<{
         }[];
         meta: object;
     }>;
-    /**
-     * Get session details
-     */
+    /** Get session details */
     sessionDetails: import("@trpc/server").TRPCQueryProcedure<{
         input: {
             sessionId: string;
@@ -260,7 +241,7 @@ export declare const analyticsRouter: import("@trpc/server").TRPCBuiltRouter<{
             country: string | null;
             countryCode: string | null;
             city: string | null;
-            region: null;
+            region: string | null;
             browser: string | null;
             os: string | null;
             device: "desktop" | "mobile" | "tablet" | null;
@@ -272,15 +253,13 @@ export declare const analyticsRouter: import("@trpc/server").TRPCBuiltRouter<{
         } | null;
         meta: object;
     }>;
-    /**
-     * Get session activity (all events in a session)
-     */
+    /** Get session activity (all events in a session) */
     sessionActivity: import("@trpc/server").TRPCQueryProcedure<{
         input: {
-            sessionId: string;
-            websiteId: string;
             endDate?: Date | undefined;
+            sessionId: string;
             startDate?: Date | undefined;
+            websiteId: string;
         };
         output: import("../services/analytics.js").SessionActivityEvent[];
         meta: object;

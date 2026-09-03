@@ -1,5 +1,5 @@
+import type { OrgRole, PlatformRole } from '@entrolytics/config';
 import type { FastifyRequest } from 'fastify';
-import { type OrgRole, type PlatformRole } from '../lib/roles.js';
 export interface AuthUser {
     id: string;
     email: string;
@@ -22,31 +22,20 @@ export interface AuthContext {
     orgId?: string | null;
     grant: string[];
 }
-/**
- * Get authenticated user from Clerk session
- * To be called within tRPC context or route handlers
- */
+/** Get authenticated user from Clerk session To be called within tRPC context or route handlers */
 export declare function getAuthUser(request: FastifyRequest): Promise<AuthContext | null>;
-/**
- * Check if user has required permission
- */
+/** Check if user has required permission */
 export declare function hasPermission(auth: AuthContext | null, permission: string): boolean;
-/**
- * Check if user is admin
- */
+/** Check if user is admin */
 export declare function isAdmin(auth: AuthContext | null): boolean;
-/**
- * Extract API key from request headers.
- * Uses canonical `x-api-key`.
- */
+/** Extract API key from request headers. Uses canonical `x-api-key`. */
 export declare function getRequestApiKey(request: FastifyRequest): string | null;
-/**
- * Validate API key against website access scope.
- */
+export declare function getRequestClientKey(candidate: unknown): string | null;
+/** Validate API key against website access scope. */
 export declare function validateRequestApiKey(request: FastifyRequest, websiteId: string): Promise<boolean>;
 /**
- * Authorize collection requests by API key or by website-domain origin.
- * Browser trackers can authenticate via Origin + websiteId without exposing API keys.
+ * Authorize collection requests by API key or by website-domain origin. Browser trackers can
+ * authenticate via Origin + websiteId without exposing API keys.
  */
-export declare function authorizeCollectionRequest(request: FastifyRequest, websiteId: string): Promise<boolean>;
+export declare function authorizeCollectionRequest(request: FastifyRequest, websiteId: string, clientKey?: string | null): Promise<boolean>;
 //# sourceMappingURL=auth.d.ts.map

@@ -1,7 +1,4 @@
-/**
- * Auth Router
- * Handles CLI authentication tokens
- */
+/** Auth Router Handles CLI authentication tokens */
 export declare const authRouter: import("@trpc/server").TRPCBuiltRouter<{
     ctx: {
         auth: import("../middleware/auth.js").AuthContext | null;
@@ -22,9 +19,7 @@ export declare const authRouter: import("@trpc/server").TRPCBuiltRouter<{
         errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         transformer: true;
     }, import("@trpc/server").TRPCDecorateCreateRouterOptions<{
-        /**
-         * Generate a new CLI access token
-         */
+        /** Generate a new CLI access token */
         generateToken: import("@trpc/server").TRPCMutationProcedure<{
             input: {
                 name?: string | undefined;
@@ -32,12 +27,11 @@ export declare const authRouter: import("@trpc/server").TRPCBuiltRouter<{
             output: {
                 expiresAt: string;
                 token: string;
+                tokenId: string;
             };
             meta: object;
         }>;
-        /**
-         * List all CLI tokens for current user
-         */
+        /** List all CLI tokens for current user */
         listTokens: import("@trpc/server").TRPCQueryProcedure<{
             input: void;
             output: {
@@ -49,9 +43,7 @@ export declare const authRouter: import("@trpc/server").TRPCBuiltRouter<{
             }[];
             meta: object;
         }>;
-        /**
-         * Revoke a CLI token
-         */
+        /** Revoke a CLI token */
         revokeToken: import("@trpc/server").TRPCMutationProcedure<{
             input: {
                 tokenId: string;
@@ -61,9 +53,7 @@ export declare const authRouter: import("@trpc/server").TRPCBuiltRouter<{
             };
             meta: object;
         }>;
-        /**
-         * Revoke all CLI tokens for current user
-         */
+        /** Revoke all CLI tokens for current user */
         revokeAllTokens: import("@trpc/server").TRPCMutationProcedure<{
             input: void;
             output: {
@@ -71,14 +61,13 @@ export declare const authRouter: import("@trpc/server").TRPCBuiltRouter<{
             };
             meta: object;
         }>;
-        /**
-         * Validate a CLI token (public endpoint for CLI to check token)
-         */
+        /** Validate a CLI token (public endpoint for CLI to check token) */
         validateToken: import("@trpc/server").TRPCQueryProcedure<{
             input: {
                 token: string;
             };
             output: {
+                tokenId: string;
                 userId: string;
                 valid: boolean;
             };

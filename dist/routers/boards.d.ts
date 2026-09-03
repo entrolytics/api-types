@@ -8,9 +8,7 @@ export declare const boardsRouter: import("@trpc/server").TRPCBuiltRouter<{
     errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     transformer: true;
 }, import("@trpc/server").TRPCDecorateCreateRouterOptions<{
-    /**
-     * List boards
-     */
+    /** List boards */
     list: import("@trpc/server").TRPCQueryProcedure<{
         input: void;
         output: {
@@ -26,14 +24,21 @@ export declare const boardsRouter: import("@trpc/server").TRPCBuiltRouter<{
         }[];
         meta: object;
     }>;
-    /**
-     * Get board with widgets
-     */
+    /** Get board with widgets */
     get: import("@trpc/server").TRPCQueryProcedure<{
         input: {
             boardId: string;
         };
         output: {
+            config: unknown;
+            createdAt: Date;
+            deletedAt: Date | null;
+            description: string | null;
+            id: string;
+            name: string;
+            orgId: string;
+            updatedAt: Date;
+            userId: string | null;
             widgets: {
                 boardId: string;
                 config: unknown;
@@ -45,44 +50,31 @@ export declare const boardsRouter: import("@trpc/server").TRPCBuiltRouter<{
                 updatedAt: Date;
                 websiteId: string | null;
             }[];
-            config: unknown;
-            createdAt: Date;
-            deletedAt: Date | null;
-            description: string | null;
-            id: string;
-            name: string;
-            orgId: string;
-            updatedAt: Date;
-            userId: string | null;
         };
         meta: object;
     }>;
-    /**
-     * Create board
-     */
+    /** Create board */
     create: import("@trpc/server").TRPCMutationProcedure<{
         input: {
             name: string;
-            orgId: string;
             description?: string | undefined;
+            orgId: string;
             config?: Record<string, unknown> | undefined;
         };
         output: {
-            name: string;
-            id: string;
-            orgId: string;
-            userId: string | null;
-            createdAt: Date;
-            updatedAt: Date;
-            deletedAt: Date | null;
             config: unknown;
+            createdAt: Date;
+            deletedAt: Date | null;
             description: string | null;
-        };
+            id: string;
+            name: string;
+            orgId: string;
+            updatedAt: Date;
+            userId: string | null;
+        } | undefined;
         meta: object;
     }>;
-    /**
-     * Update board
-     */
+    /** Update board */
     update: import("@trpc/server").TRPCMutationProcedure<{
         input: {
             boardId: string;
@@ -100,12 +92,10 @@ export declare const boardsRouter: import("@trpc/server").TRPCBuiltRouter<{
             orgId: string;
             updatedAt: Date;
             userId: string | null;
-        };
+        } | undefined;
         meta: object;
     }>;
-    /**
-     * Delete board
-     */
+    /** Delete board */
     delete: import("@trpc/server").TRPCMutationProcedure<{
         input: {
             boardId: string;
@@ -120,12 +110,10 @@ export declare const boardsRouter: import("@trpc/server").TRPCBuiltRouter<{
             orgId: string;
             updatedAt: Date;
             userId: string | null;
-        };
+        } | undefined;
         meta: object;
     }>;
-    /**
-     * Widgets management
-     */
+    /** Widgets management */
     widgets: import("@trpc/server").TRPCBuiltRouter<{
         ctx: {
             auth: import("../middleware/auth.js").AuthContext | null;
@@ -139,23 +127,23 @@ export declare const boardsRouter: import("@trpc/server").TRPCBuiltRouter<{
         add: import("@trpc/server").TRPCMutationProcedure<{
             input: {
                 boardId: string;
-                type: string;
                 websiteId?: string | undefined;
+                type: string;
                 title?: string | undefined;
                 config?: Record<string, unknown> | undefined;
                 position?: number | undefined;
             };
             output: {
-                id: string;
-                createdAt: Date;
-                updatedAt: Date;
-                type: string;
-                websiteId: string | null;
-                config: unknown;
                 boardId: string;
-                title: string | null;
+                config: unknown;
+                createdAt: Date;
+                id: string;
                 position: number | null;
-            };
+                title: string | null;
+                type: string;
+                updatedAt: Date;
+                websiteId: string | null;
+            } | undefined;
             meta: object;
         }>;
         get: import("@trpc/server").TRPCQueryProcedure<{
@@ -214,7 +202,7 @@ export declare const boardsRouter: import("@trpc/server").TRPCBuiltRouter<{
                 type: string;
                 updatedAt: Date;
                 websiteId: string | null;
-            };
+            } | undefined;
             meta: object;
         }>;
     }>>;

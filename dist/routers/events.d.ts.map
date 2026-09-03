@@ -1,1 +1,1 @@
-{"version":3,"file":"events.d.ts","sourceRoot":"","sources":["../../src/routers/events.ts"],"names":[],"mappings":"AAwEA,eAAO,MAAM,YAAY;;;;;;;;;;IACvB;;OAEG;;;;;;;;;;;;;;;;;;;;;;;;;;;;IA4DH;;OAEG;;;;;;;;;;;;;;;IA2CH;;OAEG;;;;;;;;;;;;;;;;;;GAuDH,CAAA"}
+{"version":3,"file":"events.d.ts","sourceRoot":"","sources":["../../src/routers/events.ts"],"names":[],"mappings":"AAuEA,eAAO,MAAM,YAAY;;;;;;;;;;IACvB,iDAAiD;;;;;;;;;;;;;;;;;;;;;;;;;;;;IA8DjD,+CAA+C;;;;;;;;;;;;;;;IA2C/C,4DAA4D;;;;;;;;;;;;;;;;;;GAuD5D,CAAA"}
