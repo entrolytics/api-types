@@ -1,6 +1,6 @@
 {
   "name": "@entrolytics/api-types",
-  "version": "2.4.4",
+  "version": "3.0.0",
   "description": "Shared API types for Entrolytics - First-party growth analytics for the edge",
   "files": [
     "dist"
@@ -24,11 +24,11 @@
     "@entrolytics/config": "workspace:^",
     "@entrolytics/protocol": "workspace:^",
     "@trpc/server": "^11.18.0",
-    "fastify": "^5.11.3",
-    "zod": "^4.4.3"
+    "fastify": "^6.0.0-alpha.3",
+    "zod": "^4.5.4"
   },
   "devDependencies": {
     "@entrolytics/api": "workspace:^",
-    "typescript": "^7.0.2"
+    "typescript": "next"
   }
 }
