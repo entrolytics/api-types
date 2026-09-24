@@ -35,9 +35,9 @@ export declare const billingRouter: import("@trpc/server").TRPCBuiltRouter<{
                 periodEnd: Date;
                 periodStart: Date;
                 pixelFires: number | null;
-                teamMembersCount: number | null;
                 userId: string | null;
-                websitesCount: number | null;
+                teamMembersCount: number;
+                websitesCount: number;
             } | {
                 customEvents: number;
                 eventsCount: number;
@@ -80,6 +80,7 @@ export declare const billingRouter: import("@trpc/server").TRPCBuiltRouter<{
                 eventsLimit: number;
                 websitesLimit: number;
                 teamMembersLimit: number;
+                lastStripeEventAt: Date | null;
                 currentPeriodStart: Date | null;
                 currentPeriodEnd: Date | null;
                 cancelAt: Date | null;

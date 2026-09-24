@@ -85,6 +85,16 @@ export declare class AnalyticsService {
         visitors: number;
     }[]>;
     /** Top pages */
+    /**
+     * Pageviews by weekday (1 = Monday … 7 = Sunday) and hour, in `timeZone`. Bucketing in UTC put a
+     * Monday-evening visit on Tuesday for anyone far enough east, and a website's own time zone was
+     * stored and never read.
+     */
+    static getWeeklyTraffic(websiteId: string, startDate: Date, endDate: Date, timeZone: string): Promise<{
+        day: number;
+        hour: number;
+        y: number;
+    }[]>;
     static getTopPages(websiteId: string, startDate: Date, endDate: Date, limit: number): Promise<{
         avg_load_time?: number | null | undefined;
         p95_load_time?: number | null | undefined;

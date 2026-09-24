@@ -15,8 +15,7 @@ export declare const webhooksRouter: import("@trpc/server").TRPCBuiltRouter<{
             orgId?: string | undefined;
             websiteId?: string | undefined;
         };
-        output: {
-            active: boolean | null;
+        output: Omit<{
             createdAt: Date;
             deletedAt: Date | null;
             enabled: boolean | null;
@@ -29,7 +28,7 @@ export declare const webhooksRouter: import("@trpc/server").TRPCBuiltRouter<{
             url: string;
             userId: string | null;
             websiteId: string;
-        }[];
+        }, "secret">[];
         meta: object;
     }>;
     /** Get webhook details */
@@ -37,8 +36,7 @@ export declare const webhooksRouter: import("@trpc/server").TRPCBuiltRouter<{
         input: {
             webhookId: string;
         };
-        output: {
-            active: boolean | null;
+        output: Omit<{
             createdAt: Date;
             deletedAt: Date | null;
             enabled: boolean | null;
@@ -51,10 +49,10 @@ export declare const webhooksRouter: import("@trpc/server").TRPCBuiltRouter<{
             url: string;
             userId: string | null;
             websiteId: string;
-        };
+        }, "secret">;
         meta: object;
     }>;
-    /** Create webhook */
+    /** Create webhook. The response is the only one besides rotation that carries the secret. */
     create: import("@trpc/server").TRPCMutationProcedure<{
         input: {
             events: ("*" | "event.created" | "goal.completed" | "pageview.created" | "revenue.recorded" | "session.created" | "visitor.identified")[];
@@ -64,7 +62,6 @@ export declare const webhooksRouter: import("@trpc/server").TRPCBuiltRouter<{
             websiteId: string;
         };
         output: {
-            active: boolean | null;
             createdAt: Date;
             deletedAt: Date | null;
             enabled: boolean | null;
@@ -83,14 +80,13 @@ export declare const webhooksRouter: import("@trpc/server").TRPCBuiltRouter<{
     /** Update webhook */
     update: import("@trpc/server").TRPCMutationProcedure<{
         input: {
-            active?: boolean | undefined;
+            enabled?: boolean | undefined;
             events?: ("*" | "event.created" | "goal.completed" | "pageview.created" | "revenue.recorded" | "session.created" | "visitor.identified")[] | undefined;
             name?: string | undefined;
             url?: string | undefined;
             webhookId: string;
         };
-        output: {
-            active: boolean | null;
+        output: Omit<{
             createdAt: Date;
             deletedAt: Date | null;
             enabled: boolean | null;
@@ -103,7 +99,17 @@ export declare const webhooksRouter: import("@trpc/server").TRPCBuiltRouter<{
             url: string;
             userId: string | null;
             websiteId: string;
-        } | undefined;
+        }, "secret"> | null;
+        meta: object;
+    }>;
+    /** Replace the signing secret; returns the new secret once. */
+    rotateSecret: import("@trpc/server").TRPCMutationProcedure<{
+        input: {
+            webhookId: string;
+        };
+        output: {
+            secret: string;
+        };
         meta: object;
     }>;
     /** Delete webhook */
@@ -136,6 +142,7 @@ export declare const webhooksRouter: import("@trpc/server").TRPCBuiltRouter<{
                 id: string;
                 webhookId: string;
                 eventType: string;
+                eventId: string | null;
                 payload: unknown;
                 status: "failed" | "pending" | "retrying" | "sending" | "success";
                 statusCode: number | null;
@@ -144,6 +151,7 @@ export declare const webhooksRouter: import("@trpc/server").TRPCBuiltRouter<{
                 maxAttempts: number | null;
                 nextRetryAt: Date | null;
                 retryDelaySeconds: number | null;
+                claimedAt: Date | null;
                 createdAt: Date;
                 deliveredAt: Date | null;
                 failedAt: Date | null;

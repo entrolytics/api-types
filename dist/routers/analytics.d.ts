@@ -24,6 +24,24 @@ export declare const analyticsRouter: import("@trpc/server").TRPCBuiltRouter<{
     errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     transformer: true;
 }, import("@trpc/server").TRPCDecorateCreateRouterOptions<{
+    /**
+     * Pageviews by weekday and hour. Buckets in `timeZone` when given (the viewer's), else in the
+     * website's own time zone, else UTC.
+     */
+    weeklyTraffic: import("@trpc/server").TRPCQueryProcedure<{
+        input: {
+            endDate: Date;
+            startDate: Date;
+            timeZone?: string | undefined;
+            websiteId: string;
+        };
+        output: {
+            day: number;
+            hour: number;
+            y: number;
+        }[];
+        meta: object;
+    }>;
     /** Overview statistics with comparison period */
     overview: import("@trpc/server").TRPCQueryProcedure<{
         input: {

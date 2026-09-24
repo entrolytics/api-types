@@ -100,7 +100,6 @@ export declare const usersRouter: import("@trpc/server").TRPCBuiltRouter<{
     /** Update user profile */
     updateProfile: import("@trpc/server").TRPCMutationProcedure<{
         input: {
-            displayName?: string | undefined;
             firstName?: string | undefined;
             lastName?: string | undefined;
         };
@@ -126,7 +125,6 @@ export declare const usersRouter: import("@trpc/server").TRPCBuiltRouter<{
             emailWeeklyReports: boolean | null;
             emailUsageAlerts: boolean | null;
             emailProductUpdates: boolean | null;
-            deletedAt: Date | null;
             createdAt: Date;
             updatedAt: Date;
         };
@@ -161,7 +159,6 @@ export declare const usersRouter: import("@trpc/server").TRPCBuiltRouter<{
             emailWeeklyReports: boolean | null;
             emailUsageAlerts: boolean | null;
             emailProductUpdates: boolean | null;
-            deletedAt: Date | null;
             createdAt: Date;
             updatedAt: Date;
         };
@@ -171,6 +168,7 @@ export declare const usersRouter: import("@trpc/server").TRPCBuiltRouter<{
     delete: import("@trpc/server").TRPCMutationProcedure<{
         input: void;
         output: {
+            pending: boolean;
             success: boolean;
         };
         meta: object;

@@ -28,7 +28,7 @@ export declare const orgsRouter: import("@trpc/server").TRPCBuiltRouter<{
             orgId: string;
         };
         output: {
-            accessCode: string | null;
+            clerkSyncRequestedAt: Date | null;
             createdAt: Date;
             deletedAt: Date | null;
             id: string;
@@ -36,6 +36,7 @@ export declare const orgsRouter: import("@trpc/server").TRPCBuiltRouter<{
             name: string;
             slug: string;
             updatedAt: Date;
+            accessCode: string | null;
             clerkOrgId: string | null;
             role: "admin" | "member" | "owner" | "viewer";
         };
@@ -50,6 +51,7 @@ export declare const orgsRouter: import("@trpc/server").TRPCBuiltRouter<{
         output: {
             accessCode: string | null;
             clerkOrgId: string | null;
+            clerkSyncRequestedAt: Date | null;
             createdAt: Date;
             deletedAt: Date | null;
             id: string;
@@ -70,6 +72,7 @@ export declare const orgsRouter: import("@trpc/server").TRPCBuiltRouter<{
         output: {
             accessCode: string | null;
             clerkOrgId: string | null;
+            clerkSyncRequestedAt: Date | null;
             createdAt: Date;
             deletedAt: Date | null;
             id: string;
@@ -77,6 +80,16 @@ export declare const orgsRouter: import("@trpc/server").TRPCBuiltRouter<{
             name: string;
             slug: string;
             updatedAt: Date;
+        };
+        meta: object;
+    }>;
+    /** Replace the access code (admins); returns the new one */
+    rotateAccessCode: import("@trpc/server").TRPCMutationProcedure<{
+        input: {
+            orgId: string;
+        };
+        output: {
+            accessCode: string;
         };
         meta: object;
     }>;
@@ -108,6 +121,7 @@ export declare const orgsRouter: import("@trpc/server").TRPCBuiltRouter<{
                 role: "admin" | "member" | "viewer";
             };
             output: {
+                acceptUrl: string;
                 createdAt: Date;
                 email: string;
                 expiresAt: Date;
@@ -117,7 +131,36 @@ export declare const orgsRouter: import("@trpc/server").TRPCBuiltRouter<{
                 role: string;
                 status: "accepted" | "expired" | "pending";
                 token: string;
-            } | undefined;
+            };
+            meta: object;
+        }>;
+        /** Look up an invitation from its token, for the acceptance screen. */
+        lookup: import("@trpc/server").TRPCQueryProcedure<{
+            input: {
+                token: string;
+            };
+            output: {
+                email: string;
+                expiresAt: Date;
+                orgId: string;
+                orgName: string;
+                role: string;
+                status: "accepted" | "expired" | "pending";
+                usable: boolean;
+            };
+            meta: object;
+        }>;
+        /** Redeem an invitation as the signed-in user. */
+        accept: import("@trpc/server").TRPCMutationProcedure<{
+            input: {
+                token: string;
+            };
+            output: {
+                clerkSynced: boolean;
+                orgId: string;
+                orgName: string | null;
+                role: "admin" | "member" | "owner" | "viewer";
+            };
             meta: object;
         }>;
         list: import("@trpc/server").TRPCQueryProcedure<{

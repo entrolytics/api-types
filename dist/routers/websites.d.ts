@@ -80,7 +80,6 @@ export declare const websitesRouter: import("@trpc/server").TRPCBuiltRouter<{
             domain: string;
             name: string;
             orgId?: string | undefined;
-            shareId?: string | undefined;
         };
         output: {
             anonymizeIps: boolean | null;
@@ -106,6 +105,17 @@ export declare const websitesRouter: import("@trpc/server").TRPCBuiltRouter<{
             updatedAt: Date;
             userId: string | null;
         } | undefined;
+        meta: object;
+    }>;
+    /** Turn the public share link on (issues a new token) or off (revokes it) */
+    setSharing: import("@trpc/server").TRPCMutationProcedure<{
+        input: {
+            enabled: boolean;
+            websiteId: string;
+        };
+        output: {
+            shareId: string | null;
+        };
         meta: object;
     }>;
     /** Update website */
@@ -171,7 +181,7 @@ export declare const websitesRouter: import("@trpc/server").TRPCBuiltRouter<{
             input: {
                 websiteId: string;
                 name: string;
-                scopes?: string[] | undefined;
+                scopes?: ("analytics:read" | "events:write")[] | undefined;
             };
             output: {
                 key: string;

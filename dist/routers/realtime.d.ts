@@ -1,4 +1,5 @@
 export interface RealtimeSeriesPoint {
+    /** Start of the minute, as an ISO 8601 UTC instant. */
     time: string;
     visitors: number;
     pageviews: number;
@@ -21,6 +22,7 @@ export interface RealtimeEvent {
     countryCode: string | null;
     device: string;
     browser: string;
+    /** ISO 8601 UTC instant. */
     timestamp: string;
 }
 export interface RealtimeOverviewResponse {

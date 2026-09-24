@@ -18,6 +18,20 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
         errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         transformer: true;
     }, import("@trpc/server").TRPCDecorateCreateRouterOptions<{
+        weeklyTraffic: import("@trpc/server").TRPCQueryProcedure<{
+            input: {
+                endDate: Date;
+                startDate: Date;
+                timeZone?: string | undefined;
+                websiteId: string;
+            };
+            output: {
+                day: number;
+                hour: number;
+                y: number;
+            }[];
+            meta: object;
+        }>;
         overview: import("@trpc/server").TRPCQueryProcedure<{
             input: {
                 endDate: Date;
@@ -379,6 +393,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                     count: number;
                     returnRate: number[];
                 }[];
+                measuredPopulation: string;
                 periods: string[];
             };
             meta: object;
@@ -982,7 +997,6 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
         }>;
         updateProfile: import("@trpc/server").TRPCMutationProcedure<{
             input: {
-                displayName?: string | undefined;
                 firstName?: string | undefined;
                 lastName?: string | undefined;
             };
@@ -1008,7 +1022,6 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 emailWeeklyReports: boolean | null;
                 emailUsageAlerts: boolean | null;
                 emailProductUpdates: boolean | null;
-                deletedAt: Date | null;
                 createdAt: Date;
                 updatedAt: Date;
             };
@@ -1042,7 +1055,6 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 emailWeeklyReports: boolean | null;
                 emailUsageAlerts: boolean | null;
                 emailProductUpdates: boolean | null;
-                deletedAt: Date | null;
                 createdAt: Date;
                 updatedAt: Date;
             };
@@ -1051,6 +1063,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
         delete: import("@trpc/server").TRPCMutationProcedure<{
             input: void;
             output: {
+                pending: boolean;
                 success: boolean;
             };
             meta: object;
@@ -1133,7 +1146,6 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 domain: string;
                 name: string;
                 orgId?: string | undefined;
-                shareId?: string | undefined;
             };
             output: {
                 anonymizeIps: boolean | null;
@@ -1159,6 +1171,16 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 updatedAt: Date;
                 userId: string | null;
             } | undefined;
+            meta: object;
+        }>;
+        setSharing: import("@trpc/server").TRPCMutationProcedure<{
+            input: {
+                enabled: boolean;
+                websiteId: string;
+            };
+            output: {
+                shareId: string | null;
+            };
             meta: object;
         }>;
         update: import("@trpc/server").TRPCMutationProcedure<{
@@ -1221,7 +1243,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 input: {
                     websiteId: string;
                     name: string;
-                    scopes?: string[] | undefined;
+                    scopes?: ("analytics:read" | "events:write")[] | undefined;
                 };
                 output: {
                     key: string;
@@ -1296,7 +1318,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 orgId: string;
             };
             output: {
-                accessCode: string | null;
+                clerkSyncRequestedAt: Date | null;
                 createdAt: Date;
                 deletedAt: Date | null;
                 id: string;
@@ -1304,6 +1326,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 name: string;
                 slug: string;
                 updatedAt: Date;
+                accessCode: string | null;
                 clerkOrgId: string | null;
                 role: "admin" | "member" | "owner" | "viewer";
             };
@@ -1317,6 +1340,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
             output: {
                 accessCode: string | null;
                 clerkOrgId: string | null;
+                clerkSyncRequestedAt: Date | null;
                 createdAt: Date;
                 deletedAt: Date | null;
                 id: string;
@@ -1336,6 +1360,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
             output: {
                 accessCode: string | null;
                 clerkOrgId: string | null;
+                clerkSyncRequestedAt: Date | null;
                 createdAt: Date;
                 deletedAt: Date | null;
                 id: string;
@@ -1343,6 +1368,15 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 name: string;
                 slug: string;
                 updatedAt: Date;
+            };
+            meta: object;
+        }>;
+        rotateAccessCode: import("@trpc/server").TRPCMutationProcedure<{
+            input: {
+                orgId: string;
+            };
+            output: {
+                accessCode: string;
             };
             meta: object;
         }>;
@@ -1372,6 +1406,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                     role: "admin" | "member" | "viewer";
                 };
                 output: {
+                    acceptUrl: string;
                     createdAt: Date;
                     email: string;
                     expiresAt: Date;
@@ -1381,7 +1416,34 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                     role: string;
                     status: "accepted" | "expired" | "pending";
                     token: string;
-                } | undefined;
+                };
+                meta: object;
+            }>;
+            lookup: import("@trpc/server").TRPCQueryProcedure<{
+                input: {
+                    token: string;
+                };
+                output: {
+                    email: string;
+                    expiresAt: Date;
+                    orgId: string;
+                    orgName: string;
+                    role: string;
+                    status: "accepted" | "expired" | "pending";
+                    usable: boolean;
+                };
+                meta: object;
+            }>;
+            accept: import("@trpc/server").TRPCMutationProcedure<{
+                input: {
+                    token: string;
+                };
+                output: {
+                    clerkSynced: boolean;
+                    orgId: string;
+                    orgName: string | null;
+                    role: "admin" | "member" | "owner" | "viewer";
+                };
                 meta: object;
             }>;
             list: import("@trpc/server").TRPCQueryProcedure<{
@@ -1444,8 +1506,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 orgId?: string | undefined;
                 websiteId?: string | undefined;
             };
-            output: {
-                active: boolean | null;
+            output: Omit<{
                 createdAt: Date;
                 deletedAt: Date | null;
                 enabled: boolean | null;
@@ -1458,15 +1519,14 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 url: string;
                 userId: string | null;
                 websiteId: string;
-            }[];
+            }, "secret">[];
             meta: object;
         }>;
         get: import("@trpc/server").TRPCQueryProcedure<{
             input: {
                 webhookId: string;
             };
-            output: {
-                active: boolean | null;
+            output: Omit<{
                 createdAt: Date;
                 deletedAt: Date | null;
                 enabled: boolean | null;
@@ -1479,7 +1539,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 url: string;
                 userId: string | null;
                 websiteId: string;
-            };
+            }, "secret">;
             meta: object;
         }>;
         create: import("@trpc/server").TRPCMutationProcedure<{
@@ -1491,7 +1551,6 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 websiteId: string;
             };
             output: {
-                active: boolean | null;
                 createdAt: Date;
                 deletedAt: Date | null;
                 enabled: boolean | null;
@@ -1509,14 +1568,13 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
         }>;
         update: import("@trpc/server").TRPCMutationProcedure<{
             input: {
-                active?: boolean | undefined;
+                enabled?: boolean | undefined;
                 events?: ("*" | "event.created" | "goal.completed" | "pageview.created" | "revenue.recorded" | "session.created" | "visitor.identified")[] | undefined;
                 name?: string | undefined;
                 url?: string | undefined;
                 webhookId: string;
             };
-            output: {
-                active: boolean | null;
+            output: Omit<{
                 createdAt: Date;
                 deletedAt: Date | null;
                 enabled: boolean | null;
@@ -1529,7 +1587,16 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 url: string;
                 userId: string | null;
                 websiteId: string;
-            } | undefined;
+            }, "secret"> | null;
+            meta: object;
+        }>;
+        rotateSecret: import("@trpc/server").TRPCMutationProcedure<{
+            input: {
+                webhookId: string;
+            };
+            output: {
+                secret: string;
+            };
             meta: object;
         }>;
         delete: import("@trpc/server").TRPCMutationProcedure<{
@@ -1560,6 +1627,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                     id: string;
                     webhookId: string;
                     eventType: string;
+                    eventId: string | null;
                     payload: unknown;
                     status: "failed" | "pending" | "retrying" | "sending" | "success";
                     statusCode: number | null;
@@ -1568,6 +1636,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                     maxAttempts: number | null;
                     nextRetryAt: Date | null;
                     retryDelaySeconds: number | null;
+                    claimedAt: Date | null;
                     createdAt: Date;
                     deliveredAt: Date | null;
                     failedAt: Date | null;
@@ -2030,9 +2099,9 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                     periodEnd: Date;
                     periodStart: Date;
                     pixelFires: number | null;
-                    teamMembersCount: number | null;
                     userId: string | null;
-                    websitesCount: number | null;
+                    teamMembersCount: number;
+                    websitesCount: number;
                 } | {
                     customEvents: number;
                     eventsCount: number;
@@ -2074,6 +2143,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                     eventsLimit: number;
                     websitesLimit: number;
                     teamMembersLimit: number;
+                    lastStripeEventAt: Date | null;
                     currentPeriodStart: Date | null;
                     currentPeriodEnd: Date | null;
                     cancelAt: Date | null;
