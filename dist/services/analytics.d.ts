@@ -61,9 +61,16 @@ export interface SessionListItem {
     exitPath: string | null;
     bounced: boolean;
 }
+/** Dashboard filters: each narrows the events read to those with that value. */
+export interface AnalyticsFilters {
+    browser?: string;
+    country?: string;
+    device?: 'desktop' | 'mobile' | 'tablet';
+    path?: string;
+}
 export declare class AnalyticsService {
     /** Overview statistics with comparison period */
-    static getOverview(websiteId: string, startDate: Date, endDate: Date): Promise<{
+    static getOverview(websiteId: string, startDate: Date, endDate: Date, filters?: AnalyticsFilters): Promise<{
         bounces: number;
         comparison: {
             pageviews: number;
@@ -82,7 +89,7 @@ export declare class AnalyticsService {
      * evening west of Greenwich, or after midnight east of it, on the wrong day; `date` is the
      * bucket's wall-clock start in `timeZone`.
      */
-    static getTimeseries(websiteId: string, startDate: Date, endDate: Date, interval: 'hour' | 'day' | 'week' | 'month', timeZone: string): Promise<{
+    static getTimeseries(websiteId: string, startDate: Date, endDate: Date, interval: 'hour' | 'day' | 'week' | 'month', timeZone: string, filters?: AnalyticsFilters): Promise<{
         date: string;
         pageviews: number;
         sessions: number;
@@ -99,7 +106,7 @@ export declare class AnalyticsService {
         hour: number;
         y: number;
     }[]>;
-    static getTopPages(websiteId: string, startDate: Date, endDate: Date, limit: number): Promise<{
+    static getTopPages(websiteId: string, startDate: Date, endDate: Date, limit: number, filters?: AnalyticsFilters): Promise<{
         avg_load_time?: number | null | undefined;
         p95_load_time?: number | null | undefined;
         path: string | null;
@@ -107,13 +114,13 @@ export declare class AnalyticsService {
         views: number;
     }[]>;
     /** Top referrers */
-    static getTopReferrers(websiteId: string, startDate: Date, endDate: Date, limit: number): Promise<{
+    static getTopReferrers(websiteId: string, startDate: Date, endDate: Date, limit: number, filters?: AnalyticsFilters): Promise<{
         referrer_domain: string | null;
         unique_visitors?: number | undefined;
         visits: number;
     }[]>;
     /** Device breakdown */
-    static getDeviceBreakdown(websiteId: string, startDate: Date, endDate: Date): Promise<{
+    static getDeviceBreakdown(websiteId: string, startDate: Date, endDate: Date, filters?: AnalyticsFilters): Promise<{
         browser: string | null;
         device_type: string | null;
         os: string | null;
@@ -121,7 +128,7 @@ export declare class AnalyticsService {
         unique_visitors?: number | undefined;
     }[]>;
     /** Geographic distribution */
-    static getGeography(websiteId: string, startDate: Date, endDate: Date): Promise<{
+    static getGeography(websiteId: string, startDate: Date, endDate: Date, filters?: AnalyticsFilters): Promise<{
         city: string | null;
         country: string | null;
         pageviews: number;
@@ -145,7 +152,7 @@ export declare class AnalyticsService {
     /** Average session duration (seconds) */
     static getAverageSessionDuration(websiteId: string, startDate: Date, endDate: Date): Promise<number>;
     /** UTM campaigns */
-    static getUtmCampaigns(websiteId: string, startDate: Date, endDate: Date): Promise<{
+    static getUtmCampaigns(websiteId: string, startDate: Date, endDate: Date, filters?: AnalyticsFilters): Promise<{
         sessions: number;
         unique_visitors: number;
         utm_campaign: string | null;
@@ -154,7 +161,7 @@ export declare class AnalyticsService {
         visits: number;
     }[]>;
     /** List all sessions */
-    static getSessions(websiteId: string, startDate: Date, endDate: Date, limit: number, offset: number, resetAt?: Date | null): Promise<{
+    static getSessions(websiteId: string, startDate: Date, endDate: Date, limit: number, offset: number, resetAt?: Date | null, filters?: AnalyticsFilters): Promise<{
         sessionId: string;
         visitId: string;
         sessionStart: string;
