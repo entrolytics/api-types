@@ -71,7 +71,10 @@ export declare const analyticsRouter: import("@trpc/server").TRPCBuiltRouter<{
         };
         meta: object;
     }>;
-    /** Time-series data for charts */
+    /**
+     * Time-series data for charts. Buckets in `timeZone` when given (the viewer's), else in the
+     * website's own time zone, else UTC.
+     */
     timeseries: import("@trpc/server").TRPCQueryProcedure<{
         input: {
             endDate: Date;
@@ -84,6 +87,7 @@ export declare const analyticsRouter: import("@trpc/server").TRPCBuiltRouter<{
             startDate: Date;
             websiteId: string;
             interval: "day" | "hour" | "month" | "week";
+            timeZone?: string | undefined;
         };
         output: {
             date: string;

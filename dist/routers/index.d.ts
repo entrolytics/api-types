@@ -72,6 +72,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 startDate: Date;
                 websiteId: string;
                 interval: "day" | "hour" | "month" | "week";
+                timeZone?: string | undefined;
             };
             output: {
                 date: string;

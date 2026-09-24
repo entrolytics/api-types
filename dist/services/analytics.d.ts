@@ -77,8 +77,12 @@ export declare class AnalyticsService {
         visitors: number;
         visits: number;
     }>;
-    /** Time-series data for charts */
-    static getTimeseries(websiteId: string, startDate: Date, endDate: Date, interval: 'hour' | 'day' | 'week' | 'month'): Promise<{
+    /**
+     * Time-series data for charts, bucketed in `timeZone`. Bucketing in UTC put a visit late in the
+     * evening west of Greenwich, or after midnight east of it, on the wrong day; `date` is the
+     * bucket's wall-clock start in `timeZone`.
+     */
+    static getTimeseries(websiteId: string, startDate: Date, endDate: Date, interval: 'hour' | 'day' | 'week' | 'month', timeZone: string): Promise<{
         date: string;
         pageviews: number;
         sessions: number;
