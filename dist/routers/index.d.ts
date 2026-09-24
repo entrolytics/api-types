@@ -1099,7 +1099,6 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 createdBy: string | null;
                 timezone: string | null;
                 isActive: boolean;
-                public: boolean | null;
                 autoTrackPageviews: boolean | null;
                 autoTrackSessions: boolean | null;
                 excludeQueryParams: string[] | null;
@@ -1129,7 +1128,6 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 createdBy: string | null;
                 timezone: string | null;
                 isActive: boolean;
-                public: boolean | null;
                 autoTrackPageviews: boolean | null;
                 autoTrackSessions: boolean | null;
                 excludeQueryParams: string[] | null;
@@ -1164,7 +1162,6 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 isActive: boolean;
                 name: string;
                 orgId: string | null;
-                public: boolean | null;
                 resetAt: Date | null;
                 respectDnt: boolean | null;
                 shareId: string | null;
@@ -1191,7 +1188,6 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 autoTrackSessions?: boolean | undefined;
                 domain?: string | undefined;
                 name?: string | undefined;
-                public?: boolean | undefined;
                 respectDnt?: boolean | undefined;
                 websiteId: string;
             };
@@ -1208,7 +1204,6 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 createdBy: string | null;
                 timezone: string | null;
                 isActive: boolean;
-                public: boolean | null;
                 autoTrackPageviews: boolean | null;
                 autoTrackSessions: boolean | null;
                 excludeQueryParams: string[] | null;
