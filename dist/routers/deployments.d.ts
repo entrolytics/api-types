@@ -18,6 +18,7 @@ export declare const deploymentsRouter: import("@trpc/server").TRPCBuiltRouter<{
         };
         output: import("../services/deployments.js").Deployment[];
         meta: object;
+        errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     }>;
     /** Track a deployment */
     track: import("@trpc/server").TRPCMutationProcedure<{
@@ -34,6 +35,7 @@ export declare const deploymentsRouter: import("@trpc/server").TRPCBuiltRouter<{
             success: boolean;
         };
         meta: object;
+        errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     }>;
 }>>;
 //# sourceMappingURL=deployments.d.ts.map

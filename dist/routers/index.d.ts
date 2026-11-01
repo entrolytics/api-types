@@ -31,6 +31,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 y: number;
             }[];
             meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
         overview: import("@trpc/server").TRPCQueryProcedure<{
             input: {
@@ -59,6 +60,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 visits: number;
             };
             meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
         timeseries: import("@trpc/server").TRPCQueryProcedure<{
             input: {
@@ -81,6 +83,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 visitors: number;
             }[];
             meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
         topPages: import("@trpc/server").TRPCQueryProcedure<{
             input: {
@@ -103,6 +106,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 views: number;
             }[];
             meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
         topReferrers: import("@trpc/server").TRPCQueryProcedure<{
             input: {
@@ -123,6 +127,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 visits: number;
             }[];
             meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
         deviceBreakdown: import("@trpc/server").TRPCQueryProcedure<{
             input: {
@@ -144,6 +149,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 unique_visitors?: number | undefined;
             }[];
             meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
         geography: import("@trpc/server").TRPCQueryProcedure<{
             input: {
@@ -164,6 +170,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 unique_visitors?: number | undefined;
             }[];
             meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
         utmCampaigns: import("@trpc/server").TRPCQueryProcedure<{
             input: {
@@ -186,6 +193,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 visits: number;
             }[];
             meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
         sessions: import("@trpc/server").TRPCQueryProcedure<{
             input: {
@@ -226,6 +234,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 bounced: boolean;
             }[];
             meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
         sessionDetails: import("@trpc/server").TRPCQueryProcedure<{
             input: {
@@ -252,6 +261,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 bounced: boolean;
             } | null;
             meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
         sessionActivity: import("@trpc/server").TRPCQueryProcedure<{
             input: {
@@ -262,6 +272,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
             };
             output: import("../services/analytics.js").SessionActivityEvent[];
             meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
     }>>;
     events: import("@trpc/server").TRPCBuiltRouter<{
@@ -300,6 +311,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 visitor_id: string;
             }[];
             meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
         details: import("@trpc/server").TRPCQueryProcedure<{
             input: {
@@ -314,6 +326,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 unique_users: number;
             }[];
             meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
         series: import("@trpc/server").TRPCQueryProcedure<{
             input: {
@@ -331,6 +344,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 unique_visitors: number;
             }[];
             meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
     }>>;
     funnels: import("@trpc/server").TRPCBuiltRouter<{
@@ -370,6 +384,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 totalVisitors: number;
             };
             meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
     }>>;
     reports: import("@trpc/server").TRPCBuiltRouter<{
@@ -398,6 +413,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 periods: string[];
             };
             meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
         listGoals: import("@trpc/server").TRPCQueryProcedure<{
             input: {
@@ -417,6 +433,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 }[];
             };
             meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
         createGoal: import("@trpc/server").TRPCMutationProcedure<{
             input: {
@@ -436,6 +453,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 value: string;
             };
             meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
         deleteGoal: import("@trpc/server").TRPCMutationProcedure<{
             input: {
@@ -445,6 +463,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 success: boolean;
             };
             meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
         journeys: import("@trpc/server").TRPCQueryProcedure<{
             input: {
@@ -463,6 +482,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 }[];
             };
             meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
         utm: import("@trpc/server").TRPCQueryProcedure<{
             input: {
@@ -472,6 +492,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
             };
             output: import("./reports.js").UTMResult;
             meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
         breakdown: import("@trpc/server").TRPCQueryProcedure<{
             input: {
@@ -491,6 +512,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 }[];
             };
             meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
         revenue: import("@trpc/server").TRPCQueryProcedure<{
             input: {
@@ -517,6 +539,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 };
             };
             meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
         attribution: import("@trpc/server").TRPCQueryProcedure<{
             input: {
@@ -530,6 +553,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
             };
             output: import("./reports.js").AttributionResult;
             meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
         landingPages: import("@trpc/server").TRPCQueryProcedure<{
             input: {
@@ -553,6 +577,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 };
             };
             meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
         compare: import("@trpc/server").TRPCQueryProcedure<{
             input: {
@@ -594,6 +619,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 }[];
             };
             meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
     }>>;
     realtime: import("@trpc/server").TRPCBuiltRouter<{
@@ -616,6 +642,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 visitors: number;
             };
             meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
         recentEvents: import("@trpc/server").TRPCQueryProcedure<{
             input: {
@@ -634,6 +661,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 type: string;
             }[];
             meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
         activePages: import("@trpc/server").TRPCQueryProcedure<{
             input: {
@@ -644,6 +672,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 viewers: number;
             }[];
             meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
         timeSeries: import("@trpc/server").TRPCQueryProcedure<{
             input: {
@@ -655,6 +684,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 visitors: number;
             }[];
             meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
         countryBreakdown: import("@trpc/server").TRPCQueryProcedure<{
             input: {
@@ -666,6 +696,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 visitors: number;
             }[];
             meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
         overview: import("@trpc/server").TRPCQueryProcedure<{
             input: {
@@ -700,6 +731,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 }[];
             };
             meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
     }>>;
     vitals: import("@trpc/server").TRPCBuiltRouter<{
@@ -720,6 +752,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
             };
             output: import("../services/vitals.js").VitalAggregate[];
             meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
         trend: import("@trpc/server").TRPCQueryProcedure<{
             input: {
@@ -735,6 +768,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 sampleCount: number;
             }[];
             meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
         recentEvents: import("@trpc/server").TRPCQueryProcedure<{
             input: {
@@ -743,6 +777,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
             };
             output: import("../services/vitals.js").VitalEvent[];
             meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
         pageBreakdown: import("@trpc/server").TRPCQueryProcedure<{
             input: {
@@ -753,6 +788,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
             };
             output: import("../services/vitals.js").PageBreakdown[];
             meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
     }>>;
     forms: import("@trpc/server").TRPCBuiltRouter<{
@@ -773,6 +809,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
             };
             output: import("../services/forms.js").FormConversion[];
             meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
         fieldMetrics: import("@trpc/server").TRPCQueryProcedure<{
             input: {
@@ -783,6 +820,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
             };
             output: import("../services/forms.js").FormFieldMetrics[];
             meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
         recentEvents: import("@trpc/server").TRPCQueryProcedure<{
             input: {
@@ -791,6 +829,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
             };
             output: import("../services/forms.js").FormEvent[];
             meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
     }>>;
     deployments: import("@trpc/server").TRPCBuiltRouter<{
@@ -812,6 +851,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
             };
             output: import("../services/deployments.js").Deployment[];
             meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
         track: import("@trpc/server").TRPCMutationProcedure<{
             input: {
@@ -827,6 +867,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 success: boolean;
             };
             meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
     }>>;
     auth: import("@trpc/server").TRPCBuiltRouter<{
@@ -859,6 +900,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                     tokenId: string;
                 };
                 meta: object;
+                errorShape: import("@trpc/server").TRPCDefaultErrorShape;
             }>;
             listTokens: import("@trpc/server").TRPCQueryProcedure<{
                 input: void;
@@ -870,6 +912,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                     name: string;
                 }[];
                 meta: object;
+                errorShape: import("@trpc/server").TRPCDefaultErrorShape;
             }>;
             revokeToken: import("@trpc/server").TRPCMutationProcedure<{
                 input: {
@@ -879,6 +922,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                     success: boolean;
                 };
                 meta: object;
+                errorShape: import("@trpc/server").TRPCDefaultErrorShape;
             }>;
             revokeAllTokens: import("@trpc/server").TRPCMutationProcedure<{
                 input: void;
@@ -886,6 +930,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                     count: number;
                 };
                 meta: object;
+                errorShape: import("@trpc/server").TRPCDefaultErrorShape;
             }>;
             validateToken: import("@trpc/server").TRPCQueryProcedure<{
                 input: {
@@ -897,6 +942,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                     valid: boolean;
                 };
                 meta: object;
+                errorShape: import("@trpc/server").TRPCDefaultErrorShape;
             }>;
         }>>;
     }>>;
@@ -945,6 +991,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 search: string | undefined;
             };
             meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
         me: import("@trpc/server").TRPCQueryProcedure<{
             input: void;
@@ -995,6 +1042,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 } | undefined;
             };
             meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
         updateProfile: import("@trpc/server").TRPCMutationProcedure<{
             input: {
@@ -1027,6 +1075,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 updatedAt: Date;
             };
             meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
         updatePreferences: import("@trpc/server").TRPCMutationProcedure<{
             input: {
@@ -1060,6 +1109,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 updatedAt: Date;
             };
             meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
         delete: import("@trpc/server").TRPCMutationProcedure<{
             input: void;
@@ -1068,6 +1118,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 success: boolean;
             };
             meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
     }>>;
     websites: import("@trpc/server").TRPCBuiltRouter<{
@@ -1110,6 +1161,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 updatedAt: Date;
             }[];
             meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
         get: import("@trpc/server").TRPCQueryProcedure<{
             input: {
@@ -1139,6 +1191,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 updatedAt: Date;
             };
             meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
         create: import("@trpc/server").TRPCMutationProcedure<{
             input: {
@@ -1170,6 +1223,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 userId: string | null;
             } | undefined;
             meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
         setSharing: import("@trpc/server").TRPCMutationProcedure<{
             input: {
@@ -1180,6 +1234,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 shareId: string | null;
             };
             meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
         update: import("@trpc/server").TRPCMutationProcedure<{
             input: {
@@ -1215,6 +1270,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 updatedAt: Date;
             } | undefined;
             meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
         delete: import("@trpc/server").TRPCMutationProcedure<{
             input: {
@@ -1224,6 +1280,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 success: boolean;
             };
             meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
         apiKeys: import("@trpc/server").TRPCBuiltRouter<{
             ctx: {
@@ -1260,6 +1317,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                     websiteId?: string | undefined;
                 };
                 meta: object;
+                errorShape: import("@trpc/server").TRPCDefaultErrorShape;
             }>;
             list: import("@trpc/server").TRPCQueryProcedure<{
                 input: {
@@ -1275,6 +1333,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                     scopes: string[];
                 }[];
                 meta: object;
+                errorShape: import("@trpc/server").TRPCDefaultErrorShape;
             }>;
             revoke: import("@trpc/server").TRPCMutationProcedure<{
                 input: {
@@ -1284,6 +1343,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                     success: boolean;
                 };
                 meta: object;
+                errorShape: import("@trpc/server").TRPCDefaultErrorShape;
             }>;
         }>>;
     }>>;
@@ -1308,6 +1368,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 slug: string;
             }[];
             meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
         get: import("@trpc/server").TRPCQueryProcedure<{
             input: {
@@ -1327,6 +1388,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 role: "admin" | "member" | "owner" | "viewer";
             };
             meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
         create: import("@trpc/server").TRPCMutationProcedure<{
             input: {
@@ -1346,6 +1408,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 updatedAt: Date;
             } | undefined;
             meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
         update: import("@trpc/server").TRPCMutationProcedure<{
             input: {
@@ -1366,6 +1429,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 updatedAt: Date;
             };
             meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
         rotateAccessCode: import("@trpc/server").TRPCMutationProcedure<{
             input: {
@@ -1375,6 +1439,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 accessCode: string;
             };
             meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
         delete: import("@trpc/server").TRPCMutationProcedure<{
             input: {
@@ -1384,6 +1449,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 success: boolean;
             };
             meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
         members: import("@trpc/server").TRPCBuiltRouter<{
             ctx: {
@@ -1414,6 +1480,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                     token: string;
                 };
                 meta: object;
+                errorShape: import("@trpc/server").TRPCDefaultErrorShape;
             }>;
             lookup: import("@trpc/server").TRPCQueryProcedure<{
                 input: {
@@ -1429,6 +1496,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                     usable: boolean;
                 };
                 meta: object;
+                errorShape: import("@trpc/server").TRPCDefaultErrorShape;
             }>;
             accept: import("@trpc/server").TRPCMutationProcedure<{
                 input: {
@@ -1441,6 +1509,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                     role: "admin" | "member" | "owner" | "viewer";
                 };
                 meta: object;
+                errorShape: import("@trpc/server").TRPCDefaultErrorShape;
             }>;
             list: import("@trpc/server").TRPCQueryProcedure<{
                 input: {
@@ -1458,6 +1527,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                     };
                 }[];
                 meta: object;
+                errorShape: import("@trpc/server").TRPCDefaultErrorShape;
             }>;
             remove: import("@trpc/server").TRPCMutationProcedure<{
                 input: {
@@ -1468,6 +1538,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                     success: boolean;
                 };
                 meta: object;
+                errorShape: import("@trpc/server").TRPCDefaultErrorShape;
             }>;
             updateRole: import("@trpc/server").TRPCMutationProcedure<{
                 input: {
@@ -1484,6 +1555,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                     userId: string;
                 } | null | undefined;
                 meta: object;
+                errorShape: import("@trpc/server").TRPCDefaultErrorShape;
             }>;
         }>>;
     }>>;
@@ -1517,6 +1589,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 websiteId: string;
             }, "secret">[];
             meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
         get: import("@trpc/server").TRPCQueryProcedure<{
             input: {
@@ -1537,6 +1610,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 websiteId: string;
             }, "secret">;
             meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
         create: import("@trpc/server").TRPCMutationProcedure<{
             input: {
@@ -1561,6 +1635,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 websiteId: string;
             } | undefined;
             meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
         update: import("@trpc/server").TRPCMutationProcedure<{
             input: {
@@ -1585,6 +1660,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 websiteId: string;
             }, "secret"> | null;
             meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
         rotateSecret: import("@trpc/server").TRPCMutationProcedure<{
             input: {
@@ -1594,6 +1670,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 secret: string;
             };
             meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
         delete: import("@trpc/server").TRPCMutationProcedure<{
             input: {
@@ -1603,6 +1680,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 success: boolean;
             };
             meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
         deliveries: import("@trpc/server").TRPCBuiltRouter<{
             ctx: {
@@ -1638,6 +1716,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                     failedAt: Date | null;
                 }[];
                 meta: object;
+                errorShape: import("@trpc/server").TRPCDefaultErrorShape;
             }>;
         }>>;
     }>>;
@@ -1665,6 +1744,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 userId: string | null;
             }[];
             meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
         get: import("@trpc/server").TRPCQueryProcedure<{
             input: {
@@ -1693,6 +1773,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 }[];
             };
             meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
         create: import("@trpc/server").TRPCMutationProcedure<{
             input: {
@@ -1713,6 +1794,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 userId: string | null;
             } | undefined;
             meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
         update: import("@trpc/server").TRPCMutationProcedure<{
             input: {
@@ -1733,6 +1815,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 userId: string | null;
             } | undefined;
             meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
         delete: import("@trpc/server").TRPCMutationProcedure<{
             input: {
@@ -1750,6 +1833,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 userId: string | null;
             } | undefined;
             meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
         widgets: import("@trpc/server").TRPCBuiltRouter<{
             ctx: {
@@ -1782,6 +1866,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                     websiteId: string | null;
                 } | undefined;
                 meta: object;
+                errorShape: import("@trpc/server").TRPCDefaultErrorShape;
             }>;
             get: import("@trpc/server").TRPCQueryProcedure<{
                 input: {
@@ -1799,6 +1884,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                     websiteId: string | null;
                 };
                 meta: object;
+                errorShape: import("@trpc/server").TRPCDefaultErrorShape;
             }>;
             remove: import("@trpc/server").TRPCMutationProcedure<{
                 input: {
@@ -1808,6 +1894,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                     success: boolean;
                 };
                 meta: object;
+                errorShape: import("@trpc/server").TRPCDefaultErrorShape;
             }>;
             reorder: import("@trpc/server").TRPCMutationProcedure<{
                 input: {
@@ -1821,6 +1908,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                     success: boolean;
                 };
                 meta: object;
+                errorShape: import("@trpc/server").TRPCDefaultErrorShape;
             }>;
             update: import("@trpc/server").TRPCMutationProcedure<{
                 input: {
@@ -1841,6 +1929,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                     websiteId: string | null;
                 } | undefined;
                 meta: object;
+                errorShape: import("@trpc/server").TRPCDefaultErrorShape;
             }>;
         }>>;
     }>>;
@@ -1869,6 +1958,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 userId: string | null;
             }[];
             meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
         get: import("@trpc/server").TRPCQueryProcedure<{
             input: {
@@ -1887,6 +1977,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 userId: string | null;
             };
             meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
         create: import("@trpc/server").TRPCMutationProcedure<{
             input: {
@@ -1909,6 +2000,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 userId: string | null;
             } | undefined;
             meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
         update: import("@trpc/server").TRPCMutationProcedure<{
             input: {
@@ -1931,6 +2023,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 userId: string | null;
             } | undefined;
             meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
         delete: import("@trpc/server").TRPCMutationProcedure<{
             input: {
@@ -1940,6 +2033,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 success: boolean;
             };
             meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
         stats: import("@trpc/server").TRPCQueryProcedure<{
             input: {
@@ -1964,6 +2058,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 uniqueVisitors: number;
             };
             meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
     }>>;
     pixels: import("@trpc/server").TRPCBuiltRouter<{
@@ -1988,6 +2083,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 userId: string | null;
             }[];
             meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
         get: import("@trpc/server").TRPCQueryProcedure<{
             input: {
@@ -2003,6 +2099,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 userId: string | null;
             };
             meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
         create: import("@trpc/server").TRPCMutationProcedure<{
             input: {
@@ -2020,6 +2117,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 userId: string | null;
             } | undefined;
             meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
         update: import("@trpc/server").TRPCMutationProcedure<{
             input: {
@@ -2036,6 +2134,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 userId: string | null;
             } | undefined;
             meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
         delete: import("@trpc/server").TRPCMutationProcedure<{
             input: {
@@ -2045,6 +2144,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 success: boolean;
             };
             meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
         stats: import("@trpc/server").TRPCQueryProcedure<{
             input: {
@@ -2058,6 +2158,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 unique_visitors: number;
             };
             meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
     }>>;
     billing: import("@trpc/server").TRPCBuiltRouter<{
@@ -2110,6 +2211,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                     websitesCount: number;
                 };
                 meta: object;
+                errorShape: import("@trpc/server").TRPCDefaultErrorShape;
             }>;
         }>>;
         subscription: import("@trpc/server").TRPCBuiltRouter<{
@@ -2149,6 +2251,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                     updatedAt: Date;
                 } | null;
                 meta: object;
+                errorShape: import("@trpc/server").TRPCDefaultErrorShape;
             }>;
         }>>;
         checkout: import("@trpc/server").TRPCBuiltRouter<{
@@ -2173,6 +2276,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                     url: string | null;
                 };
                 meta: object;
+                errorShape: import("@trpc/server").TRPCDefaultErrorShape;
             }>;
         }>>;
         portal: import("@trpc/server").TRPCBuiltRouter<{
@@ -2194,6 +2298,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                     url: string;
                 };
                 meta: object;
+                errorShape: import("@trpc/server").TRPCDefaultErrorShape;
             }>;
         }>>;
     }>>;
@@ -2221,6 +2326,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 websiteId: string;
             }[];
             meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
         get: import("@trpc/server").TRPCQueryProcedure<{
             input: {
@@ -2236,6 +2342,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 websiteId: string;
             };
             meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
         create: import("@trpc/server").TRPCMutationProcedure<{
             input: {
@@ -2254,6 +2361,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 websiteId: string;
             } | undefined;
             meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
         update: import("@trpc/server").TRPCMutationProcedure<{
             input: {
@@ -2271,6 +2379,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 websiteId: string;
             } | undefined;
             meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
         delete: import("@trpc/server").TRPCMutationProcedure<{
             input: {
@@ -2280,6 +2389,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 success: boolean;
             };
             meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
         evaluate: import("@trpc/server").TRPCQueryProcedure<{
             input: {
@@ -2291,6 +2401,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 count: number;
             };
             meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
     }>>;
     integrations: import("@trpc/server").TRPCBuiltRouter<{
@@ -2320,6 +2431,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 };
                 output: never;
                 meta: object;
+                errorShape: import("@trpc/server").TRPCDefaultErrorShape;
             }>;
             disconnect: import("@trpc/server").TRPCMutationProcedure<{
                 input: {
@@ -2327,11 +2439,13 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 };
                 output: never;
                 meta: object;
+                errorShape: import("@trpc/server").TRPCDefaultErrorShape;
             }>;
             list: import("@trpc/server").TRPCQueryProcedure<{
                 input: void;
                 output: never;
                 meta: object;
+                errorShape: import("@trpc/server").TRPCDefaultErrorShape;
             }>;
         }>>;
     }>>;

@@ -35,6 +35,7 @@ export declare const eventsRouter: import("@trpc/server").TRPCBuiltRouter<{
             visitor_id: string;
         }[];
         meta: object;
+        errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     }>;
     /** Get event details and property breakdown */
     details: import("@trpc/server").TRPCQueryProcedure<{
@@ -50,6 +51,7 @@ export declare const eventsRouter: import("@trpc/server").TRPCBuiltRouter<{
             unique_users: number;
         }[];
         meta: object;
+        errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     }>;
     /** Event time-series (renamed from timeseries to series) */
     series: import("@trpc/server").TRPCQueryProcedure<{
@@ -68,6 +70,7 @@ export declare const eventsRouter: import("@trpc/server").TRPCBuiltRouter<{
             unique_visitors: number;
         }[];
         meta: object;
+        errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     }>;
 }>>;
 //# sourceMappingURL=events.d.ts.map

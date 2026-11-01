@@ -23,6 +23,7 @@ export declare const segmentsRouter: import("@trpc/server").TRPCBuiltRouter<{
             websiteId: string;
         }[];
         meta: object;
+        errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     }>;
     /** Get segment details */
     get: import("@trpc/server").TRPCQueryProcedure<{
@@ -39,6 +40,7 @@ export declare const segmentsRouter: import("@trpc/server").TRPCBuiltRouter<{
             websiteId: string;
         };
         meta: object;
+        errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     }>;
     /** Create segment */
     create: import("@trpc/server").TRPCMutationProcedure<{
@@ -58,6 +60,7 @@ export declare const segmentsRouter: import("@trpc/server").TRPCBuiltRouter<{
             websiteId: string;
         } | undefined;
         meta: object;
+        errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     }>;
     /** Update segment */
     update: import("@trpc/server").TRPCMutationProcedure<{
@@ -76,6 +79,7 @@ export declare const segmentsRouter: import("@trpc/server").TRPCBuiltRouter<{
             websiteId: string;
         } | undefined;
         meta: object;
+        errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     }>;
     /** Delete segment */
     delete: import("@trpc/server").TRPCMutationProcedure<{
@@ -86,6 +90,7 @@ export declare const segmentsRouter: import("@trpc/server").TRPCBuiltRouter<{
             success: boolean;
         };
         meta: object;
+        errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     }>;
     /** Evaluate segment (count matching users) */
     evaluate: import("@trpc/server").TRPCQueryProcedure<{
@@ -98,6 +103,7 @@ export declare const segmentsRouter: import("@trpc/server").TRPCBuiltRouter<{
             count: number;
         };
         meta: object;
+        errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     }>;
 }>>;
 //# sourceMappingURL=segments.d.ts.map

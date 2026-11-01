@@ -52,6 +52,7 @@ export declare const funnelsRouter: import("@trpc/server").TRPCBuiltRouter<{
             totalVisitors: number;
         };
         meta: object;
+        errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     }>;
 }>>;
 //# sourceMappingURL=funnels.d.ts.map

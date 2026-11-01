@@ -30,6 +30,7 @@ export declare const authRouter: import("@trpc/server").TRPCBuiltRouter<{
                 tokenId: string;
             };
             meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
         /** List all CLI tokens for current user */
         listTokens: import("@trpc/server").TRPCQueryProcedure<{
@@ -42,6 +43,7 @@ export declare const authRouter: import("@trpc/server").TRPCBuiltRouter<{
                 name: string;
             }[];
             meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
         /** Revoke a CLI token */
         revokeToken: import("@trpc/server").TRPCMutationProcedure<{
@@ -52,6 +54,7 @@ export declare const authRouter: import("@trpc/server").TRPCBuiltRouter<{
                 success: boolean;
             };
             meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
         /** Revoke all CLI tokens for current user */
         revokeAllTokens: import("@trpc/server").TRPCMutationProcedure<{
@@ -60,6 +63,7 @@ export declare const authRouter: import("@trpc/server").TRPCBuiltRouter<{
                 count: number;
             };
             meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
         /** Validate a CLI token (public endpoint for CLI to check token) */
         validateToken: import("@trpc/server").TRPCQueryProcedure<{
@@ -72,6 +76,7 @@ export declare const authRouter: import("@trpc/server").TRPCBuiltRouter<{
                 valid: boolean;
             };
             meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
     }>>;
 }>>;

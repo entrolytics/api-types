@@ -17,6 +17,7 @@ export declare const vitalsRouter: import("@trpc/server").TRPCBuiltRouter<{
         };
         output: import("../services/vitals.js").VitalAggregate[];
         meta: object;
+        errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     }>;
     /** Get vitals trend over time */
     trend: import("@trpc/server").TRPCQueryProcedure<{
@@ -33,6 +34,7 @@ export declare const vitalsRouter: import("@trpc/server").TRPCBuiltRouter<{
             sampleCount: number;
         }[];
         meta: object;
+        errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     }>;
     /** Get recent vital events (for debugging) */
     recentEvents: import("@trpc/server").TRPCQueryProcedure<{
@@ -42,6 +44,7 @@ export declare const vitalsRouter: import("@trpc/server").TRPCBuiltRouter<{
         };
         output: import("../services/vitals.js").VitalEvent[];
         meta: object;
+        errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     }>;
     /** Get page breakdown with all metrics aggregated per page */
     pageBreakdown: import("@trpc/server").TRPCQueryProcedure<{
@@ -53,6 +56,7 @@ export declare const vitalsRouter: import("@trpc/server").TRPCBuiltRouter<{
         };
         output: import("../services/vitals.js").PageBreakdown[];
         meta: object;
+        errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     }>;
 }>>;
 //# sourceMappingURL=vitals.d.ts.map

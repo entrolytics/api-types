@@ -41,6 +41,7 @@ export declare const analyticsRouter: import("@trpc/server").TRPCBuiltRouter<{
             y: number;
         }[];
         meta: object;
+        errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     }>;
     /** Overview statistics with comparison period */
     overview: import("@trpc/server").TRPCQueryProcedure<{
@@ -70,6 +71,7 @@ export declare const analyticsRouter: import("@trpc/server").TRPCBuiltRouter<{
             visits: number;
         };
         meta: object;
+        errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     }>;
     /**
      * Time-series data for charts. Buckets in `timeZone` when given (the viewer's), else in the
@@ -96,6 +98,7 @@ export declare const analyticsRouter: import("@trpc/server").TRPCBuiltRouter<{
             visitors: number;
         }[];
         meta: object;
+        errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     }>;
     /** Top pages */
     topPages: import("@trpc/server").TRPCQueryProcedure<{
@@ -119,6 +122,7 @@ export declare const analyticsRouter: import("@trpc/server").TRPCBuiltRouter<{
             views: number;
         }[];
         meta: object;
+        errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     }>;
     /** Top referrers */
     topReferrers: import("@trpc/server").TRPCQueryProcedure<{
@@ -140,6 +144,7 @@ export declare const analyticsRouter: import("@trpc/server").TRPCBuiltRouter<{
             visits: number;
         }[];
         meta: object;
+        errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     }>;
     /** Device breakdown */
     deviceBreakdown: import("@trpc/server").TRPCQueryProcedure<{
@@ -162,6 +167,7 @@ export declare const analyticsRouter: import("@trpc/server").TRPCBuiltRouter<{
             unique_visitors?: number | undefined;
         }[];
         meta: object;
+        errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     }>;
     /** Geographic distribution */
     geography: import("@trpc/server").TRPCQueryProcedure<{
@@ -183,6 +189,7 @@ export declare const analyticsRouter: import("@trpc/server").TRPCBuiltRouter<{
             unique_visitors?: number | undefined;
         }[];
         meta: object;
+        errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     }>;
     /** UTM campaigns */
     utmCampaigns: import("@trpc/server").TRPCQueryProcedure<{
@@ -206,6 +213,7 @@ export declare const analyticsRouter: import("@trpc/server").TRPCBuiltRouter<{
             visits: number;
         }[];
         meta: object;
+        errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     }>;
     /** List all sessions */
     sessions: import("@trpc/server").TRPCQueryProcedure<{
@@ -247,6 +255,7 @@ export declare const analyticsRouter: import("@trpc/server").TRPCBuiltRouter<{
             bounced: boolean;
         }[];
         meta: object;
+        errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     }>;
     /** Get session details */
     sessionDetails: import("@trpc/server").TRPCQueryProcedure<{
@@ -274,6 +283,7 @@ export declare const analyticsRouter: import("@trpc/server").TRPCBuiltRouter<{
             bounced: boolean;
         } | null;
         meta: object;
+        errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     }>;
     /** Get session activity (all events in a session) */
     sessionActivity: import("@trpc/server").TRPCQueryProcedure<{
@@ -285,6 +295,7 @@ export declare const analyticsRouter: import("@trpc/server").TRPCBuiltRouter<{
         };
         output: import("../services/analytics.js").SessionActivityEvent[];
         meta: object;
+        errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     }>;
 }>>;
 //# sourceMappingURL=analytics.d.ts.map

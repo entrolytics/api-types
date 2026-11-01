@@ -27,6 +27,7 @@ export declare const integrationsRouter: import("@trpc/server").TRPCBuiltRouter<
             };
             output: never;
             meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
         disconnect: import("@trpc/server").TRPCMutationProcedure<{
             input: {
@@ -34,11 +35,13 @@ export declare const integrationsRouter: import("@trpc/server").TRPCBuiltRouter<
             };
             output: never;
             meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
         list: import("@trpc/server").TRPCQueryProcedure<{
             input: void;
             output: never;
             meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
     }>>;
 }>>;

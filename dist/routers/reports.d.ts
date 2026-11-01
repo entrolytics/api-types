@@ -152,6 +152,7 @@ export declare const reportsRouter: import("@trpc/server").TRPCBuiltRouter<{
             periods: string[];
         };
         meta: object;
+        errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     }>;
     /** GOALS - List saved goals with current metrics */
     listGoals: import("@trpc/server").TRPCQueryProcedure<{
@@ -172,6 +173,7 @@ export declare const reportsRouter: import("@trpc/server").TRPCBuiltRouter<{
             }[];
         };
         meta: object;
+        errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     }>;
     /** CREATE GOAL */
     createGoal: import("@trpc/server").TRPCMutationProcedure<{
@@ -192,6 +194,7 @@ export declare const reportsRouter: import("@trpc/server").TRPCBuiltRouter<{
             value: string;
         };
         meta: object;
+        errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     }>;
     /** DELETE GOAL */
     deleteGoal: import("@trpc/server").TRPCMutationProcedure<{
@@ -202,6 +205,7 @@ export declare const reportsRouter: import("@trpc/server").TRPCBuiltRouter<{
             success: boolean;
         };
         meta: object;
+        errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     }>;
     /** JOURNEYS - User path analysis */
     journeys: import("@trpc/server").TRPCQueryProcedure<{
@@ -221,6 +225,7 @@ export declare const reportsRouter: import("@trpc/server").TRPCBuiltRouter<{
             }[];
         };
         meta: object;
+        errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     }>;
     /** UTM - UTM parameter breakdown */
     utm: import("@trpc/server").TRPCQueryProcedure<{
@@ -231,6 +236,7 @@ export declare const reportsRouter: import("@trpc/server").TRPCBuiltRouter<{
         };
         output: UTMResult;
         meta: object;
+        errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     }>;
     /** BREAKDOWN - Property breakdown analysis */
     breakdown: import("@trpc/server").TRPCQueryProcedure<{
@@ -251,6 +257,7 @@ export declare const reportsRouter: import("@trpc/server").TRPCBuiltRouter<{
             }[];
         };
         meta: object;
+        errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     }>;
     /** REVENUE - Revenue tracking and analysis */
     revenue: import("@trpc/server").TRPCQueryProcedure<{
@@ -278,6 +285,7 @@ export declare const reportsRouter: import("@trpc/server").TRPCBuiltRouter<{
             };
         };
         meta: object;
+        errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     }>;
     /** ATTRIBUTION - Attribution modeling */
     attribution: import("@trpc/server").TRPCQueryProcedure<{
@@ -292,6 +300,7 @@ export declare const reportsRouter: import("@trpc/server").TRPCBuiltRouter<{
         };
         output: AttributionResult;
         meta: object;
+        errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     }>;
     /** LANDING PAGES - Landing page performance */
     landingPages: import("@trpc/server").TRPCQueryProcedure<{
@@ -316,6 +325,7 @@ export declare const reportsRouter: import("@trpc/server").TRPCBuiltRouter<{
             };
         };
         meta: object;
+        errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     }>;
     /** COMPARE - Period comparison */
     compare: import("@trpc/server").TRPCQueryProcedure<{
@@ -358,6 +368,7 @@ export declare const reportsRouter: import("@trpc/server").TRPCBuiltRouter<{
             }[];
         };
         meta: object;
+        errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     }>;
 }>>;
 export {};

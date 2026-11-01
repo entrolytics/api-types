@@ -53,6 +53,7 @@ export declare const realtimeRouter: import("@trpc/server").TRPCBuiltRouter<{
             visitors: number;
         };
         meta: object;
+        errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     }>;
     /** Recent events (last 100) */
     recentEvents: import("@trpc/server").TRPCQueryProcedure<{
@@ -72,6 +73,7 @@ export declare const realtimeRouter: import("@trpc/server").TRPCBuiltRouter<{
             type: string;
         }[];
         meta: object;
+        errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     }>;
     /** Active pages (current pageviews by path) */
     activePages: import("@trpc/server").TRPCQueryProcedure<{
@@ -83,6 +85,7 @@ export declare const realtimeRouter: import("@trpc/server").TRPCBuiltRouter<{
             viewers: number;
         }[];
         meta: object;
+        errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     }>;
     /** Time series data (last 30 minutes, per minute) */
     timeSeries: import("@trpc/server").TRPCQueryProcedure<{
@@ -95,6 +98,7 @@ export declare const realtimeRouter: import("@trpc/server").TRPCBuiltRouter<{
             visitors: number;
         }[];
         meta: object;
+        errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     }>;
     /** Country breakdown (active visitors by country) */
     countryBreakdown: import("@trpc/server").TRPCQueryProcedure<{
@@ -107,6 +111,7 @@ export declare const realtimeRouter: import("@trpc/server").TRPCBuiltRouter<{
             visitors: number;
         }[];
         meta: object;
+        errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     }>;
     /** Comprehensive realtime overview (all data in one query) */
     overview: import("@trpc/server").TRPCQueryProcedure<{
@@ -142,6 +147,7 @@ export declare const realtimeRouter: import("@trpc/server").TRPCBuiltRouter<{
             }[];
         };
         meta: object;
+        errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     }>;
 }>>;
 //# sourceMappingURL=realtime.d.ts.map

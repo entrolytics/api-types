@@ -41,6 +41,7 @@ export declare const websitesRouter: import("@trpc/server").TRPCBuiltRouter<{
             updatedAt: Date;
         }[];
         meta: object;
+        errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     }>;
     /** Get website by ID */
     get: import("@trpc/server").TRPCQueryProcedure<{
@@ -71,6 +72,7 @@ export declare const websitesRouter: import("@trpc/server").TRPCBuiltRouter<{
             updatedAt: Date;
         };
         meta: object;
+        errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     }>;
     /** Create website */
     create: import("@trpc/server").TRPCMutationProcedure<{
@@ -103,6 +105,7 @@ export declare const websitesRouter: import("@trpc/server").TRPCBuiltRouter<{
             userId: string | null;
         } | undefined;
         meta: object;
+        errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     }>;
     /** Turn the public share link on (issues a new token) or off (revokes it) */
     setSharing: import("@trpc/server").TRPCMutationProcedure<{
@@ -114,6 +117,7 @@ export declare const websitesRouter: import("@trpc/server").TRPCBuiltRouter<{
             shareId: string | null;
         };
         meta: object;
+        errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     }>;
     /** Update website */
     update: import("@trpc/server").TRPCMutationProcedure<{
@@ -150,6 +154,7 @@ export declare const websitesRouter: import("@trpc/server").TRPCBuiltRouter<{
             updatedAt: Date;
         } | undefined;
         meta: object;
+        errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     }>;
     /** Delete website */
     delete: import("@trpc/server").TRPCMutationProcedure<{
@@ -160,6 +165,7 @@ export declare const websitesRouter: import("@trpc/server").TRPCBuiltRouter<{
             success: boolean;
         };
         meta: object;
+        errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     }>;
     /** API Keys management */
     apiKeys: import("@trpc/server").TRPCBuiltRouter<{
@@ -197,6 +203,7 @@ export declare const websitesRouter: import("@trpc/server").TRPCBuiltRouter<{
                 websiteId?: string | undefined;
             };
             meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
         list: import("@trpc/server").TRPCQueryProcedure<{
             input: {
@@ -212,6 +219,7 @@ export declare const websitesRouter: import("@trpc/server").TRPCBuiltRouter<{
                 scopes: string[];
             }[];
             meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
         revoke: import("@trpc/server").TRPCMutationProcedure<{
             input: {
@@ -221,6 +229,7 @@ export declare const websitesRouter: import("@trpc/server").TRPCBuiltRouter<{
                 success: boolean;
             };
             meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
     }>>;
 }>>;

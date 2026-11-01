@@ -45,6 +45,7 @@ export declare const usersRouter: import("@trpc/server").TRPCBuiltRouter<{
             search: string | undefined;
         };
         meta: object;
+        errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     }>;
     /** Get current user profile with entitlements */
     me: import("@trpc/server").TRPCQueryProcedure<{
@@ -96,6 +97,7 @@ export declare const usersRouter: import("@trpc/server").TRPCBuiltRouter<{
             } | undefined;
         };
         meta: object;
+        errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     }>;
     /** Update user profile */
     updateProfile: import("@trpc/server").TRPCMutationProcedure<{
@@ -129,6 +131,7 @@ export declare const usersRouter: import("@trpc/server").TRPCBuiltRouter<{
             updatedAt: Date;
         };
         meta: object;
+        errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     }>;
     /** Update email preferences */
     updatePreferences: import("@trpc/server").TRPCMutationProcedure<{
@@ -163,6 +166,7 @@ export declare const usersRouter: import("@trpc/server").TRPCBuiltRouter<{
             updatedAt: Date;
         };
         meta: object;
+        errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     }>;
     /** Delete user account */
     delete: import("@trpc/server").TRPCMutationProcedure<{
@@ -172,6 +176,7 @@ export declare const usersRouter: import("@trpc/server").TRPCBuiltRouter<{
             success: boolean;
         };
         meta: object;
+        errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     }>;
 }>>;
 //# sourceMappingURL=users.d.ts.map

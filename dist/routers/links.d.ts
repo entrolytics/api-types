@@ -41,6 +41,7 @@ export declare const linksRouter: import("@trpc/server").TRPCBuiltRouter<{
             userId: string | null;
         }[];
         meta: object;
+        errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     }>;
     /** Get link details */
     get: import("@trpc/server").TRPCQueryProcedure<{
@@ -60,6 +61,7 @@ export declare const linksRouter: import("@trpc/server").TRPCBuiltRouter<{
             userId: string | null;
         };
         meta: object;
+        errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     }>;
     /** Create link */
     create: import("@trpc/server").TRPCMutationProcedure<{
@@ -83,6 +85,7 @@ export declare const linksRouter: import("@trpc/server").TRPCBuiltRouter<{
             userId: string | null;
         } | undefined;
         meta: object;
+        errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     }>;
     /** Update link */
     update: import("@trpc/server").TRPCMutationProcedure<{
@@ -106,6 +109,7 @@ export declare const linksRouter: import("@trpc/server").TRPCBuiltRouter<{
             userId: string | null;
         } | undefined;
         meta: object;
+        errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     }>;
     /** Delete link */
     delete: import("@trpc/server").TRPCMutationProcedure<{
@@ -116,6 +120,7 @@ export declare const linksRouter: import("@trpc/server").TRPCBuiltRouter<{
             success: boolean;
         };
         meta: object;
+        errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     }>;
     /** Get link statistics */
     stats: import("@trpc/server").TRPCQueryProcedure<{
@@ -141,6 +146,7 @@ export declare const linksRouter: import("@trpc/server").TRPCBuiltRouter<{
             uniqueVisitors: number;
         };
         meta: object;
+        errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     }>;
 }>>;
 //# sourceMappingURL=links.d.ts.map

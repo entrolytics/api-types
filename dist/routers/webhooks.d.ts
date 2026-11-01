@@ -30,6 +30,7 @@ export declare const webhooksRouter: import("@trpc/server").TRPCBuiltRouter<{
             websiteId: string;
         }, "secret">[];
         meta: object;
+        errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     }>;
     /** Get webhook details */
     get: import("@trpc/server").TRPCQueryProcedure<{
@@ -51,6 +52,7 @@ export declare const webhooksRouter: import("@trpc/server").TRPCBuiltRouter<{
             websiteId: string;
         }, "secret">;
         meta: object;
+        errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     }>;
     /** Create webhook. The response is the only one besides rotation that carries the secret. */
     create: import("@trpc/server").TRPCMutationProcedure<{
@@ -76,6 +78,7 @@ export declare const webhooksRouter: import("@trpc/server").TRPCBuiltRouter<{
             websiteId: string;
         } | undefined;
         meta: object;
+        errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     }>;
     /** Update webhook */
     update: import("@trpc/server").TRPCMutationProcedure<{
@@ -101,6 +104,7 @@ export declare const webhooksRouter: import("@trpc/server").TRPCBuiltRouter<{
             websiteId: string;
         }, "secret"> | null;
         meta: object;
+        errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     }>;
     /** Replace the signing secret; returns the new secret once. */
     rotateSecret: import("@trpc/server").TRPCMutationProcedure<{
@@ -111,6 +115,7 @@ export declare const webhooksRouter: import("@trpc/server").TRPCBuiltRouter<{
             secret: string;
         };
         meta: object;
+        errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     }>;
     /** Delete webhook */
     delete: import("@trpc/server").TRPCMutationProcedure<{
@@ -121,6 +126,7 @@ export declare const webhooksRouter: import("@trpc/server").TRPCBuiltRouter<{
             success: boolean;
         };
         meta: object;
+        errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     }>;
     /** Webhook deliveries */
     deliveries: import("@trpc/server").TRPCBuiltRouter<{
@@ -157,6 +163,7 @@ export declare const webhooksRouter: import("@trpc/server").TRPCBuiltRouter<{
                 failedAt: Date | null;
             }[];
             meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
     }>>;
 }>>;

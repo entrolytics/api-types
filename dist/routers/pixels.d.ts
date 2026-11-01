@@ -27,6 +27,7 @@ export declare const pixelsRouter: import("@trpc/server").TRPCBuiltRouter<{
             userId: string | null;
         }[];
         meta: object;
+        errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     }>;
     /** Get pixel details */
     get: import("@trpc/server").TRPCQueryProcedure<{
@@ -43,6 +44,7 @@ export declare const pixelsRouter: import("@trpc/server").TRPCBuiltRouter<{
             userId: string | null;
         };
         meta: object;
+        errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     }>;
     /** Create pixel */
     create: import("@trpc/server").TRPCMutationProcedure<{
@@ -61,6 +63,7 @@ export declare const pixelsRouter: import("@trpc/server").TRPCBuiltRouter<{
             userId: string | null;
         } | undefined;
         meta: object;
+        errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     }>;
     /** Update pixel */
     update: import("@trpc/server").TRPCMutationProcedure<{
@@ -78,6 +81,7 @@ export declare const pixelsRouter: import("@trpc/server").TRPCBuiltRouter<{
             userId: string | null;
         } | undefined;
         meta: object;
+        errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     }>;
     /** Delete pixel */
     delete: import("@trpc/server").TRPCMutationProcedure<{
@@ -88,6 +92,7 @@ export declare const pixelsRouter: import("@trpc/server").TRPCBuiltRouter<{
             success: boolean;
         };
         meta: object;
+        errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     }>;
     /** Get pixel statistics */
     stats: import("@trpc/server").TRPCQueryProcedure<{
@@ -102,6 +107,7 @@ export declare const pixelsRouter: import("@trpc/server").TRPCBuiltRouter<{
             unique_visitors: number;
         };
         meta: object;
+        errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     }>;
 }>>;
 //# sourceMappingURL=pixels.d.ts.map

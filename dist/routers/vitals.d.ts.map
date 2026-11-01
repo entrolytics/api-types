@@ -1,1 +1,1 @@
-{"version":3,"file":"vitals.d.ts","sourceRoot":"","sources":["../../src/routers/vitals.ts"],"names":[],"mappings":"AAgBA,eAAO,MAAM,YAAY;;;;;;;;;;IACvB,wCAAwC;;;;;;;;;;IAUxC,iCAAiC;;;;;;;;;;;;;;;;IAmBjC,8CAA8C;;;;;;;;;IAa9C,8DAA8D;;;;;;;;;;;GAgB9D,CAAA"}
+{"version":3,"file":"vitals.d.ts","sources":["../../src/routers/vitals.ts"],"names":[],"mappings":"AAgBA,eAAO,MAAM,YAAY;;;;;;;;;;IACvB,wCAAwC;;;;;;;;;;;IAUxC,iCAAiC;;;;;;;;;;;;;;;;;IAmBjC,8CAA8C;;;;;;;;;;IAa9C,8DAA8D;;;;;;;;;;;;GAgB9D,CAAA"}

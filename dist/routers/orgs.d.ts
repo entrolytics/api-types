@@ -21,6 +21,7 @@ export declare const orgsRouter: import("@trpc/server").TRPCBuiltRouter<{
             slug: string;
         }[];
         meta: object;
+        errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     }>;
     /** Get organization details */
     get: import("@trpc/server").TRPCQueryProcedure<{
@@ -41,6 +42,7 @@ export declare const orgsRouter: import("@trpc/server").TRPCBuiltRouter<{
             role: "admin" | "member" | "owner" | "viewer";
         };
         meta: object;
+        errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     }>;
     /** Create organization */
     create: import("@trpc/server").TRPCMutationProcedure<{
@@ -61,6 +63,7 @@ export declare const orgsRouter: import("@trpc/server").TRPCBuiltRouter<{
             updatedAt: Date;
         } | undefined;
         meta: object;
+        errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     }>;
     /** Update organization */
     update: import("@trpc/server").TRPCMutationProcedure<{
@@ -82,6 +85,7 @@ export declare const orgsRouter: import("@trpc/server").TRPCBuiltRouter<{
             updatedAt: Date;
         };
         meta: object;
+        errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     }>;
     /** Replace the access code (admins); returns the new one */
     rotateAccessCode: import("@trpc/server").TRPCMutationProcedure<{
@@ -92,6 +96,7 @@ export declare const orgsRouter: import("@trpc/server").TRPCBuiltRouter<{
             accessCode: string;
         };
         meta: object;
+        errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     }>;
     /** Delete organization */
     delete: import("@trpc/server").TRPCMutationProcedure<{
@@ -102,6 +107,7 @@ export declare const orgsRouter: import("@trpc/server").TRPCBuiltRouter<{
             success: boolean;
         };
         meta: object;
+        errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     }>;
     /** Members management */
     members: import("@trpc/server").TRPCBuiltRouter<{
@@ -133,6 +139,7 @@ export declare const orgsRouter: import("@trpc/server").TRPCBuiltRouter<{
                 token: string;
             };
             meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
         /** Look up an invitation from its token, for the acceptance screen. */
         lookup: import("@trpc/server").TRPCQueryProcedure<{
@@ -149,6 +156,7 @@ export declare const orgsRouter: import("@trpc/server").TRPCBuiltRouter<{
                 usable: boolean;
             };
             meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
         /** Redeem an invitation as the signed-in user. */
         accept: import("@trpc/server").TRPCMutationProcedure<{
@@ -162,6 +170,7 @@ export declare const orgsRouter: import("@trpc/server").TRPCBuiltRouter<{
                 role: "admin" | "member" | "owner" | "viewer";
             };
             meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
         list: import("@trpc/server").TRPCQueryProcedure<{
             input: {
@@ -179,6 +188,7 @@ export declare const orgsRouter: import("@trpc/server").TRPCBuiltRouter<{
                 };
             }[];
             meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
         remove: import("@trpc/server").TRPCMutationProcedure<{
             input: {
@@ -189,6 +199,7 @@ export declare const orgsRouter: import("@trpc/server").TRPCBuiltRouter<{
                 success: boolean;
             };
             meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
         updateRole: import("@trpc/server").TRPCMutationProcedure<{
             input: {
@@ -205,6 +216,7 @@ export declare const orgsRouter: import("@trpc/server").TRPCBuiltRouter<{
                 userId: string;
             } | null | undefined;
             meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
     }>>;
 }>>;

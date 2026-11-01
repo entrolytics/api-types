@@ -23,6 +23,7 @@ export declare const boardsRouter: import("@trpc/server").TRPCBuiltRouter<{
             userId: string | null;
         }[];
         meta: object;
+        errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     }>;
     /** Get board with widgets */
     get: import("@trpc/server").TRPCQueryProcedure<{
@@ -52,6 +53,7 @@ export declare const boardsRouter: import("@trpc/server").TRPCBuiltRouter<{
             }[];
         };
         meta: object;
+        errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     }>;
     /** Create board */
     create: import("@trpc/server").TRPCMutationProcedure<{
@@ -73,6 +75,7 @@ export declare const boardsRouter: import("@trpc/server").TRPCBuiltRouter<{
             userId: string | null;
         } | undefined;
         meta: object;
+        errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     }>;
     /** Update board */
     update: import("@trpc/server").TRPCMutationProcedure<{
@@ -94,6 +97,7 @@ export declare const boardsRouter: import("@trpc/server").TRPCBuiltRouter<{
             userId: string | null;
         } | undefined;
         meta: object;
+        errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     }>;
     /** Delete board */
     delete: import("@trpc/server").TRPCMutationProcedure<{
@@ -112,6 +116,7 @@ export declare const boardsRouter: import("@trpc/server").TRPCBuiltRouter<{
             userId: string | null;
         } | undefined;
         meta: object;
+        errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     }>;
     /** Widgets management */
     widgets: import("@trpc/server").TRPCBuiltRouter<{
@@ -145,6 +150,7 @@ export declare const boardsRouter: import("@trpc/server").TRPCBuiltRouter<{
                 websiteId: string | null;
             } | undefined;
             meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
         get: import("@trpc/server").TRPCQueryProcedure<{
             input: {
@@ -162,6 +168,7 @@ export declare const boardsRouter: import("@trpc/server").TRPCBuiltRouter<{
                 websiteId: string | null;
             };
             meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
         remove: import("@trpc/server").TRPCMutationProcedure<{
             input: {
@@ -171,6 +178,7 @@ export declare const boardsRouter: import("@trpc/server").TRPCBuiltRouter<{
                 success: boolean;
             };
             meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
         reorder: import("@trpc/server").TRPCMutationProcedure<{
             input: {
@@ -184,6 +192,7 @@ export declare const boardsRouter: import("@trpc/server").TRPCBuiltRouter<{
                 success: boolean;
             };
             meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
         update: import("@trpc/server").TRPCMutationProcedure<{
             input: {
@@ -204,6 +213,7 @@ export declare const boardsRouter: import("@trpc/server").TRPCBuiltRouter<{
                 websiteId: string | null;
             } | undefined;
             meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
     }>>;
 }>>;

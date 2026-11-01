@@ -17,6 +17,7 @@ export declare const formsRouter: import("@trpc/server").TRPCBuiltRouter<{
         };
         output: import("../services/forms.js").FormConversion[];
         meta: object;
+        errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     }>;
     /** Get field-level metrics for a specific form */
     fieldMetrics: import("@trpc/server").TRPCQueryProcedure<{
@@ -28,6 +29,7 @@ export declare const formsRouter: import("@trpc/server").TRPCBuiltRouter<{
         };
         output: import("../services/forms.js").FormFieldMetrics[];
         meta: object;
+        errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     }>;
     /** Get recent form events (for debugging) */
     recentEvents: import("@trpc/server").TRPCQueryProcedure<{
@@ -37,6 +39,7 @@ export declare const formsRouter: import("@trpc/server").TRPCBuiltRouter<{
         };
         output: import("../services/forms.js").FormEvent[];
         meta: object;
+        errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     }>;
 }>>;
 //# sourceMappingURL=forms.d.ts.map

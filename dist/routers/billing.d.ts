@@ -50,6 +50,7 @@ export declare const billingRouter: import("@trpc/server").TRPCBuiltRouter<{
                 websitesCount: number;
             };
             meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
     }>>;
     /** Subscription management */
@@ -90,6 +91,7 @@ export declare const billingRouter: import("@trpc/server").TRPCBuiltRouter<{
                 updatedAt: Date;
             } | null;
             meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
     }>>;
     /** Stripe checkout */
@@ -115,6 +117,7 @@ export declare const billingRouter: import("@trpc/server").TRPCBuiltRouter<{
                 url: string | null;
             };
             meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
     }>>;
     /** Stripe customer portal */
@@ -137,6 +140,7 @@ export declare const billingRouter: import("@trpc/server").TRPCBuiltRouter<{
                 url: string;
             };
             meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
     }>>;
 }>>;
