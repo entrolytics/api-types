@@ -1,6 +1,6 @@
 {
   "name": "@entrolytics/api-types",
-  "version": "4.0.0",
+  "version": "5.0.0",
   "description": "Shared API types for Entrolytics - First-party growth analytics for the edge",
   "files": [
     "dist"
