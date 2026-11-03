@@ -221,9 +221,11 @@ export declare const websitesRouter: import("@trpc/server").TRPCBuiltRouter<{
             meta: object;
             errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
+        /** Revoke an API key; with `websiteId`, only if the key belongs to that website. */
         revoke: import("@trpc/server").TRPCMutationProcedure<{
             input: {
                 keyId: string;
+                websiteId?: string | undefined;
             };
             output: {
                 success: boolean;

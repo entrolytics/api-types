@@ -25,9 +25,11 @@ export declare const linksRouter: import("@trpc/server").TRPCBuiltRouter<{
     errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     transformer: true;
 }, import("@trpc/server").TRPCDecorateCreateRouterOptions<{
-    /** List links */
+    /** List links: those of `orgId`, else every link the caller owns or shares an organization with */
     list: import("@trpc/server").TRPCQueryProcedure<{
-        input: void;
+        input: {
+            orgId?: string | undefined;
+        } | undefined;
         output: {
             createdAt: Date;
             deletedAt: Date | null;
@@ -63,13 +65,16 @@ export declare const linksRouter: import("@trpc/server").TRPCBuiltRouter<{
         meta: object;
         errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     }>;
-    /** Create link */
+    /**
+     * Create link in `orgId`, else the active or only organization. Without a `slug` the name is used
+     * as one (a random slug when it has no usable characters).
+     */
     create: import("@trpc/server").TRPCMutationProcedure<{
         input: {
             description?: string | undefined;
             name: string;
-            orgId: string;
-            slug: string;
+            orgId?: string | undefined;
+            slug?: string | undefined;
             url: string;
         };
         output: {
@@ -83,7 +88,7 @@ export declare const linksRouter: import("@trpc/server").TRPCBuiltRouter<{
             updatedAt: Date;
             url: string;
             userId: string | null;
-        } | undefined;
+        };
         meta: object;
         errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     }>;
@@ -107,7 +112,7 @@ export declare const linksRouter: import("@trpc/server").TRPCBuiltRouter<{
             updatedAt: Date;
             url: string;
             userId: string | null;
-        } | undefined;
+        };
         meta: object;
         errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     }>;

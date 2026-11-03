@@ -215,7 +215,7 @@ export declare const analyticsRouter: import("@trpc/server").TRPCBuiltRouter<{
         meta: object;
         errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     }>;
-    /** List all sessions */
+    /** List all sessions, at most 200 per page */
     sessions: import("@trpc/server").TRPCQueryProcedure<{
         input: {
             endDate: Date;

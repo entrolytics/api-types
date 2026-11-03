@@ -1,3 +1,41 @@
+import { z } from 'zod';
+export declare const listUsersInput: z.ZodObject<{
+    orderBy: z.ZodOptional<z.ZodEnum<{
+        createdAt: "createdAt";
+        displayName: "displayName";
+        email: "email";
+        firstName: "firstName";
+        id: "id";
+        lastName: "lastName";
+        role: "role";
+        updatedAt: "updatedAt";
+    }>>;
+    page: z.ZodOptional<z.ZodNumber>;
+    pageSize: z.ZodOptional<z.ZodNumber>;
+    plan: z.ZodOptional<z.ZodString>;
+    role: z.ZodOptional<z.ZodEnum<{
+        admin: "admin";
+        user: "user";
+        "view-only": "view-only";
+    }>>;
+    search: z.ZodOptional<z.ZodString>;
+    sortDescending: z.ZodOptional<z.ZodBoolean>;
+    status: z.ZodOptional<z.ZodString>;
+}, z.core.$strip>;
+/**
+ * Only what is stored. displayName, imageUrl, locale and timezone are refused: the display name
+ * derives from the names and the image is managed in Clerk. Names must be non-empty, as REST always
+ * required; tRPC used to accept an empty string.
+ */
+export declare const updateProfileInput: z.ZodObject<{
+    firstName: z.ZodOptional<z.ZodString>;
+    lastName: z.ZodOptional<z.ZodString>;
+}, z.core.$strict>;
+export declare const updatePreferencesInput: z.ZodObject<{
+    emailProductUpdates: z.ZodOptional<z.ZodBoolean>;
+    emailUsageAlerts: z.ZodOptional<z.ZodBoolean>;
+    emailWeeklyReports: z.ZodOptional<z.ZodBoolean>;
+}, z.core.$strip>;
 /** Users Router Handles user profile and preferences */
 export declare const usersRouter: import("@trpc/server").TRPCBuiltRouter<{
     ctx: {

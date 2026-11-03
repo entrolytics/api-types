@@ -8,9 +8,14 @@ export declare const boardsRouter: import("@trpc/server").TRPCBuiltRouter<{
     errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     transformer: true;
 }, import("@trpc/server").TRPCDecorateCreateRouterOptions<{
-    /** List boards */
+    /**
+     * List boards. With `websiteId`, only the boards that pin that website or hold one of its
+     * widgets.
+     */
     list: import("@trpc/server").TRPCQueryProcedure<{
-        input: void;
+        input: {
+            websiteId?: string | undefined;
+        } | undefined;
         output: {
             config: unknown;
             createdAt: Date;
@@ -55,12 +60,15 @@ export declare const boardsRouter: import("@trpc/server").TRPCBuiltRouter<{
         meta: object;
         errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     }>;
-    /** Create board */
+    /**
+     * Create board. Without `orgId` it goes to the session's active organization, else the caller's
+     * only one.
+     */
     create: import("@trpc/server").TRPCMutationProcedure<{
         input: {
             name: string;
             description?: string | undefined;
-            orgId: string;
+            orgId?: string | undefined;
             config?: Record<string, unknown> | undefined;
         };
         output: {
@@ -77,7 +85,7 @@ export declare const boardsRouter: import("@trpc/server").TRPCBuiltRouter<{
         meta: object;
         errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     }>;
-    /** Update board */
+    /** Update board. `config` is merged into the stored config. */
     update: import("@trpc/server").TRPCMutationProcedure<{
         input: {
             boardId: string;
@@ -152,8 +160,10 @@ export declare const boardsRouter: import("@trpc/server").TRPCBuiltRouter<{
             meta: object;
             errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
+        /** A widget; with `boardId`, only if it is on that board. */
         get: import("@trpc/server").TRPCQueryProcedure<{
             input: {
+                boardId?: string | undefined;
                 widgetId: string;
             };
             output: {
@@ -170,8 +180,10 @@ export declare const boardsRouter: import("@trpc/server").TRPCBuiltRouter<{
             meta: object;
             errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
+        /** Remove a widget; with `boardId`, only if it is on that board. */
         remove: import("@trpc/server").TRPCMutationProcedure<{
             input: {
+                boardId?: string | undefined;
                 widgetId: string;
             };
             output: {
@@ -194,10 +206,16 @@ export declare const boardsRouter: import("@trpc/server").TRPCBuiltRouter<{
             meta: object;
             errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
+        /**
+         * Update a widget; with `boardId`, only if it is on that board. `config` is merged into the
+         * stored config.
+         */
         update: import("@trpc/server").TRPCMutationProcedure<{
             input: {
+                boardId?: string | undefined;
                 widgetId: string;
                 title?: string | undefined;
+                type?: string | undefined;
                 config?: Record<string, unknown> | undefined;
                 position?: number | undefined;
             };
