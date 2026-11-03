@@ -23,8 +23,8 @@
   "dependencies": {
     "@entrolytics/config": "workspace:^",
     "@entrolytics/protocol": "workspace:^",
-    "@trpc/server": "^11.22.1",
-    "fastify": "^6.0.0-alpha.5",
+    "@trpc/server": "^11.23.0",
+    "fastify": "^6.0.0-alpha.6",
     "zod": "^4.6.7"
   },
   "devDependencies": {
