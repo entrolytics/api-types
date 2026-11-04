@@ -108,13 +108,11 @@ export interface BreakdownResponse {
 /**
  * Which visitors the retention numbers describe, given the visitor-identity policy.
  *
- * The query counts every visitor id. Anonymous browser identifiers rotate daily by design, so a
- * browser visitor counts in its first week's cohort and never as returning; only server-side
- * collection, which supplies its own visitor id, can be followed across weeks. (The label used to
- * claim the numbers covered only stable identifiers, and "identified visitors", which do not
- * exist.) Excluding rotating ids from the cohorts needs a marker on each event; see the report.
+ * The query counts only ids recorded as persistent. Anonymous identifiers rotate daily by design,
+ * so they can never be followed across weeks; only an id the site supplies through server-side
+ * collection, marked `visitorIdScope: 'persistent'`, can.
  */
-export declare const RETENTION_MEASURED_POPULATION = "Every visitor. Anonymous browser visitors get a new identifier each day by design, so they count in their first week and never as returning; returns come from server-side collection, which keeps its own visitor id.";
+export declare const RETENTION_MEASURED_POPULATION = "Visitors with a persistent identifier, which the site supplies through server-side collection (for example a signed-in customer id). Anonymous visitors get a new identifier each day by design, so they cannot be followed from week to week and are not counted.";
 export declare const reportsRouter: import("@trpc/server").TRPCBuiltRouter<{
     ctx: {
         auth: import("../middleware/auth.js").AuthContext | null;
@@ -128,13 +126,13 @@ export declare const reportsRouter: import("@trpc/server").TRPCBuiltRouter<{
     /**
      * RETENTION - Cohort retention analysis.
      *
-     * Measures the return of the same `visitor_id` across weeks. That identity is only stable across
-     * days for server-side collection, where the caller supplies it: anonymous browser collection
-     * derives a visitor id that rotates at midnight UTC by design, so the same browser is a different
-     * visitor tomorrow and cannot appear as retained. The report therefore describes the population
-     * it can actually measure, and says so, rather than presenting near-zero weekly retention for
-     * anonymous traffic as a finding about the site. Changing the identity policy is a privacy
-     * decision, not a reporting one (see F-13).
+     * Measures the return of the same `visitor_id` across weeks, counting only events whose id is
+     * persistent (`visitor_id_scope`). Anonymous browser collection, and server-side SDKs deriving an
+     * id for an anonymous visitor, rotate it at midnight UTC by design, so the same person is a
+     * different visitor tomorrow and can never appear as retained. Counting those ids reported
+     * near-zero retention for anonymous traffic as if it were a finding about the site; the report
+     * now measures only the population it can follow, and says so. Changing the identity policy is a
+     * privacy decision, not a reporting one (see F-13).
      */
     retention: import("@trpc/server").TRPCQueryProcedure<{
         input: {

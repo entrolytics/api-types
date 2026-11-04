@@ -1338,6 +1338,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
             revoke: import("@trpc/server").TRPCMutationProcedure<{
                 input: {
                     keyId: string;
+                    websiteId?: string | undefined;
                 };
                 output: {
                     success: boolean;
@@ -1393,7 +1394,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
         create: import("@trpc/server").TRPCMutationProcedure<{
             input: {
                 name: string;
-                slug: string;
+                slug?: string | undefined;
             };
             output: {
                 accessCode: string | null;
@@ -1553,7 +1554,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                     role: "admin" | "member" | "owner" | "viewer";
                     updatedAt: Date;
                     userId: string;
-                } | null | undefined;
+                };
                 meta: object;
                 errorShape: import("@trpc/server").TRPCDefaultErrorShape;
             }>;
@@ -1614,11 +1615,12 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
         }>;
         create: import("@trpc/server").TRPCMutationProcedure<{
             input: {
+                enabled?: boolean | undefined;
                 events: ("*" | "event.created" | "goal.completed" | "pageview.created" | "revenue.recorded" | "session.created" | "visitor.identified")[];
                 name: string;
                 orgId?: string | undefined;
                 url: string;
-                websiteId: string;
+                websiteId?: string | undefined;
             };
             output: {
                 createdAt: Date;
@@ -1633,7 +1635,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 url: string;
                 userId: string | null;
                 websiteId: string;
-            } | undefined;
+            };
             meta: object;
             errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
@@ -1644,6 +1646,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 name?: string | undefined;
                 url?: string | undefined;
                 webhookId: string;
+                websiteId?: string | undefined;
             };
             output: Omit<{
                 createdAt: Date;
@@ -1658,7 +1661,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 url: string;
                 userId: string | null;
                 websiteId: string;
-            }, "secret"> | null;
+            }, "secret">;
             meta: object;
             errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
@@ -1731,7 +1734,9 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
         transformer: true;
     }, import("@trpc/server").TRPCDecorateCreateRouterOptions<{
         list: import("@trpc/server").TRPCQueryProcedure<{
-            input: void;
+            input: {
+                websiteId?: string | undefined;
+            } | undefined;
             output: {
                 config: unknown;
                 createdAt: Date;
@@ -1779,7 +1784,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
             input: {
                 name: string;
                 description?: string | undefined;
-                orgId: string;
+                orgId?: string | undefined;
                 config?: Record<string, unknown> | undefined;
             };
             output: {
@@ -1870,6 +1875,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
             }>;
             get: import("@trpc/server").TRPCQueryProcedure<{
                 input: {
+                    boardId?: string | undefined;
                     widgetId: string;
                 };
                 output: {
@@ -1888,6 +1894,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
             }>;
             remove: import("@trpc/server").TRPCMutationProcedure<{
                 input: {
+                    boardId?: string | undefined;
                     widgetId: string;
                 };
                 output: {
@@ -1912,8 +1919,10 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
             }>;
             update: import("@trpc/server").TRPCMutationProcedure<{
                 input: {
+                    boardId?: string | undefined;
                     widgetId: string;
                     title?: string | undefined;
+                    type?: string | undefined;
                     config?: Record<string, unknown> | undefined;
                     position?: number | undefined;
                 };
@@ -1944,7 +1953,9 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
         transformer: true;
     }, import("@trpc/server").TRPCDecorateCreateRouterOptions<{
         list: import("@trpc/server").TRPCQueryProcedure<{
-            input: void;
+            input: {
+                orgId?: string | undefined;
+            } | undefined;
             output: {
                 createdAt: Date;
                 deletedAt: Date | null;
@@ -1983,8 +1994,8 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
             input: {
                 description?: string | undefined;
                 name: string;
-                orgId: string;
-                slug: string;
+                orgId?: string | undefined;
+                slug?: string | undefined;
                 url: string;
             };
             output: {
@@ -1998,7 +2009,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 updatedAt: Date;
                 url: string;
                 userId: string | null;
-            } | undefined;
+            };
             meta: object;
             errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
@@ -2021,7 +2032,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 updatedAt: Date;
                 url: string;
                 userId: string | null;
-            } | undefined;
+            };
             meta: object;
             errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
@@ -2072,7 +2083,9 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
         transformer: true;
     }, import("@trpc/server").TRPCDecorateCreateRouterOptions<{
         list: import("@trpc/server").TRPCQueryProcedure<{
-            input: void;
+            input: {
+                orgId?: string | undefined;
+            } | undefined;
             output: {
                 createdAt: Date;
                 id: string;
@@ -2104,8 +2117,8 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
         create: import("@trpc/server").TRPCMutationProcedure<{
             input: {
                 name: string;
-                orgId: string;
-                slug: string;
+                orgId?: string | undefined;
+                slug?: string | undefined;
             };
             output: {
                 createdAt: Date;
@@ -2115,7 +2128,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 slug: string;
                 updatedAt: Date;
                 userId: string | null;
-            } | undefined;
+            };
             meta: object;
             errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
@@ -2123,6 +2136,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
             input: {
                 name?: string | undefined;
                 pixelId: string;
+                slug?: string | undefined;
             };
             output: {
                 createdAt: Date;
@@ -2132,7 +2146,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 slug: string;
                 updatedAt: Date;
                 userId: string | null;
-            } | undefined;
+            };
             meta: object;
             errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
@@ -2153,9 +2167,16 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 startDate: Date;
             };
             output: {
-                countries?: string[] | undefined;
-                fires: number;
-                unique_visitors: number;
+                firesByDay: {
+                    date: string;
+                    fires: number;
+                }[];
+                lastFired: string | null;
+                topPages: {
+                    fires: number;
+                    page: string;
+                }[];
+                totalFires: number;
             };
             meta: object;
             errorShape: import("@trpc/server").TRPCDefaultErrorShape;
@@ -2314,6 +2335,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
     }, import("@trpc/server").TRPCDecorateCreateRouterOptions<{
         list: import("@trpc/server").TRPCQueryProcedure<{
             input: {
+                type?: string | undefined;
                 websiteId: string;
             };
             output: {
@@ -2331,6 +2353,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
         get: import("@trpc/server").TRPCQueryProcedure<{
             input: {
                 segmentId: string;
+                websiteId?: string | undefined;
             };
             output: {
                 createdAt: Date;
@@ -2347,8 +2370,8 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
         create: import("@trpc/server").TRPCMutationProcedure<{
             input: {
                 name: string;
-                parameters: Record<string, unknown>;
-                type: string;
+                parameters?: Record<string, unknown> | undefined;
+                type?: string | undefined;
                 websiteId: string;
             };
             output: {
@@ -2359,7 +2382,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 type: string;
                 updatedAt: Date;
                 websiteId: string;
-            } | undefined;
+            };
             meta: object;
             errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
@@ -2368,6 +2391,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 name?: string | undefined;
                 parameters?: Record<string, unknown> | undefined;
                 segmentId: string;
+                websiteId?: string | undefined;
             };
             output: {
                 createdAt: Date;
@@ -2377,13 +2401,14 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 type: string;
                 updatedAt: Date;
                 websiteId: string;
-            } | undefined;
+            };
             meta: object;
             errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;
         delete: import("@trpc/server").TRPCMutationProcedure<{
             input: {
                 segmentId: string;
+                websiteId?: string | undefined;
             };
             output: {
                 success: boolean;

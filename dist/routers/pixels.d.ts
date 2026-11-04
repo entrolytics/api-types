@@ -1,8 +1,17 @@
 /** Pixels Router Handles conversion pixel tracking */
+/** A pixel's fires in a period: the dashboard's pixel report. */
 export interface PixelStatsResult {
-    fires: number;
-    unique_visitors: number;
-    countries?: string[];
+    totalFires: number;
+    /** ISO timestamp of the latest fire, or null when there was none. */
+    lastFired: string | null;
+    firesByDay: Array<{
+        date: string;
+        fires: number;
+    }>;
+    topPages: Array<{
+        page: string;
+        fires: number;
+    }>;
 }
 export declare const pixelsRouter: import("@trpc/server").TRPCBuiltRouter<{
     ctx: {
@@ -14,9 +23,11 @@ export declare const pixelsRouter: import("@trpc/server").TRPCBuiltRouter<{
     errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     transformer: true;
 }, import("@trpc/server").TRPCDecorateCreateRouterOptions<{
-    /** List pixels */
+    /** List pixels: those of `orgId`, else every pixel the caller owns or shares an organization with */
     list: import("@trpc/server").TRPCQueryProcedure<{
-        input: void;
+        input: {
+            orgId?: string | undefined;
+        } | undefined;
         output: {
             createdAt: Date;
             id: string;
@@ -46,12 +57,15 @@ export declare const pixelsRouter: import("@trpc/server").TRPCBuiltRouter<{
         meta: object;
         errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     }>;
-    /** Create pixel */
+    /**
+     * Create pixel in `orgId`, else the active or only organization. Without a `slug` the name is
+     * used as one (a random slug when it has no usable characters).
+     */
     create: import("@trpc/server").TRPCMutationProcedure<{
         input: {
             name: string;
-            orgId: string;
-            slug: string;
+            orgId?: string | undefined;
+            slug?: string | undefined;
         };
         output: {
             createdAt: Date;
@@ -61,7 +75,7 @@ export declare const pixelsRouter: import("@trpc/server").TRPCBuiltRouter<{
             slug: string;
             updatedAt: Date;
             userId: string | null;
-        } | undefined;
+        };
         meta: object;
         errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     }>;
@@ -70,6 +84,7 @@ export declare const pixelsRouter: import("@trpc/server").TRPCBuiltRouter<{
         input: {
             name?: string | undefined;
             pixelId: string;
+            slug?: string | undefined;
         };
         output: {
             createdAt: Date;
@@ -79,7 +94,7 @@ export declare const pixelsRouter: import("@trpc/server").TRPCBuiltRouter<{
             slug: string;
             updatedAt: Date;
             userId: string | null;
-        } | undefined;
+        };
         meta: object;
         errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     }>;
@@ -94,7 +109,7 @@ export declare const pixelsRouter: import("@trpc/server").TRPCBuiltRouter<{
         meta: object;
         errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     }>;
-    /** Get pixel statistics */
+    /** A pixel's fires in [startDate, endDate]: the total, the latest, per day, and the top pages */
     stats: import("@trpc/server").TRPCQueryProcedure<{
         input: {
             endDate: Date;
@@ -102,9 +117,16 @@ export declare const pixelsRouter: import("@trpc/server").TRPCBuiltRouter<{
             startDate: Date;
         };
         output: {
-            countries?: string[] | undefined;
-            fires: number;
-            unique_visitors: number;
+            firesByDay: {
+                date: string;
+                fires: number;
+            }[];
+            lastFired: string | null;
+            topPages: {
+                fires: number;
+                page: string;
+            }[];
+            totalFires: number;
         };
         meta: object;
         errorShape: import("@trpc/server").TRPCDefaultErrorShape;

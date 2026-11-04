@@ -44,11 +44,11 @@ export declare const orgsRouter: import("@trpc/server").TRPCBuiltRouter<{
         meta: object;
         errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     }>;
-    /** Create organization */
+    /** Create organization. Without a `slug` the name is used as one. */
     create: import("@trpc/server").TRPCMutationProcedure<{
         input: {
             name: string;
-            slug: string;
+            slug?: string | undefined;
         };
         output: {
             accessCode: string | null;
@@ -120,6 +120,7 @@ export declare const orgsRouter: import("@trpc/server").TRPCBuiltRouter<{
         errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         transformer: true;
     }, import("@trpc/server").TRPCDecorateCreateRouterOptions<{
+        /** Invite someone by email; the service authorizes the inviter (owner or admin). */
         invite: import("@trpc/server").TRPCMutationProcedure<{
             input: {
                 orgId: string;
@@ -214,7 +215,7 @@ export declare const orgsRouter: import("@trpc/server").TRPCBuiltRouter<{
                 role: "admin" | "member" | "owner" | "viewer";
                 updatedAt: Date;
                 userId: string;
-            } | null | undefined;
+            };
             meta: object;
             errorShape: import("@trpc/server").TRPCDefaultErrorShape;
         }>;

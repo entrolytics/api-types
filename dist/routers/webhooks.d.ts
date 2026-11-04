@@ -9,7 +9,11 @@ export declare const webhooksRouter: import("@trpc/server").TRPCBuiltRouter<{
     errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     transformer: true;
 }, import("@trpc/server").TRPCDecorateCreateRouterOptions<{
-    /** List webhooks */
+    /**
+     * List webhooks. Without an explicit `orgId` this lists the organization active in the caller's
+     * session, the same target writes default to; with neither, the caller's own webhooks and those
+     * of every organization they belong to.
+     */
     list: import("@trpc/server").TRPCQueryProcedure<{
         input: {
             orgId?: string | undefined;
@@ -54,14 +58,21 @@ export declare const webhooksRouter: import("@trpc/server").TRPCBuiltRouter<{
         meta: object;
         errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     }>;
-    /** Create webhook. The response is the only one besides rotation that carries the secret. */
+    /**
+     * Create webhook. The response is the only one besides rotation that carries the secret.
+     *
+     * Without a `websiteId` the webhook goes to the first website the caller can list (in `orgId`
+     * when given). Attaching a webhook writes the website's configuration, so the caller needs the
+     * write minimum on it. The webhook belongs to the website's owner.
+     */
     create: import("@trpc/server").TRPCMutationProcedure<{
         input: {
+            enabled?: boolean | undefined;
             events: ("*" | "event.created" | "goal.completed" | "pageview.created" | "revenue.recorded" | "session.created" | "visitor.identified")[];
             name: string;
             orgId?: string | undefined;
             url: string;
-            websiteId: string;
+            websiteId?: string | undefined;
         };
         output: {
             createdAt: Date;
@@ -76,7 +87,7 @@ export declare const webhooksRouter: import("@trpc/server").TRPCBuiltRouter<{
             url: string;
             userId: string | null;
             websiteId: string;
-        } | undefined;
+        };
         meta: object;
         errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     }>;
@@ -88,6 +99,7 @@ export declare const webhooksRouter: import("@trpc/server").TRPCBuiltRouter<{
             name?: string | undefined;
             url?: string | undefined;
             webhookId: string;
+            websiteId?: string | undefined;
         };
         output: Omit<{
             createdAt: Date;
@@ -102,7 +114,7 @@ export declare const webhooksRouter: import("@trpc/server").TRPCBuiltRouter<{
             url: string;
             userId: string | null;
             websiteId: string;
-        }, "secret"> | null;
+        }, "secret">;
         meta: object;
         errorShape: import("@trpc/server").TRPCDefaultErrorShape;
     }>;

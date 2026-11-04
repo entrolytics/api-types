@@ -1,4 +1,29 @@
-/** Billing Router Handles billing, usage, and Stripe integration */
+import { z } from 'zod';
+/** Whose billing to read: an organization, or by default the caller's active one. */
+export declare const billingOwnerInput: z.ZodObject<{
+    orgId: z.ZodOptional<z.ZodUUID>;
+}, z.core.$strip>;
+export declare const checkoutInput: z.ZodObject<{
+    cancelUrl: z.ZodURL;
+    orgId: z.ZodOptional<z.ZodUUID>;
+    planId: z.ZodEnum<{
+        business: "business";
+        enterprise: "enterprise";
+        free: "free";
+        pro: "pro";
+    }>;
+    successUrl: z.ZodURL;
+}, z.core.$strip>;
+export declare const portalInput: z.ZodObject<{
+    orgId: z.ZodOptional<z.ZodUUID>;
+    returnUrl: z.ZodURL;
+}, z.core.$strip>;
+/**
+ * Billing Router Handles billing, usage, and Stripe integration.
+ *
+ * Without an explicit `orgId`, the caller's active organization is billed, as in the dashboard;
+ * with none active, the personal account.
+ */
 export declare const billingRouter: import("@trpc/server").TRPCBuiltRouter<{
     ctx: {
         auth: import("../middleware/auth.js").AuthContext | null;
