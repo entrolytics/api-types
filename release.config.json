@@ -1,1 +1,3 @@
-{ "publish": "pnpm publish --tag %d" }
+{
+  "publish": "rm -rf /tmp/api-types-release && pnpm pack --pack-destination /tmp/api-types-release && npm publish /tmp/api-types-release/entrolytics-api-types-%v.tgz --tag %d"
+}
