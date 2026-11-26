@@ -97,6 +97,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 startDate: Date;
                 websiteId: string;
                 limit?: number | undefined;
+                pageType?: "entry" | "exit" | "path" | undefined;
             };
             output: {
                 avg_load_time?: number | null | undefined;
@@ -140,6 +141,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 } | undefined;
                 startDate: Date;
                 websiteId: string;
+                groupBy?: "browser" | "device" | "os" | undefined;
             };
             output: {
                 browser: string | null;
@@ -162,10 +164,12 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 } | undefined;
                 startDate: Date;
                 websiteId: string;
+                groupBy?: "city" | "country" | "region" | undefined;
             };
             output: {
                 city: string | null;
                 country: string | null;
+                region?: string | null | undefined;
                 pageviews: number;
                 unique_visitors?: number | undefined;
             }[];
@@ -335,6 +339,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 websiteId: string;
                 eventName?: string | undefined;
                 interval?: "day" | "hour" | "month" | "week" | undefined;
+                timeZone?: string | undefined;
             };
             output: {
                 count: number;
@@ -520,6 +525,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 startDate: Date;
                 websiteId: string;
                 currency?: string | undefined;
+                timeZone?: string | undefined;
             };
             output: {
                 chart: {
@@ -585,6 +591,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 currentStart: Date;
                 previousEnd: Date;
                 previousStart: Date;
+                timeZone?: string | undefined;
                 websiteId: string;
             };
             output: {
@@ -2051,6 +2058,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 endDate: Date;
                 linkId: string;
                 startDate: Date;
+                timeZone?: string | undefined;
             };
             output: {
                 clicksByDay: {

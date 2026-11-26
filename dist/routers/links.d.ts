@@ -133,6 +133,7 @@ export declare const linksRouter: import("@trpc/server").TRPCBuiltRouter<{
             endDate: Date;
             linkId: string;
             startDate: Date;
+            timeZone?: string | undefined;
         };
         output: {
             clicksByDay: {

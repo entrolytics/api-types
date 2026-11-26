@@ -113,6 +113,7 @@ export declare const analyticsRouter: import("@trpc/server").TRPCBuiltRouter<{
             startDate: Date;
             websiteId: string;
             limit?: number | undefined;
+            pageType?: "entry" | "exit" | "path" | undefined;
         };
         output: {
             avg_load_time?: number | null | undefined;
@@ -158,6 +159,7 @@ export declare const analyticsRouter: import("@trpc/server").TRPCBuiltRouter<{
             } | undefined;
             startDate: Date;
             websiteId: string;
+            groupBy?: "browser" | "device" | "os" | undefined;
         };
         output: {
             browser: string | null;
@@ -181,10 +183,12 @@ export declare const analyticsRouter: import("@trpc/server").TRPCBuiltRouter<{
             } | undefined;
             startDate: Date;
             websiteId: string;
+            groupBy?: "city" | "country" | "region" | undefined;
         };
         output: {
             city: string | null;
             country: string | null;
+            region?: string | null | undefined;
             pageviews: number;
             unique_visitors?: number | undefined;
         }[];

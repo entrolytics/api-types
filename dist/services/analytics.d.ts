@@ -1,4 +1,7 @@
 import { z } from 'zod';
+export type PageType = 'path' | 'entry' | 'exit';
+export type DeviceDimension = 'device' | 'browser' | 'os';
+export type GeoDimension = 'country' | 'region' | 'city';
 export declare const timeseriesRowSchema: z.ZodObject<{
     date: z.ZodString;
     pageviews: z.ZodNumber;
@@ -37,6 +40,50 @@ export interface SessionActivityEvent {
     createdAt: string;
     urlPath: string | null;
 }
+export declare const sessionListRowSchema: z.ZodObject<{
+    browser: z.ZodNullable<z.ZodString>;
+    city: z.ZodNullable<z.ZodString>;
+    country: z.ZodNullable<z.ZodString>;
+    device_type: z.ZodNullable<z.ZodString>;
+    entry_page: z.ZodNullable<z.ZodString>;
+    events: z.ZodNumber;
+    exit_page: z.ZodNullable<z.ZodString>;
+    os: z.ZodNullable<z.ZodString>;
+    pageviews: z.ZodNumber;
+    referrer: z.ZodNullable<z.ZodString>;
+    session_end: z.ZodPipe<z.ZodString, z.ZodTransform<string, string>>;
+    session_id: z.ZodString;
+    session_start: z.ZodPipe<z.ZodString, z.ZodTransform<string, string>>;
+    visitor_id: z.ZodString;
+}, z.core.$strip>;
+export declare const sessionDetailRowSchema: z.ZodObject<{
+    browser: z.ZodNullable<z.ZodString>;
+    city: z.ZodNullable<z.ZodString>;
+    country: z.ZodNullable<z.ZodString>;
+    device_type: z.ZodNullable<z.ZodString>;
+    duration: z.ZodCoercedNumber<unknown>;
+    entry_page: z.ZodNullable<z.ZodString>;
+    events: z.ZodCoercedNumber<unknown>;
+    exit_page: z.ZodNullable<z.ZodString>;
+    os: z.ZodNullable<z.ZodString>;
+    pageviews: z.ZodCoercedNumber<unknown>;
+    referrer: z.ZodNullable<z.ZodString>;
+    region: z.ZodNullable<z.ZodString>;
+    session_end: z.ZodPipe<z.ZodString, z.ZodTransform<string, string>>;
+    session_id: z.ZodString;
+    session_start: z.ZodPipe<z.ZodString, z.ZodTransform<string, string>>;
+    visitor_id: z.ZodString;
+}, z.core.$strip>;
+export declare const sessionActivityRowSchema: z.ZodObject<{
+    event_data: z.ZodNullable<z.ZodString>;
+    id: z.ZodString;
+    event_name: z.ZodNullable<z.ZodString>;
+    event_type: z.ZodString;
+    load_time: z.ZodNullable<z.ZodCoercedNumber<unknown>>;
+    path: z.ZodNullable<z.ZodString>;
+    referrer: z.ZodNullable<z.ZodString>;
+    timestamp: z.ZodPipe<z.ZodString, z.ZodTransform<string, string>>;
+}, z.core.$strip>;
 export interface SessionListItem {
     sessionId: string;
     sessionStart: string;
@@ -106,7 +153,7 @@ export declare class AnalyticsService {
         hour: number;
         y: number;
     }[]>;
-    static getTopPages(websiteId: string, startDate: Date, endDate: Date, limit: number, filters?: AnalyticsFilters): Promise<{
+    static getTopPages(websiteId: string, startDate: Date, endDate: Date, limit: number, filters?: AnalyticsFilters, pageType?: PageType): Promise<{
         avg_load_time?: number | null | undefined;
         p95_load_time?: number | null | undefined;
         path: string | null;
@@ -120,7 +167,7 @@ export declare class AnalyticsService {
         visits: number;
     }[]>;
     /** Device breakdown */
-    static getDeviceBreakdown(websiteId: string, startDate: Date, endDate: Date, filters?: AnalyticsFilters): Promise<{
+    static getDeviceBreakdown(websiteId: string, startDate: Date, endDate: Date, filters?: AnalyticsFilters, groupBy?: DeviceDimension): Promise<{
         browser: string | null;
         device_type: string | null;
         os: string | null;
@@ -128,9 +175,10 @@ export declare class AnalyticsService {
         unique_visitors?: number | undefined;
     }[]>;
     /** Geographic distribution */
-    static getGeography(websiteId: string, startDate: Date, endDate: Date, filters?: AnalyticsFilters): Promise<{
+    static getGeography(websiteId: string, startDate: Date, endDate: Date, filters?: AnalyticsFilters, groupBy?: GeoDimension): Promise<{
         city: string | null;
         country: string | null;
+        region?: string | null | undefined;
         pageviews: number;
         unique_visitors?: number | undefined;
     }[]>;

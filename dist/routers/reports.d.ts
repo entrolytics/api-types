@@ -264,6 +264,7 @@ export declare const reportsRouter: import("@trpc/server").TRPCBuiltRouter<{
             startDate: Date;
             websiteId: string;
             currency?: string | undefined;
+            timeZone?: string | undefined;
         };
         output: {
             chart: {
@@ -332,6 +333,7 @@ export declare const reportsRouter: import("@trpc/server").TRPCBuiltRouter<{
             currentStart: Date;
             previousEnd: Date;
             previousStart: Date;
+            timeZone?: string | undefined;
             websiteId: string;
         };
         output: {

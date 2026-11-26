@@ -1,3 +1,20 @@
+import { z } from 'zod';
+export declare const eventListRowSchema: z.ZodObject<{
+    browser: z.ZodNullable<z.ZodString>;
+    city: z.ZodNullable<z.ZodString>;
+    country: z.ZodNullable<z.ZodString>;
+    device_type: z.ZodNullable<z.ZodString>;
+    event_data: z.ZodString;
+    event_id: z.ZodString;
+    event_name: z.ZodNullable<z.ZodString>;
+    event_type: z.ZodString;
+    os: z.ZodNullable<z.ZodString>;
+    path: z.ZodString;
+    referrer: z.ZodNullable<z.ZodString>;
+    session_id: z.ZodString;
+    timestamp: z.ZodPipe<z.ZodString, z.ZodTransform<string, string>>;
+    visitor_id: z.ZodString;
+}, z.core.$strip>;
 export declare const eventsRouter: import("@trpc/server").TRPCBuiltRouter<{
     ctx: {
         auth: import("../middleware/auth.js").AuthContext | null;
@@ -61,6 +78,7 @@ export declare const eventsRouter: import("@trpc/server").TRPCBuiltRouter<{
             websiteId: string;
             eventName?: string | undefined;
             interval?: "day" | "hour" | "month" | "week" | undefined;
+            timeZone?: string | undefined;
         };
         output: {
             count: number;
