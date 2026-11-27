@@ -8,8 +8,8 @@ export interface AuthUser {
     lastName: string | null;
     imageUrl: string | null;
     role: PlatformRole;
+    /** The id of the sign-in identity the account belongs to (the column keeps its older name). */
     clerkId: string;
-    clerkOrgId?: string | null;
     createdAt: Date | null;
     orgId?: string | null;
     orgRole?: OrgRole | null;
@@ -18,32 +18,28 @@ export interface AuthUser {
 export interface AuthContext {
     user: AuthUser;
     /**
-     * How the caller authenticated. Minting a CLI token requires an interactive Clerk session: a CLI
-     * token that could mint tokens could mint one wider than its own scopes.
+     * How the caller authenticated. Minting a CLI token requires an interactive session: a CLI token
+     * that could mint tokens could mint one wider than its own scopes.
      */
     credential: 'session' | 'cli-token';
-    clerkUserId: string;
-    clerkOrgId?: string | null;
     orgId?: string | null;
     grant: string[];
 }
 /**
  * Resolve the caller's auth context, memoized for the lifetime of the request.
  *
- * Resolution hits Clerk and PostgreSQL, and both the global write-grant hook (AUTH-3) and the route
- * handler itself need the same context. Without memoization every guarded mutation would pay for
- * that lookup twice.
+ * Resolution reads PostgreSQL several times, and both the global write-grant hook (AUTH-3) and the
+ * route handler itself need the same context. Without memoization every guarded mutation would pay
+ * for that lookup twice.
  */
 export declare function getAuthUser(request: FastifyRequest): Promise<AuthContext | null>;
 /**
- * Authenticate a credential that arrived outside the request headers: the realtime socket's
- * `authenticate` message. A browser cannot set headers on a WebSocket upgrade, and Clerk resolves
- * `request.auth` once, in the upgrade's preHandler, before any message arrives. So a session token
- * sent in the message has to be verified here, or no dashboard socket ever authenticates.
- *
- * The session carries no active organization here; realtime access is decided per website.
+ * Authenticate a Bearer credential: a CLI token (`entro_…`), or the short-lived token the web gets
+ * from sign-in for a session. Exported for credentials that arrive outside the request headers: a
+ * browser cannot set headers on a WebSocket upgrade, so the realtime socket sends its token in an
+ * `authenticate` message.
  */
-export declare function authenticateBearerToken(token: string): Promise<AuthContext | null>;
+export declare function authenticateBearerToken(token: string, request?: FastifyRequest): Promise<AuthContext | null>;
 /** Check if user has required permission */
 export declare function hasPermission(auth: AuthContext | null, permission: string): boolean;
 /** Check if user is admin */

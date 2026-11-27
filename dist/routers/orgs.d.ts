@@ -13,7 +13,6 @@ export declare const orgsRouter: import("@trpc/server").TRPCBuiltRouter<{
     list: import("@trpc/server").TRPCQueryProcedure<{
         input: void;
         output: {
-            clerkOrgId: string | null;
             createdAt: Date;
             id: string;
             logoUrl: string | null;
@@ -29,6 +28,7 @@ export declare const orgsRouter: import("@trpc/server").TRPCBuiltRouter<{
             orgId: string;
         };
         output: {
+            clerkOrgId: string | null;
             clerkSyncRequestedAt: Date | null;
             createdAt: Date;
             deletedAt: Date | null;
@@ -38,7 +38,6 @@ export declare const orgsRouter: import("@trpc/server").TRPCBuiltRouter<{
             slug: string;
             updatedAt: Date;
             accessCode: string | null;
-            clerkOrgId: string | null;
             role: "admin" | "member" | "owner" | "viewer";
         };
         meta: object;
@@ -165,7 +164,6 @@ export declare const orgsRouter: import("@trpc/server").TRPCBuiltRouter<{
                 token: string;
             };
             output: {
-                clerkSynced: boolean;
                 orgId: string;
                 orgName: string | null;
                 role: "admin" | "member" | "owner" | "viewer";

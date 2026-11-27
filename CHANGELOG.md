@@ -5,6 +5,15 @@ All notable changes to this project are documented in this file. The format foll
 
 ## [Unreleased]
 
+### Changed
+
+- **Breaking.** Declarations regenerated for the API's move of sign-in from Clerk to Entro Auth.
+  `AuthContext` no longer carries `clerkUserId` or `clerkOrgId`, and `AuthUser` no longer carries
+  `clerkOrgId`. `users.delete` no longer answers `pending`, `orgs.list` no longer returns
+  `clerkOrgId`, and accepting an invitation no longer returns `clerkSynced`.
+- User rows carry `legacyClerkId` and `bannedAt`. `clerkId` now holds the id of the sign-in
+  identity; the name is kept.
+
 ## [6.0.3] - 2026-11-26
 
 ### Fixed

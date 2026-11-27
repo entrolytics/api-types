@@ -1059,6 +1059,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
             output: {
                 id: string;
                 clerkId: string;
+                legacyClerkId: string | null;
                 email: string;
                 name: string | null;
                 displayName: string | null;
@@ -1067,6 +1068,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 avatarUrl: string | null;
                 imageUrl: string | null;
                 role: string;
+                bannedAt: Date | null;
                 onboardingCompleted: string | null;
                 onboardingCompletedAt: Date | null;
                 onboardingStep: string | null;
@@ -1093,6 +1095,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
             output: {
                 id: string;
                 clerkId: string;
+                legacyClerkId: string | null;
                 email: string;
                 name: string | null;
                 displayName: string | null;
@@ -1101,6 +1104,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 avatarUrl: string | null;
                 imageUrl: string | null;
                 role: string;
+                bannedAt: Date | null;
                 onboardingCompleted: string | null;
                 onboardingCompletedAt: Date | null;
                 onboardingStep: string | null;
@@ -1121,7 +1125,6 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
         delete: import("@trpc/server").TRPCMutationProcedure<{
             input: void;
             output: {
-                pending: boolean;
                 success: boolean;
             };
             meta: object;
@@ -1368,7 +1371,6 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
         list: import("@trpc/server").TRPCQueryProcedure<{
             input: void;
             output: {
-                clerkOrgId: string | null;
                 createdAt: Date;
                 id: string;
                 logoUrl: string | null;
@@ -1383,6 +1385,7 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 orgId: string;
             };
             output: {
+                clerkOrgId: string | null;
                 clerkSyncRequestedAt: Date | null;
                 createdAt: Date;
                 deletedAt: Date | null;
@@ -1392,7 +1395,6 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 slug: string;
                 updatedAt: Date;
                 accessCode: string | null;
-                clerkOrgId: string | null;
                 role: "admin" | "member" | "owner" | "viewer";
             };
             meta: object;
@@ -1511,7 +1513,6 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                     token: string;
                 };
                 output: {
-                    clerkSynced: boolean;
                     orgId: string;
                     orgName: string | null;
                     role: "admin" | "member" | "owner" | "viewer";

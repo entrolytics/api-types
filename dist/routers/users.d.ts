@@ -24,7 +24,7 @@ export declare const listUsersInput: z.ZodObject<{
 }, z.core.$strip>;
 /**
  * Only what is stored. displayName, imageUrl, locale and timezone are refused: the display name
- * derives from the names and the image is managed in Clerk. Names must be non-empty, as REST always
+ * derives from the names and the image comes from sign-in. Names must be non-empty, as REST always
  * required; tRPC used to accept an empty string.
  */
 export declare const updateProfileInput: z.ZodObject<{
@@ -146,6 +146,7 @@ export declare const usersRouter: import("@trpc/server").TRPCBuiltRouter<{
         output: {
             id: string;
             clerkId: string;
+            legacyClerkId: string | null;
             email: string;
             name: string | null;
             displayName: string | null;
@@ -154,6 +155,7 @@ export declare const usersRouter: import("@trpc/server").TRPCBuiltRouter<{
             avatarUrl: string | null;
             imageUrl: string | null;
             role: string;
+            bannedAt: Date | null;
             onboardingCompleted: string | null;
             onboardingCompletedAt: Date | null;
             onboardingStep: string | null;
@@ -181,6 +183,7 @@ export declare const usersRouter: import("@trpc/server").TRPCBuiltRouter<{
         output: {
             id: string;
             clerkId: string;
+            legacyClerkId: string | null;
             email: string;
             name: string | null;
             displayName: string | null;
@@ -189,6 +192,7 @@ export declare const usersRouter: import("@trpc/server").TRPCBuiltRouter<{
             avatarUrl: string | null;
             imageUrl: string | null;
             role: string;
+            bannedAt: Date | null;
             onboardingCompleted: string | null;
             onboardingCompletedAt: Date | null;
             onboardingStep: string | null;
@@ -210,7 +214,6 @@ export declare const usersRouter: import("@trpc/server").TRPCBuiltRouter<{
     delete: import("@trpc/server").TRPCMutationProcedure<{
         input: void;
         output: {
-            pending: boolean;
             success: boolean;
         };
         meta: object;
