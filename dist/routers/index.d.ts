@@ -1059,7 +1059,6 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
             output: {
                 id: string;
                 clerkId: string;
-                legacyClerkId: string | null;
                 email: string;
                 name: string | null;
                 displayName: string | null;
@@ -1095,7 +1094,6 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
             output: {
                 id: string;
                 clerkId: string;
-                legacyClerkId: string | null;
                 email: string;
                 name: string | null;
                 displayName: string | null;
@@ -1385,8 +1383,6 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
                 orgId: string;
             };
             output: {
-                clerkOrgId: string | null;
-                clerkSyncRequestedAt: Date | null;
                 createdAt: Date;
                 deletedAt: Date | null;
                 id: string;
@@ -1407,8 +1403,6 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
             };
             output: {
                 accessCode: string | null;
-                clerkOrgId: string | null;
-                clerkSyncRequestedAt: Date | null;
                 createdAt: Date;
                 deletedAt: Date | null;
                 id: string;
@@ -1428,8 +1422,6 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
             };
             output: {
                 accessCode: string | null;
-                clerkOrgId: string | null;
-                clerkSyncRequestedAt: Date | null;
                 createdAt: Date;
                 deletedAt: Date | null;
                 id: string;

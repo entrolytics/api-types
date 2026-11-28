@@ -146,7 +146,6 @@ export declare const usersRouter: import("@trpc/server").TRPCBuiltRouter<{
         output: {
             id: string;
             clerkId: string;
-            legacyClerkId: string | null;
             email: string;
             name: string | null;
             displayName: string | null;
@@ -183,7 +182,6 @@ export declare const usersRouter: import("@trpc/server").TRPCBuiltRouter<{
         output: {
             id: string;
             clerkId: string;
-            legacyClerkId: string | null;
             email: string;
             name: string | null;
             displayName: string | null;
