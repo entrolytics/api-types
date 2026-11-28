@@ -5,6 +5,8 @@ All notable changes to this project are documented in this file. The format foll
 
 ## [Unreleased]
 
+## [7.0.0] - 2026-11-28
+
 ### Changed
 
 - **Breaking.** Declarations regenerated for the API's move of sign-in from Clerk to Entro Auth.
@@ -27,5 +29,6 @@ All notable changes to this project are documented in this file. The format foll
   report; pixel stats report, slug validation and consolidated REST/tRPC procedures).
 - Requires `@entrolytics/config` and `@entrolytics/protocol` 4.1.0; `@trpc/server` 11.31.
 
-[Unreleased]: https://github.com/entrolytics/api-types/compare/v6.0.3...HEAD
+[Unreleased]: https://github.com/entrolytics/api-types/compare/v7.0.0...HEAD
+[7.0.0]: https://github.com/entrolytics/api-types/compare/v6.0.3...v7.0.0
 [6.0.3]: https://github.com/entrolytics/api-types/releases/tag/v6.0.3
