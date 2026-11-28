@@ -37,7 +37,7 @@ mkdirSync(outDir, { recursive: true })
 copyDeclarationDirectory('routers')
 copyDeclarationFile(join('middleware', 'auth.d.ts'))
 
-for (const service of ['analytics', 'deployments', 'forms', 'vitals']) {
+for (const service of ['analytics', 'deployments', 'forms', 'search-console', 'vitals']) {
   copyDeclarationFile(join('services', `${service}.d.ts`))
 }
 

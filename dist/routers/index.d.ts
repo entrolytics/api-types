@@ -2475,6 +2475,106 @@ export declare const appRouter: import("@trpc/server").TRPCBuiltRouter<{
             }>;
         }>>;
     }>>;
+    searchConsole: import("@trpc/server").TRPCBuiltRouter<{
+        ctx: {
+            auth: import("../middleware/auth.js").AuthContext | null;
+            req: import("fastify").FastifyRequest<import("fastify").RouteGenericInterface, import("fastify").RawServerDefault, import("node:http").IncomingMessage, import("fastify").FastifySchema, import("fastify").FastifyTypeProviderDefault, unknown, import("fastify").FastifyBaseLogger, import("fastify/types/type-provider.js").ResolveFastifyRequestType<import("fastify").FastifyTypeProviderDefault, import("fastify").FastifySchema, import("fastify").RouteGenericInterface>>;
+            res: import("fastify").FastifyReply<import("fastify").RouteGenericInterface, import("fastify").RawServerDefault, import("node:http").IncomingMessage, import("node:http").ServerResponse<import("node:http").IncomingMessage>, unknown, import("fastify").FastifySchema, import("fastify").FastifyTypeProviderDefault, unknown>;
+        };
+        meta: object;
+        errorShape: import("@trpc/server").TRPCDefaultErrorShape;
+        transformer: true;
+    }, import("@trpc/server").TRPCDecorateCreateRouterOptions<{
+        status: import("@trpc/server").TRPCQueryProcedure<{
+            input: {
+                websiteId: string;
+            };
+            output: {
+                configured: boolean;
+                connection: import("../services/search-console.js").SearchConsoleConnectionStatus | null;
+            };
+            meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
+        }>;
+        connect: import("@trpc/server").TRPCMutationProcedure<{
+            input: {
+                websiteId: string;
+            };
+            output: {
+                url: string;
+            };
+            meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
+        }>;
+        properties: import("@trpc/server").TRPCQueryProcedure<{
+            input: {
+                websiteId: string;
+            };
+            output: import("../services/search-console.js").SearchConsoleProperty[];
+            meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
+        }>;
+        selectProperty: import("@trpc/server").TRPCMutationProcedure<{
+            input: {
+                websiteId: string;
+                siteUrl: string;
+            };
+            output: {
+                success: boolean;
+            };
+            meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
+        }>;
+        sync: import("@trpc/server").TRPCMutationProcedure<{
+            input: {
+                websiteId: string;
+            };
+            output: {
+                success: boolean;
+            };
+            meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
+        }>;
+        disconnect: import("@trpc/server").TRPCMutationProcedure<{
+            input: {
+                websiteId: string;
+            };
+            output: {
+                revoked: boolean;
+            };
+            meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
+        }>;
+        overview: import("@trpc/server").TRPCQueryProcedure<{
+            input: {
+                websiteId: string;
+                endDate: Date;
+                startDate: Date;
+            };
+            output: {
+                series: Array<import("../services/search-console.js").SearchConsoleMetrics & {
+                    date: string;
+                }>;
+                totals: import("../services/search-console.js").SearchConsoleMetrics;
+            } | null;
+            meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
+        }>;
+        breakdown: import("@trpc/server").TRPCQueryProcedure<{
+            input: {
+                websiteId: string;
+                endDate: Date;
+                startDate: Date;
+                dimension: "country" | "device" | "page" | "query";
+                limit?: number | undefined;
+            };
+            output: (import("../services/search-console.js").SearchConsoleMetrics & {
+                key: string;
+            })[];
+            meta: object;
+            errorShape: import("@trpc/server").TRPCDefaultErrorShape;
+        }>;
+    }>>;
 }>>;
 export type AppRouter = typeof appRouter;
 //# sourceMappingURL=index.d.ts.map

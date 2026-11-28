@@ -5,6 +5,11 @@ All notable changes to this project are documented in this file. The format foll
 
 ## [Unreleased]
 
+### Added
+
+- Declarations for the `searchConsole` router (Google Search Console import): `status`, `connect`,
+  `properties`, `selectProperty`, `sync`, `disconnect`, `overview` and `breakdown`.
+
 ## [7.0.0] - 2026-11-28
 
 ### Changed
